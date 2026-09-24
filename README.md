@@ -95,28 +95,34 @@ This is a real `@designcodeio/threeui` integration.
 
 ## Small Business Studio
 
-The Creative Lab is intentionally experimental, but the portfolio also has a second client-facing mode for smaller practical projects.
+The Creative Lab remains the experimental flagship. `PRISM / BUSINESS` is a separate, lazy-loaded client path for practical projects below roughly $2k.
 
-Open:
+Showroom:
 
-\`\`\`text
-?view=business
-\`\`\`
-
-For example on GitHub Pages:
-
-\`\`\`text
+```text
 https://tailolicon.github.io/portfolio-wow/?view=business
-\`\`\`
+```
 
-This mode is lazy-loaded and does not replace the original showcase. It contains:
+Each industry is now a separate complete React page, not a shared template with swapped colors/content:
 
-- six practical business directions: restaurant, café/drinks, salon/beauty, home services, fitness/studio, professional services
-- desktop/mobile live preview switching
-- clearly labeled concept examples rather than fabricated client work
-- three productized starting packages: $650, $1,100, $1,750
-- an interactive budget-fit slider from $500 to $2,000
-- sections organized around what small-business customers actually need: find, contact, trust, mobile usage
-- a persistent switch back to the Creative Lab
+- **Restaurant** — editorial dining identity, menu with real prices, visit details and an interactive reservation-time selection.
+- **Café / Drinks** — playful sticker-driven identity, menu board, location block and interactive loyalty-pass state.
+- **Salon / Beauty** — quiet-luxury treatment catalogue with duration/pricing and interactive appointment selection.
+- **Home Services** — trust-first utility layout, service area, phone CTA and a working quote-capture demo.
+- **Fitness / Studio** — brutal/acid visual language, daily class timetable, membership comparison and interactive class booking.
+- **Professional Services** — Swiss/editorial consulting language, engagement examples, delivery method and enquiry-capture flow.
 
-The business portal is implemented in \`src/BusinessStudio.tsx\` + \`src/business.css\` and ships as its own lazy chunk.
+Every concept can be opened as its own fullscreen scrollable product and shared directly:
+
+```text
+?view=business&demo=restaurant
+?view=business&demo=cafe
+?view=business&demo=salon
+?view=business&demo=services
+?view=business&demo=fitness
+?view=business&demo=professional
+```
+
+All six are clearly fictional concept work, not claimed client projects. Local WebP presentation assets live in `public/demos/` with source notes in `public/demos/README.md`.
+
+Business code is split across `src/BusinessStudio.tsx`, `src/BusinessDemos.tsx`, `src/business.css`, and `src/business-demos.css`, and remains a lazy chunk so the original Creative Lab stays independent.

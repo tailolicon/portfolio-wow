@@ -521,6 +521,7 @@ function App() {
   const closeBusinessStudio = () => {
     const url = new URL(window.location.href);
     url.searchParams.delete("view");
+    url.searchParams.delete("demo");
     window.history.pushState({}, "", url);
     setBusinessOpen(false);
   };

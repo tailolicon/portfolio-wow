@@ -111,13 +111,17 @@ The Orbital Sphere shader remains the largest lazy chunk. It is intentionally re
 
 ## Small Business client path
 
-A separate practical mode was added without changing the core Creative Lab.
+The practical client path was rebuilt as six independent product demos instead of six skins of one shared mini-site.
 
-Entry points:
+Architecture:
 
-- persistent **NEED A SMALL BUSINESS WEBSITE?** control on the Creative Lab
-- direct share URL using \`?view=business\`
+- `BusinessStudio.tsx` is the showroom, pricing layer, URL/share controller and fullscreen demo shell.
+- `BusinessDemos.tsx` contains six separate industry components with different information architecture and conversion jobs.
+- `business-demos.css` uses isolated visual systems for restaurant, café, salon, home services, fitness and professional services.
+- `public/demos/*.webp` contains local presentation photography, so deployed demos do not depend on runtime image hotlinks.
 
-The business mode deliberately changes tone from award-site experimentation to straightforward commercial clarity. It includes six fictional concept directions (restaurant, café, beauty, home service, fitness, professional service), desktop/mobile previews, three sub-$2k package anchors, and an interactive budget-fit control.
+Outcome interactions are intentionally demonstrable in-browser: restaurant reservation selection, café loyalty state, salon appointment selection, contractor quote capture, fitness class booking and professional enquiry capture.
 
-This layer is dynamically imported as \`BusinessStudio\`, so visitors who only explore the Creative Lab do not pay the full business-portal JS/CSS cost up front. Opening Business Studio also switches the homepage ThreeUI scenes to static fallbacks while the overlay is active, reducing unnecessary GPU work behind it.
+Direct URLs use `?view=business&demo=<industry>`; Back/Forward state is synchronized, and leaving Business Studio clears both `view` and `demo` query parameters.
+
+The Business Studio remains dynamically imported. When open, background ThreeUI scenes on the Creative Lab are switched to static fallbacks, reducing unnecessary GPU work behind the client-facing product demo.
