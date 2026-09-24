@@ -107,3 +107,17 @@ npm run build
 Expected output is `dist/`.
 
 The Orbital Sphere shader remains the largest lazy chunk. It is intentionally retained because this project prioritizes visual demonstration, and it only loads when that visual is actually used.
+
+
+## Small Business client path
+
+A separate practical mode was added without changing the core Creative Lab.
+
+Entry points:
+
+- persistent **NEED A SMALL BUSINESS WEBSITE?** control on the Creative Lab
+- direct share URL using \`?view=business\`
+
+The business mode deliberately changes tone from award-site experimentation to straightforward commercial clarity. It includes six fictional concept directions (restaurant, café, beauty, home service, fitness, professional service), desktop/mobile previews, three sub-$2k package anchors, and an interactive budget-fit control.
+
+This layer is dynamically imported as \`BusinessStudio\`, so visitors who only explore the Creative Lab do not pay the full business-portal JS/CSS cost up front. Opening Business Studio also switches the homepage ThreeUI scenes to static fallbacks while the overlay is active, reducing unnecessary GPU work behind it.

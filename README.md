@@ -91,3 +91,32 @@ This is a real `@designcodeio/threeui` integration.
 - Focus-visible states are provided.
 - Drag interactions work with pointer/touch input.
 - Reduced-motion visitors get the same information and art direction without continuous motion.
+
+
+## Small Business Studio
+
+The Creative Lab is intentionally experimental, but the portfolio also has a second client-facing mode for smaller practical projects.
+
+Open:
+
+\`\`\`text
+?view=business
+\`\`\`
+
+For example on GitHub Pages:
+
+\`\`\`text
+https://tailolicon.github.io/portfolio-wow/?view=business
+\`\`\`
+
+This mode is lazy-loaded and does not replace the original showcase. It contains:
+
+- six practical business directions: restaurant, café/drinks, salon/beauty, home services, fitness/studio, professional services
+- desktop/mobile live preview switching
+- clearly labeled concept examples rather than fabricated client work
+- three productized starting packages: $650, $1,100, $1,750
+- an interactive budget-fit slider from $500 to $2,000
+- sections organized around what small-business customers actually need: find, contact, trust, mobile usage
+- a persistent switch back to the Creative Lab
+
+The business portal is implemented in \`src/BusinessStudio.tsx\` + \`src/business.css\` and ships as its own lazy chunk.

@@ -27,6 +27,7 @@ import {
   Orbit,
   Play,
   Sparkles,
+  Store,
   Zap,
 } from "lucide-react";
 
@@ -67,6 +68,7 @@ const EmberStorm = lazy(() =>
 );
 
 const ImmersiveExperience = lazy(() => import("./ImmersiveExperience"));
+const BusinessStudio = lazy(() => import("./BusinessStudio"));
 
 type WorldId = "luxury" | "future" | "editorial" | "experimental" | "product";
 
@@ -483,6 +485,9 @@ function App() {
   const [activeId, setActiveId] = useState<WorldId>("luxury");
   const [immersiveId, setImmersiveId] = useState<WorldId | null>(null);
   const [showreel, setShowreel] = useState(false);
+  const [businessOpen, setBusinessOpen] = useState(
+    () => new URLSearchParams(window.location.search).get("view") === "business",
+  );
   const [interactionCount, setInteractionCount] = useState(0);
   usePageEffects(reducedMotion);
 
@@ -505,6 +510,29 @@ function App() {
     bumpInteraction();
   };
 
+  const openBusinessStudio = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("view", "business");
+    window.history.pushState({ view: "business" }, "", url);
+    setBusinessOpen(true);
+    bumpInteraction();
+  };
+
+  const closeBusinessStudio = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("view");
+    window.history.pushState({}, "", url);
+    setBusinessOpen(false);
+  };
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      setBusinessOpen(new URLSearchParams(window.location.search).get("view") === "business");
+    };
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, []);
+
   const themeStyle = {
     "--accent": activeWorld.color,
     "--accent-2": activeWorld.secondary,
@@ -516,6 +544,19 @@ function App() {
       <div className="noise" aria-hidden="true" />
       <div className="cursor-orb" aria-hidden="true" />
       <div className="scroll-progress" aria-hidden="true" />
+
+      <button
+        type="button"
+        className="business-entry"
+        onClick={openBusinessStudio}
+        aria-label="Open practical website examples for small businesses"
+      >
+        <span>
+          <small>RESTAURANT · CAFÉ · LOCAL SERVICES</small>
+          <b>NEED A SMALL BUSINESS WEBSITE?</b>
+        </span>
+        <i><Store size={16} /></i>
+      </button>
 
       <div className="craft-hud" aria-label="Illustrative demo status">
         <div className="craft-hud-head">
@@ -550,7 +591,7 @@ function App() {
 
       <section className="hero" id="top">
         <div className="hero-scene" aria-hidden="true">
-          <HeroScene reducedMotion={reducedMotion || immersiveId !== null} />
+          <HeroScene reducedMotion={reducedMotion || immersiveId !== null || businessOpen} />
           <div className="hero-vignette" />
           <div className="hero-grid" />
         </div>
@@ -668,7 +709,7 @@ function App() {
               <WorldEffect
                 id={activeWorld.id}
                 color={activeWorld.color}
-                reducedMotion={reducedMotion || immersiveId !== null}
+                reducedMotion={reducedMotion || immersiveId !== null || businessOpen}
               />
               <div className="stage-scrim" />
               <WorldComposition world={activeWorld} />
@@ -780,7 +821,7 @@ function App() {
 
       <section className="proof section-shell" data-reveal>
         <div className="proof-visual" aria-hidden="true">
-          {reducedMotion || immersiveId !== null ? (
+          {reducedMotion || immersiveId !== null || businessOpen ? (
             <div className="proof-static" />
           ) : (
             <SceneBoundary className="proof-static">
@@ -872,6 +913,19 @@ function App() {
           <a href="#top">Back to top ↑</a>
         </footer>
       </section>
+
+      {businessOpen && (
+        <Suspense
+          fallback={
+            <div className="immersive-loading" role="status" aria-live="polite">
+              <span />
+              <b>OPENING BUSINESS STUDIO</b>
+            </div>
+          }
+        >
+          <BusinessStudio onClose={closeBusinessStudio} />
+        </Suspense>
+      )}
 
       {immersiveWorld && (
         <Suspense
