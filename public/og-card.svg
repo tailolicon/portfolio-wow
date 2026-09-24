@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="a" cx="70%" cy="35%" r="65%">
+      <stop stop-color="#ff4fd8" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#6e55ff" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="20%" cy="80%" r="60%">
+      <stop stop-color="#00f0ff" stop-opacity=".58"/>
+      <stop offset="1" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050507"/>
+  <rect width="1200" height="630" fill="url(#a)"/>
+  <rect width="1200" height="630" fill="url(#b)"/>
+  <g fill="none" stroke="#fff" stroke-opacity=".12">
+    <circle cx="860" cy="310" r="190"/>
+    <circle cx="860" cy="310" r="132"/>
+    <circle cx="860" cy="310" r="72"/>
+  </g>
+  <text x="70" y="100" fill="#fff" opacity=".65" font-family="Arial,sans-serif" font-size="22" letter-spacing="6">PRISM / LAB</text>
+  <text x="68" y="320" fill="#fff" font-family="Arial,sans-serif" font-size="110" font-weight="800" letter-spacing="-7">WEB EXPERIENCES</text>
+  <text x="70" y="430" fill="#fff" font-family="Georgia,serif" font-size="92" font-style="italic">people remember.</text>
+  <text x="72" y="550" fill="#fff" opacity=".42" font-family="Arial,sans-serif" font-size="18" letter-spacing="3">INTERACTION · MOTION · REALTIME 3D · CREATIVE FRONTEND</text>
+</svg>
