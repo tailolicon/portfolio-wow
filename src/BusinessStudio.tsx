@@ -121,6 +121,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
     if (fullDemo) {
       const url = new URL(window.location.href);
       url.searchParams.set("demo", id);
+      url.searchParams.delete("page");
       window.history.replaceState({ view: "business", demo: id }, "", url);
     }
   };
@@ -136,6 +137,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
   const closeFullDemo = () => {
     const url = new URL(window.location.href);
     url.searchParams.delete("demo");
+    url.searchParams.delete("page");
     window.history.pushState({ view: "business" }, "", url);
     setFullDemo(false);
   };
@@ -194,7 +196,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
         <header className="biz-full-demo-header">
           <button type="button" onClick={closeFullDemo}><ArrowLeft size={16} /> Showroom</button>
           <div>
-            <small>PRISM / BUSINESS — COMPLETE CONCEPT</small>
+            <small>PRISM / BUSINESS — {active.domain}</small>
             <strong>{active.label}</strong>
             <span>{active.kicker}</span>
           </div>
@@ -220,7 +222,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="biz-full-demo-note">
-          <span>Concept demo — scroll the actual page</span>
+          <span>Demo website · fictional business · use the site menu to browse every page</span>
           <button type="button" onClick={copyDemoLink}>{copied ? "Copied!" : "Copy share link"}</button>
         </div>
       </div>
@@ -301,7 +303,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
           <div className="biz-product-frame">
             <div className="biz-product-browser">
               <div><i /><i /><i /></div>
-              <span>{active.id === "restaurant" ? "emberandoak.com" : active.id === "cafe" ? "daylight.cafe" : active.id === "salon" ? "soraskin.studio" : active.id === "services" ? "northlinehome.com" : active.id === "fitness" ? "resetclub.fit" : "valeandco.com"}</span>
+              <span>{active.domain}</span>
               <b>SCROLL ↓</b>
             </div>
             <div className="biz-product-scroll">
@@ -311,12 +313,12 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
 
           <div className="biz-result-summary">
             {[
-              ["Restaurant", "Menu + real reservation moment + visit details"],
-              ["Café", "Brand personality + menu board + location + loyalty"],
-              ["Salon", "Treatments + pricing + available appointments"],
-              ["Home Services", "Trust proof + service list + quote capture"],
-              ["Fitness", "Class schedule + membership comparison + first-class CTA"],
-              ["Professional", "Engagement examples + method + project enquiry"],
+              ["Restaurant", "Home · full menu · about · reservations · contact"],
+              ["Café / Bakery", "Home · menu · our story · catering · locations"],
+              ["Hair Salon", "Home · services & pricing · stylists · gallery · booking"],
+              ["Plumbing & HVAC", "Home · services · service areas · reviews · free quote"],
+              ["Gym / Studio", "Home · class schedule · membership · coaches · free trial"],
+              ["Law Firm", "Home · practice areas · attorneys · results · consultation"],
             ].map(([name, result]) => (
               <div key={name}><b>{name}</b><span>{result}</span></div>
             ))}

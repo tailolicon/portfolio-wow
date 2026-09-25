@@ -1,0 +1,488 @@
+/* Hearth & Honey Coffee Co. : shared layout, header, footer, components */
+.site-cafe {
+  /* Color: brand */
+  --color-forest: #1f3b2d;
+  --color-forest-mid: #2a4d3b;
+  --color-forest-deep: #183024;
+  --color-honey: #e0a23a;
+  --color-honey-press: #cf9028;
+  --color-honey-text: #8a5a10;
+  /* Color: surfaces */
+  --color-canvas: #fbfbf8;
+  --color-bone: #f2f3ee;
+  --color-mint: #e6ece4;
+  --color-white: #ffffff;
+  --color-line: #d8ded5;
+  --color-line-strong: #b4bfb3;
+  /* Color: text */
+  --color-ink: #1c2a22;
+  --color-muted: #4f5e56;
+  --color-on-dark: #dfe7de;
+  --color-on-dark-soft: #b3c2b6;
+  --color-on-dark-line: rgba(255, 255, 255, 0.16);
+  --color-header-glass: rgba(251, 251, 248, 0.96);
+  --overlay-hero: linear-gradient(90deg, rgba(20, 38, 29, 0.86) 0%, rgba(20, 38, 29, 0.62) 45%, rgba(20, 38, 29, 0.12) 100%);
+  --overlay-hero-mobile: linear-gradient(180deg, rgba(20, 38, 29, 0.55) 0%, rgba(20, 38, 29, 0.85) 100%);
+
+  /* Type */
+  --font-display: "Bricolage Grotesque", "DM Sans", ui-sans-serif, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+  --text-2xs: 0.72rem;
+  --text-xs: 0.85rem;
+  --text-sm: 0.93rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.15rem;
+  --text-lg: 1.3rem;
+  --text-xl: 1.6rem;
+  --text-h2: clamp(1.75rem, 3cqi, 2.4rem);
+  --text-h1: clamp(2.3rem, 4.3cqi, 3.5rem);
+  --text-stat: clamp(2rem, 3.2cqi, 2.6rem);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-body: 1.6;
+  --tracking-display: -0.025em;
+  --tracking-heading: -0.015em;
+  --tracking-label: 0.08em;
+
+  /* Space (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+  --space-11: 80px;
+  --space-gutter: clamp(16px, 4cqi, 40px);
+  --space-section: clamp(56px, 8cqi, 96px);
+  --space-section-tight: clamp(40px, 5cqi, 64px);
+  --container: 1200px;
+  --header-h: 76px;
+  --header-h-sm: 66px;
+
+  /* Shape */
+  --radius-input: 8px;
+  --radius-card: 14px;
+  --radius-pill: 999px;
+  --radius-round: 50%;
+
+  /* Elevation (forest-tinted) */
+  --shadow-card: 0 1px 2px rgba(31, 59, 45, 0.06), 0 10px 30px -12px rgba(31, 59, 45, 0.22);
+  --shadow-cta: 0 6px 16px -8px rgba(160, 104, 16, 0.6);
+  --motion: 0.2s ease;
+
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+.site-cafe :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  color: var(--color-forest);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-heading);
+  text-wrap: balance;
+}
+.site-cafe :where(p, li, blockquote) {
+  text-wrap: pretty;
+}
+.site-cafe a:focus-visible,
+.site-cafe button:focus-visible,
+.site-cafe summary:focus-visible,
+.site-cafe :where(input, select, textarea):focus-visible {
+  outline: 3px solid var(--color-honey);
+  outline-offset: 2px;
+}
+
+.site-cafe .cf-wrap {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-gutter);
+}
+.site-cafe .cf-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.site-cafe .cf-skip {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 50;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-forest);
+  color: var(--color-white);
+  border-radius: var(--radius-input);
+}
+.site-cafe .cf-skip:focus {
+  top: 12px;
+}
+
+/* Type */
+.site-cafe .cf-h1 {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.05;
+}
+.site-cafe .cf-h2 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-display);
+}
+.site-cafe .cf-h3 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+.site-cafe .cf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  color: var(--color-honey-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.site-cafe .cf-lead {
+  margin-top: var(--space-4);
+  color: var(--color-muted);
+  font-size: var(--text-md);
+  max-width: 60ch;
+}
+.site-cafe .cf-small {
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+.site-cafe .cf-small a,
+.site-cafe .cf-lead a {
+  color: var(--color-forest);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-cafe .cf-center {
+  margin-top: var(--space-7);
+  text-align: center;
+}
+.site-cafe .cf-price {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  color: var(--color-forest);
+  white-space: nowrap;
+}
+
+/* Buttons: pill */
+.site-cafe .cf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-6);
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-base);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color var(--motion), color var(--motion), border-color var(--motion), transform var(--motion), box-shadow var(--motion);
+}
+.site-cafe .cf-btn:active {
+  transform: translateY(1px);
+}
+.site-cafe .cf-btn--sm {
+  min-height: 40px;
+  padding: 0 var(--space-5);
+  font-size: var(--text-sm);
+}
+.site-cafe .cf-btn--primary {
+  background: var(--color-honey);
+  color: var(--color-forest-deep);
+  box-shadow: var(--shadow-cta);
+}
+.site-cafe .cf-btn--primary:hover {
+  background: var(--color-honey-press);
+}
+.site-cafe .cf-btn--ghost {
+  border-color: var(--color-forest);
+  color: var(--color-forest);
+  background: transparent;
+}
+.site-cafe .cf-btn--ghost:hover {
+  background: var(--color-forest);
+  color: var(--color-white);
+}
+.site-cafe .cf-btn--light {
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+.site-cafe .cf-btn--light:hover {
+  background: var(--color-white);
+  color: var(--color-forest);
+}
+.site-cafe .cf-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.site-cafe .cf-btn-row--center {
+  justify-content: center;
+}
+.site-cafe .cf-textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--weight-bold);
+  color: var(--color-forest);
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--color-honey);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  transition: gap var(--motion);
+}
+.site-cafe .cf-textlink:hover {
+  gap: var(--space-3);
+}
+
+/* Announcement + header */
+.site-cafe .cf-announce {
+  background: var(--color-forest);
+  color: var(--color-on-dark);
+  font-size: var(--text-sm);
+  text-align: center;
+  padding: var(--space-2) var(--space-4);
+}
+.site-cafe .cf-announce a {
+  color: var(--color-honey);
+  font-weight: var(--weight-bold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.site-cafe .cf-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--color-header-glass);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-line);
+}
+.site-cafe .cf-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--header-h);
+}
+.site-cafe .cf-header-logo {
+  flex-shrink: 0;
+}
+.site-cafe .cf-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-forest);
+}
+.site-cafe .cf-logo-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.site-cafe .cf-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.site-cafe .cf-logo-name {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-lg);
+  letter-spacing: -0.02em;
+}
+.site-cafe .cf-logo-sub {
+  font-size: var(--text-2xs);
+  color: var(--color-muted);
+  margin-top: var(--space-1);
+}
+.site-cafe .cf-logo--light {
+  color: var(--color-white);
+}
+.site-cafe .cf-logo--light .cf-logo-sub {
+  color: var(--color-on-dark-soft);
+}
+.site-cafe .cf-logo--light .cf-logo-mark path:last-child {
+  stroke: var(--color-forest);
+}
+.site-cafe .cf-nav {
+  margin-inline: auto;
+}
+.site-cafe .cf-nav ul {
+  display: flex;
+  gap: var(--space-1);
+}
+.site-cafe .cf-nav a {
+  display: block;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+  transition: background-color var(--motion), color var(--motion);
+}
+.site-cafe .cf-nav a:hover {
+  background: var(--color-mint);
+}
+.site-cafe .cf-nav a[aria-current="page"] {
+  color: var(--color-forest);
+  background: var(--color-mint);
+}
+.site-cafe .cf-header-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.site-cafe .cf-header-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--weight-semibold);
+  white-space: nowrap;
+}
+.site-cafe .cf-header-phone:hover {
+  color: var(--color-forest);
+  text-decoration: underline;
+}
+.site-cafe .cf-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-forest);
+  align-items: center;
+  justify-content: center;
+}
+.site-cafe .cf-mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: var(--space-3) var(--space-4) var(--space-5);
+  background: var(--color-canvas);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: var(--shadow-card);
+}
+.site-cafe .cf-mobile-nav a {
+  display: block;
+  padding: 13px var(--space-1);
+  border-bottom: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  color: var(--color-forest);
+}
+.site-cafe .cf-mobile-nav a[aria-current="page"] {
+  color: var(--color-honey-text);
+}
+.site-cafe .cf-mobile-nav .cf-btn {
+  width: 100%;
+  margin-top: var(--space-4);
+}
+
+/* Section frame */
+.site-cafe .cf-section {
+  padding-block: var(--space-section);
+}
+.site-cafe .cf-section--tight {
+  padding-block: var(--space-section-tight);
+}
+.site-cafe .cf-section--tint,
+.site-cafe .cf-section--oat {
+  background: var(--color-bone);
+}
+.site-cafe .cf-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+.site-cafe .cf-head--center {
+  justify-content: center;
+  text-align: center;
+}
+.site-cafe .cf-head--center .cf-lead {
+  margin-inline: auto;
+}
+.site-cafe .cf-checks {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+.site-cafe .cf-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-weight: var(--weight-medium);
+}
+.site-cafe .cf-checks svg {
+  flex-shrink: 0;
+  margin-top: var(--space-1);
+  color: var(--color-forest);
+}
+
+/* Split image/text */
+.site-cafe .cf-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6cqi, 80px);
+  align-items: center;
+}
+.site-cafe .cf-split-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+.site-cafe .cf-split-copy > p {
+  margin-top: var(--space-4);
+  max-width: 58ch;
+  color: var(--color-muted);
+}
+.site-cafe .cf-split-copy .cf-h2 + p {
+  margin-top: var(--space-5);
+}
+
+/* Page hero (inner pages) */
+.site-cafe .cf-pagehero {
+  padding-block: var(--space-section-tight);
+  background: var(--color-bone);
+}
+.site-cafe .cf-pagehero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 5cqi, 64px);
+  align-items: center;
+}
+.site-cafe .cf-pagehero-img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+

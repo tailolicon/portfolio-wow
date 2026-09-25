@@ -1,0 +1,56 @@
+/* Shared reset for every client demo site. Each site scopes its own styles under .site-<id>. */
+.demo-site {
+  container-type: inline-size;
+  container-name: site;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+  color-scheme: light;
+  background: #fff;
+  color: #1a1a1a;
+  text-align: left;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: initial;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.demo-site *,
+.demo-site *::before,
+.demo-site *::after {
+  box-sizing: border-box;
+}
+
+.demo-site :where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol, dl, dd) {
+  margin: 0;
+}
+
+.demo-site :where(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+
+.demo-site img {
+  display: block;
+  max-width: 100%;
+}
+
+.demo-site :where(button, input, select, textarea) {
+  font: inherit;
+  color: inherit;
+}
+
+.demo-site :where(button, a, select, label[for], summary) {
+  cursor: pointer;
+}
+
+.demo-site a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.demo-site ::selection {
+  background: rgba(0, 0, 0, 0.14);
+  color: inherit;
+}
