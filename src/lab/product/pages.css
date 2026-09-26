@@ -1,0 +1,364 @@
+/* Kova Audio: tech specs, compare, support */
+.site-lab-product .kv-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Specs */
+.site-lab-product .kv-specs-hero {
+  padding-block: var(--kv-s8) var(--kv-s6);
+}
+.site-lab-product .kv-specs-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--kv-s7);
+  align-items: center;
+}
+.site-lab-product .kv-specs-title {
+  font-size: var(--kv-t-h2);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.site-lab-product .kv-specs-hero .kv-lead {
+  margin-top: var(--kv-s4);
+}
+.site-lab-product .kv-specs-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kv-s5);
+  margin-top: var(--kv-s6);
+  font-size: var(--kv-t-cap);
+  font-weight: 500;
+}
+.site-lab-product .kv-specs-color {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kv-s2);
+}
+.site-lab-product .kv-specs-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--kv-s5);
+  margin-top: var(--kv-s6);
+}
+.site-lab-product .kv-specs-photo {
+  border-radius: var(--kv-r-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--kv-night);
+  box-shadow: var(--kv-shadow-product);
+}
+.site-lab-product .kv-specs-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-lab-product .kv-specs-keys {
+  padding-block: var(--kv-s6);
+}
+.site-lab-product .kv-keys {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-block: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-keys > div {
+  padding: var(--kv-s5) var(--kv-s4);
+  border-left: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-keys > div:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.site-lab-product .kv-keys dt {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+.site-lab-product .kv-keys dd {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-specs-body {
+  padding-block: var(--kv-s6) var(--kv-s9);
+}
+.site-lab-product .kv-specs-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--kv-s7);
+  align-items: start;
+}
+.site-lab-product .kv-specs-index {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 2px;
+}
+.site-lab-product .kv-specs-index-link {
+  text-align: left;
+  padding: var(--kv-s2) var(--kv-s3);
+  border: 0;
+  border-radius: var(--kv-r-sm);
+  background: transparent;
+  color: var(--kv-ink-2);
+  font-size: var(--kv-t-cap);
+  font-weight: 500;
+  cursor: pointer;
+}
+.site-lab-product .kv-specs-index-link:hover {
+  color: var(--kv-ink);
+}
+.site-lab-product .kv-specs-index-link[aria-current="true"] {
+  background: var(--kv-paper);
+  color: var(--kv-ink);
+}
+.site-lab-product .kv-specs-groups {
+  display: grid;
+  gap: var(--kv-s4);
+}
+.site-lab-product .kv-spec-card {
+  scroll-margin-top: 88px;
+  padding: var(--kv-s6);
+  border-radius: var(--kv-r-lg);
+  background: var(--kv-paper);
+}
+.site-lab-product .kv-spec-card h2 {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--kv-s5);
+}
+.site-lab-product .kv-spec-card dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--kv-s5) var(--kv-s7);
+}
+.site-lab-product .kv-spec-card dt {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-spec-card dd {
+  margin-top: 2px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.site-lab-product .kv-specs-foot {
+  margin-top: var(--kv-s4);
+  max-width: 70ch;
+}
+
+/* Compare */
+.site-lab-product .kv-compare .kv-page-head {
+  text-align: center;
+}
+.site-lab-product .kv-compare .kv-page-head .kv-lead {
+  margin-inline: auto;
+}
+.site-lab-product .kv-cmp-scroll {
+  overflow-x: auto;
+  border-radius: var(--kv-r-lg);
+  background: var(--kv-paper);
+}
+.site-lab-product .kv-cmp {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.9375rem;
+}
+.site-lab-product .kv-cmp col:first-child,
+.site-lab-product .kv-cmp tr > :first-child {
+  width: 22%;
+}
+.site-lab-product .kv-cmp-models th {
+  vertical-align: top;
+  text-align: left;
+  font-weight: 400;
+  padding: var(--kv-s6) var(--kv-s5) var(--kv-s5);
+}
+.site-lab-product .kv-cmp-models th > * {
+  display: block;
+}
+.site-lab-product .kv-cmp-visual {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--kv-r-md);
+  overflow: hidden;
+  background: var(--kv-night);
+  margin-bottom: var(--kv-s4);
+}
+.site-lab-product .kv-cmp-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-lab-product .kv-cmp-visual-air img {
+  object-position: 55% 55%;
+  transform: scale(1.25);
+}
+.site-lab-product .kv-cmp-visual-buds {
+  display: grid;
+  place-items: center;
+  background: var(--kv-mist);
+}
+.site-lab-product .kv-buds-art {
+  width: 70%;
+  fill: var(--kv-paper);
+  stroke: var(--kv-ink);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.site-lab-product .kv-buds-art .kv-buds-seam {
+  fill: none;
+  stroke: var(--kv-line);
+}
+.site-lab-product .kv-buds-art .kv-buds-well {
+  fill: var(--kv-mist);
+  stroke: var(--kv-line);
+}
+.site-lab-product .kv-buds-art .kv-buds-mesh {
+  fill: var(--kv-ink);
+  stroke: none;
+}
+.site-lab-product .kv-buds-art .kv-buds-led {
+  fill: var(--kv-signal);
+  stroke: none;
+}
+.site-lab-product .kv-cmp-kind {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-cmp-name {
+  margin-top: 2px;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.site-lab-product .kv-cmp-line {
+  margin-top: var(--kv-s2);
+  color: var(--kv-ink-2);
+  min-height: 3em;
+  text-wrap: pretty;
+}
+.site-lab-product .kv-cmp-price {
+  margin: var(--kv-s3) 0;
+  font-weight: 600;
+}
+.site-lab-product .kv-cmp-models .kv-btn {
+  display: inline-flex;
+}
+.site-lab-product .kv-cmp-soon {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+  line-height: 34px;
+}
+.site-lab-product .kv-cmp-group th {
+  text-align: left;
+  padding: var(--kv-s6) var(--kv-s5) var(--kv-s3);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.site-lab-product .kv-cmp tbody tr:not(.kv-cmp-group) > * {
+  padding: var(--kv-s4) var(--kv-s5);
+  border-top: 1px solid var(--kv-line);
+  text-align: left;
+  vertical-align: top;
+}
+.site-lab-product .kv-cmp tbody th[scope="row"] {
+  font-weight: 500;
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-cmp-first {
+  background: #f8f8f6;
+  font-weight: 500;
+}
+.site-lab-product .kv-cmp-yes {
+  color: var(--kv-ink);
+}
+.site-lab-product .kv-cmp-no {
+  color: #a9adb2;
+}
+.site-lab-product .kv-cmp-advice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--kv-s7);
+}
+.site-lab-product .kv-cmp-advice-list {
+  display: grid;
+  gap: var(--kv-s5);
+  justify-items: start;
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-cmp-advice-list strong {
+  color: var(--kv-ink);
+  font-weight: 600;
+}
+
+@container site (max-width: 980px) {
+  .site-lab-product .kv-specs-hero-grid,
+  .site-lab-product .kv-specs-layout,
+  .site-lab-product .kv-setup-grid,
+  .site-lab-product .kv-service-grid,
+  .site-lab-product .kv-cmp-advice-grid {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-product .kv-specs-index {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--kv-s1);
+  }
+  .site-lab-product .kv-keys {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .site-lab-product .kv-keys > div:nth-child(4) {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .site-lab-product .kv-contact-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@container site (max-width: 640px) {
+  .site-lab-product .kv-keys {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-lab-product .kv-keys > div {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--kv-line);
+  }
+  .site-lab-product .kv-keys > div:first-child,
+  .site-lab-product .kv-keys > div:nth-child(2) {
+    border-top: 0;
+  }
+  .site-lab-product .kv-spec-card dl {
+    grid-template-columns: 1fr;
+    gap: var(--kv-s4);
+  }
+  .site-lab-product .kv-spec-card {
+    padding: var(--kv-s5);
+  }
+  .site-lab-product .kv-topics {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-lab-product .kv-topic {
+    padding: var(--kv-s5);
+  }
+  .site-lab-product .kv-firmware,
+  .site-lab-product .kv-warranty {
+    padding: var(--kv-s5);
+  }
+  .site-lab-product .kv-contact-list {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-product .kv-cmp tr > :first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--kv-paper);
+  }
+}

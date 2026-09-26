@@ -1,0 +1,251 @@
+/* Maison Orvel: product detail page */
+.site-lab-luxury .lx-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lx-s2);
+  padding-block: var(--lx-s5);
+  font-size: 0.8125rem;
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-crumbs a {
+  color: var(--lx-muted);
+  text-decoration: none;
+}
+.site-lab-luxury .lx-crumbs a:hover {
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-crumbs [aria-current] {
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-pdp {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5cqi, 5rem);
+  align-items: start;
+  padding-bottom: var(--lx-section);
+}
+.site-lab-luxury .lx-gallery {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: var(--lx-s4);
+}
+.site-lab-luxury .lx-gallery-main {
+  grid-column: 2;
+  grid-row: 1;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--lx-stone);
+}
+.site-lab-luxury .lx-gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: lx-fade 700ms var(--lx-ease) both;
+}
+@keyframes lx-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.site-lab-luxury .lx-thumbs {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  align-content: start;
+  gap: var(--lx-s2);
+}
+.site-lab-luxury .lx-thumb {
+  width: 76px;
+  height: 76px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: var(--lx-stone);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 300ms var(--lx-ease), border-color 300ms var(--lx-ease);
+}
+.site-lab-luxury .lx-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-lab-luxury .lx-thumb:hover {
+  opacity: 1;
+}
+.site-lab-luxury .lx-thumb[aria-pressed="true"] {
+  opacity: 1;
+  border-color: var(--lx-ink);
+}
+.site-lab-luxury .lx-buy {
+  display: grid;
+  gap: var(--lx-s5);
+  padding-top: var(--lx-s2);
+}
+.site-lab-luxury .lx-buy-collection {
+  font-size: 0.875rem;
+  color: var(--lx-accent);
+  margin-bottom: calc(-1 * var(--lx-s4));
+}
+.site-lab-luxury .lx-buy-price {
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  color: var(--lx-ink);
+  font-variant-numeric: tabular-nums;
+  margin-top: calc(-1 * var(--lx-s3));
+}
+.site-lab-luxury .lx-buy-summary {
+  max-width: 46ch;
+  padding-bottom: var(--lx-s5);
+  border-bottom: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-choices--sizes .lx-choice {
+  min-width: 48px;
+}
+.site-lab-luxury .lx-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lx-s2);
+  margin-top: var(--lx-s3);
+  padding: 0.25rem 0;
+  background: none;
+  border: 0;
+  font-size: 0.8125rem;
+  color: var(--lx-ink);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: var(--lx-line);
+  cursor: pointer;
+}
+.site-lab-luxury .lx-guide-btn:hover {
+  color: var(--lx-accent);
+  text-decoration-color: var(--lx-accent);
+}
+.site-lab-luxury .lx-guide {
+  margin-top: var(--lx-s4);
+  padding: var(--lx-s5);
+  background: var(--lx-stone);
+  display: grid;
+  gap: var(--lx-s4);
+  font-size: 0.875rem;
+  animation: lx-fade 500ms var(--lx-ease) both;
+}
+.site-lab-luxury .lx-guide-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -0.5rem -0.75rem -0.5rem 0;
+}
+.site-lab-luxury .lx-guide h3 {
+  font-family: var(--lx-serif);
+  font-size: 1.375rem;
+}
+.site-lab-luxury .lx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.site-lab-luxury .lx-table th,
+.site-lab-luxury .lx-table td {
+  text-align: left;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-table th {
+  font-weight: 500;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-check {
+  display: flex;
+  align-items: center;
+  gap: var(--lx-s3);
+  font-size: 0.9375rem;
+  color: var(--lx-ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+.site-lab-luxury .lx-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--lx-accent);
+}
+.site-lab-luxury .lx-field--engrave {
+  margin-top: var(--lx-s3);
+}
+.site-lab-luxury .lx-buy-actions {
+  display: grid;
+  gap: var(--lx-s3);
+}
+.site-lab-luxury .lx-added {
+  display: flex;
+  gap: var(--lx-s2);
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--lx-accent);
+  animation: lx-fade 500ms var(--lx-ease) both;
+}
+.site-lab-luxury .lx-buy-note {
+  font-size: 0.8125rem;
+  margin-top: calc(-1 * var(--lx-s3));
+}
+.site-lab-luxury .lx-stones {
+  margin-top: var(--lx-s4);
+}
+.site-lab-luxury .lx-stones-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: var(--lx-s3);
+}
+.site-lab-luxury .lx-stones dl {
+  margin: 0;
+}
+.site-lab-luxury .lx-stones dl div {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--lx-s4);
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--lx-line);
+  font-size: 0.875rem;
+}
+.site-lab-luxury .lx-stones dt {
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-stones dd {
+  margin: 0;
+  color: var(--lx-ink);
+}
+
+@container site (max-width: 860px) {
+  .site-lab-luxury .lx-pdp {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-gallery {
+    position: static;
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-gallery-main {
+    grid-column: 1;
+  }
+  .site-lab-luxury .lx-thumbs {
+    grid-row: 2;
+    grid-auto-flow: column;
+    justify-content: start;
+  }
+  .site-lab-luxury .lx-thumb {
+    width: 64px;
+    height: 64px;
+  }
+}
+@container site (max-width: 480px) {
+  .site-lab-luxury .lx-stones dl div {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}

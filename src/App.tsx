@@ -2,6 +2,7 @@ import {
   Component,
   lazy,
   Suspense,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -13,7 +14,6 @@ import type {
   ReactNode,
 } from "react";
 import {
-  Activity,
   ArrowDownRight,
   ArrowUpRight,
   Asterisk,
@@ -36,123 +36,24 @@ const LiquidFormBackground = lazy(() =>
     default: module.LiquidFormBackground,
   })),
 );
-const NebulaBackground = lazy(() =>
-  import("@designcodeio/threeui/components/NebulaBackground").then((module) => ({
-    default: module.NebulaBackground,
-  })),
-);
-const OrbitalSphereBackground = lazy(() =>
-  import("@designcodeio/threeui/components/OrbitalSphereBackground").then((module) => ({
-    default: module.OrbitalSphereBackground,
-  })),
-);
-const HalftoneFlow = lazy(() =>
-  import("@designcodeio/threeui/components/HalftoneFlow").then((module) => ({
-    default: module.HalftoneFlow,
-  })),
-);
-const TopologyField = lazy(() =>
-  import("@designcodeio/threeui/components/TopologyField").then((module) => ({
-    default: module.TopologyField,
-  })),
-);
-const ParticleNetwork = lazy(() =>
-  import("@designcodeio/threeui/components/ParticleNetwork").then((module) => ({
-    default: module.ParticleNetwork,
-  })),
-);
 const EmberStorm = lazy(() =>
   import("@designcodeio/threeui/components/EmberStorm").then((module) => ({
     default: module.EmberStorm,
   })),
 );
 
-const ImmersiveExperience = lazy(() => import("./ImmersiveExperience"));
+import { LabSite, isLabSiteId, labSites } from "./LabSites";
+import type { LabSiteId } from "./LabSites";
+import "./lab.css";
+
+const LabViewer = lazy(() => import("./LabViewer"));
 const BusinessStudio = lazy(() => import("./BusinessStudio"));
 
-type WorldId = "luxury" | "future" | "editorial" | "experimental" | "product";
-
-type World = {
-  id: WorldId;
-  index: string;
-  label: string;
-  eyebrow: string;
-  title: string;
-  note: string;
-  color: string;
-  secondary: string;
-  glow: string;
-  metric: string;
-  metricLabel: string;
+const labSiteFromUrl = (): LabSiteId | null => {
+  const params = new URLSearchParams(window.location.search);
+  const site = params.get("site");
+  return params.get("view") === "lab" && isLabSiteId(site) ? site : null;
 };
-
-const worlds: World[] = [
-  {
-    id: "luxury",
-    index: "01",
-    label: "Luxury",
-    eyebrow: "Sculpted for desire",
-    title: "NOIR / ÉCLAT",
-    note: "A fashion house that feels less like a website and more like stepping into a private showroom.",
-    color: "#ff4fd8",
-    secondary: "#ffc857",
-    glow: "255, 79, 216",
-    metric: "4.8×",
-    metricLabel: "more memorable",
-  },
-  {
-    id: "future",
-    index: "02",
-    label: "Future SaaS",
-    eyebrow: "Clarity in motion",
-    title: "ORBIT / OS",
-    note: "Complex technology translated into a living interface that feels effortless before the first click.",
-    color: "#7c5cff",
-    secondary: "#00f0ff",
-    glow: "0, 240, 255",
-    metric: "120fps",
-    metricLabel: "motion target",
-  },
-  {
-    id: "editorial",
-    index: "03",
-    label: "Editorial",
-    eyebrow: "Space becomes status",
-    title: "MONOLITH / 24",
-    note: "Architecture, culture and restraint — with motion that behaves like an art director, not a slideshow.",
-    color: "#f0ff74",
-    secondary: "#ff6337",
-    glow: "240, 255, 116",
-    metric: "12 cols",
-    metricLabel: "broken beautifully",
-  },
-  {
-    id: "experimental",
-    index: "04",
-    label: "Experimental",
-    eyebrow: "Designed to be felt",
-    title: "SIGNAL / VOID",
-    note: "A controlled collision of type, distortion, depth and reactive systems for brands that refuse safe.",
-    color: "#ff3d6e",
-    secondary: "#a85cff",
-    glow: "255, 61, 110",
-    metric: "∞",
-    metricLabel: "possible states",
-  },
-  {
-    id: "product",
-    index: "05",
-    label: "Product",
-    eyebrow: "Make the object heroic",
-    title: "OBJECT / ONE",
-    note: "A product launch where light, depth and interaction do the selling before the copy needs to.",
-    color: "#50ffb1",
-    secondary: "#4ab8ff",
-    glow: "80, 255, 177",
-    metric: "3D",
-    metricLabel: "native storytelling",
-  },
-];
 
 const capabilities = [
   {
@@ -218,21 +119,28 @@ function useReducedMotion() {
 function usePageEffects(reducedMotion: boolean) {
   useEffect(() => {
     const root = document.documentElement;
+    const orb = document.querySelector<HTMLElement>(".cursor-orb");
     let frame = 0;
 
+    // Move the glow with a compositor-only transform; writing CSS variables on <html> restyled the whole page.
     const onPointerMove = (event: PointerEvent) => {
-      if (reducedMotion) return;
+      if (reducedMotion || !orb) return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        root.style.setProperty("--mx", String(event.clientX) + "px");
-        root.style.setProperty("--my", String(event.clientY) + "px");
+        orb.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
       });
     };
 
+    const progressBar = document.querySelector<HTMLElement>(".scroll-progress");
+    let scrollFrame = 0;
     const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = max > 0 ? window.scrollY / max : 0;
-      root.style.setProperty("--scroll-progress", String(progress));
+      if (scrollFrame || !progressBar) return;
+      scrollFrame = requestAnimationFrame(() => {
+        scrollFrame = 0;
+        const max = root.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? window.scrollY / max : 0;
+        progressBar.style.transform = `scaleX(${progress})`;
+      });
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -252,6 +160,7 @@ function usePageEffects(reducedMotion: boolean) {
 
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(scrollFrame);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
@@ -306,38 +215,6 @@ function HeroScene({ reducedMotion }: { reducedMotion: boolean }) {
           tintHue={285}
           tintAmount={0.52}
         />
-      </Suspense>
-    </SceneBoundary>
-  );
-}
-
-function WorldEffect({
-  id,
-  color,
-  reducedMotion,
-}: {
-  id: WorldId;
-  color: string;
-  reducedMotion: boolean;
-}) {
-  if (reducedMotion) return <div className="world-static" style={{ "--world": color } as CSSProperties} />;
-
-  return (
-    <SceneBoundary className="world-static">
-      <Suspense fallback={<SceneLoader />}>
-        {id === "luxury" && (
-          <NebulaBackground className="three-scene" mode="dark" hue={324} saturation={1.28} brightness={0.88} />
-        )}
-        {id === "future" && <OrbitalSphereBackground className="three-scene" />}
-        {id === "editorial" && (
-          <HalftoneFlow className="three-scene" mode="dark" hue={66} saturation={1.12} brightness={1.05} />
-        )}
-        {id === "experimental" && (
-          <TopologyField className="three-scene" mode="dark" hue={350} saturation={1.35} brightness={0.95} />
-        )}
-        {id === "product" && (
-          <ParticleNetwork className="three-scene" mode="dark" hue={155} saturation={1.18} brightness={1.03} />
-        )}
       </Suspense>
     </SceneBoundary>
   );
@@ -415,107 +292,63 @@ function TiltCard({
   );
 }
 
-function WorldComposition({ world }: { world: World }) {
-  if (world.id === "luxury") {
-    return (
-      <div className="composition composition-luxury">
-        <div className="luxury-word">ÉCLAT</div>
-        <div className="luxury-ring" />
-        <div className="luxury-label">PARIS · 2026</div>
-        <div className="luxury-copy">PRIVATE COLLECTION / 01</div>
-      </div>
-    );
-  }
-
-  if (world.id === "future") {
-    return (
-      <div className="composition composition-future">
-        <div className="future-grid" />
-        <div className="future-orbit future-orbit-a" />
-        <div className="future-orbit future-orbit-b" />
-        <div className="future-chip">LIVE SYSTEM</div>
-        <div className="future-number">97.4</div>
-        <div className="future-caption">SIGNAL CONFIDENCE</div>
-      </div>
-    );
-  }
-
-  if (world.id === "editorial") {
-    return (
-      <div className="composition composition-editorial">
-        <div className="editorial-index">V/24</div>
-        <div className="editorial-block block-one" />
-        <div className="editorial-block block-two" />
-        <div className="editorial-title">FORM<br />FOLLOWS<br />FEELING.</div>
-        <div className="editorial-rule" />
-      </div>
-    );
-  }
-
-  if (world.id === "experimental") {
-    return (
-      <div className="composition composition-experimental">
-        <div className="signal signal-a">NO SIGNAL</div>
-        <div className="signal signal-b">NO SIGNAL</div>
-        <div className="signal signal-c">NO SIGNAL</div>
-        <div className="void-eye">
-          <span />
-        </div>
-        <div className="void-code">X-09 / REACTIVE STATE</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="composition composition-product">
-      <div className="product-halo" />
-      <div className="product-object">
-        <div className="product-face front" />
-        <div className="product-face side" />
-        <div className="product-face top" />
-      </div>
-      <div className="product-name">MONO / ONE</div>
-      <div className="product-price">OBJECT STUDY · 001</div>
-    </div>
-  );
-}
-
 function App() {
   const reducedMotion = useReducedMotion();
-  const [activeId, setActiveId] = useState<WorldId>("luxury");
-  const [immersiveId, setImmersiveId] = useState<WorldId | null>(null);
-  const [showreel, setShowreel] = useState(false);
+  const [activeId, setActiveId] = useState<LabSiteId>(() => labSiteFromUrl() ?? "luxury");
+  const [labOpen, setLabOpen] = useState(() => labSiteFromUrl() !== null);
   const [businessOpen, setBusinessOpen] = useState(
     () => new URLSearchParams(window.location.search).get("view") === "business",
   );
-  const [interactionCount, setInteractionCount] = useState(0);
+  const [labInView, setLabInView] = useState(false);
+  const labSectionRef = useRef<HTMLElement>(null);
   usePageEffects(reducedMotion);
 
-  const activeWorld = useMemo(
-    () => worlds.find((world) => world.id === activeId) ?? worlds[0],
+  // The floating small-business pill would cover the live preview, so it steps aside while that section is on screen.
+  useEffect(() => {
+    const section = labSectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => setLabInView(entry.isIntersecting), {
+      rootMargin: "-20% 0px -20% 0px",
+    });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const activeSite = useMemo(
+    () => labSites.find((site) => site.id === activeId) ?? labSites[0],
     [activeId],
   );
 
-  const immersiveWorld = useMemo(
-    () => worlds.find((world) => world.id === immersiveId) ?? null,
-    [immersiveId],
-  );
-
-  const bumpInteraction = () => setInteractionCount((value) => value + 1);
-
-  const launchWorld = (id: WorldId, auto = false) => {
+  const openLabSite = (id: LabSiteId) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("view", "lab");
+    url.searchParams.set("site", id);
+    url.searchParams.delete("page");
+    window.history.pushState({ view: "lab", site: id }, "", url);
     setActiveId(id);
-    setImmersiveId(id);
-    setShowreel(auto);
-    bumpInteraction();
+    setLabOpen(true);
   };
+
+  const switchLabSite = (id: LabSiteId) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("site", id);
+    url.searchParams.delete("page");
+    window.history.replaceState({ view: "lab", site: id }, "", url);
+    setActiveId(id);
+  };
+
+  const closeLabSite = useCallback(() => {
+    const url = new URL(window.location.href);
+    ["view", "site", "page"].forEach((key) => url.searchParams.delete(key));
+    window.history.pushState({}, "", url);
+    setLabOpen(false);
+  }, []);
 
   const openBusinessStudio = () => {
     const url = new URL(window.location.href);
     url.searchParams.set("view", "business");
     window.history.pushState({ view: "business" }, "", url);
     setBusinessOpen(true);
-    bumpInteraction();
   };
 
   const closeBusinessStudio = () => {
@@ -529,15 +362,18 @@ function App() {
   useEffect(() => {
     const syncFromUrl = () => {
       setBusinessOpen(new URLSearchParams(window.location.search).get("view") === "business");
+      const site = labSiteFromUrl();
+      setLabOpen(site !== null);
+      if (site) setActiveId(site);
     };
     window.addEventListener("popstate", syncFromUrl);
     return () => window.removeEventListener("popstate", syncFromUrl);
   }, []);
 
   const themeStyle = {
-    "--accent": activeWorld.color,
-    "--accent-2": activeWorld.secondary,
-    "--accent-rgb": activeWorld.glow,
+    "--accent": activeSite.color,
+    "--accent-2": activeSite.secondary,
+    "--accent-rgb": activeSite.glow,
   } as CSSProperties;
 
   return (
@@ -548,7 +384,7 @@ function App() {
 
       <button
         type="button"
-        className="business-entry"
+        className={"business-entry" + (labInView ? " is-tucked" : "")}
         onClick={openBusinessStudio}
         aria-label="Open practical website examples for small businesses"
       >
@@ -559,22 +395,6 @@ function App() {
         <i><Store size={16} /></i>
       </button>
 
-      <div className="craft-hud" aria-label="Illustrative demo status">
-        <div className="craft-hud-head">
-          <Activity size={12} />
-          <span>DEMO HUD · ILLUSTRATIVE</span>
-        </div>
-        <div className="craft-hud-row">
-          <span>MOTION TARGET</span><b>60HZ</b>
-        </div>
-        <div className="craft-hud-row">
-          <span>INTERACTIONS</span><b>{String(interactionCount).padStart(2, "0")}</b>
-        </div>
-        <div className="craft-hud-row">
-          <span>DELIVERY</span><b>STATIC / EDGE</b>
-        </div>
-      </div>
-
       <header className="nav">
         <a className="brand" href="#top" aria-label="Prism Studio home">
           <span className="brand-mark"><Asterisk size={17} /></span>
@@ -582,7 +402,7 @@ function App() {
         </a>
         <div className="nav-meta">
           <span className="availability"><i /> Available for selected projects</span>
-          <a href="#worlds">Experiments</a>
+          <a href="#worlds">Brand sites</a>
           <a href="#work">Work</a>
         </div>
         <MagneticLink href="#contact" className="nav-cta">
@@ -592,7 +412,7 @@ function App() {
 
       <section className="hero" id="top">
         <div className="hero-scene" aria-hidden="true">
-          <HeroScene reducedMotion={reducedMotion || immersiveId !== null || businessOpen} />
+          <HeroScene reducedMotion={reducedMotion || labOpen || businessOpen} />
           <div className="hero-vignette" />
           <div className="hero-grid" />
         </div>
@@ -620,16 +440,16 @@ function App() {
             <button
               type="button"
               className="showreel-launch"
-              onClick={() => launchWorld(activeId, true)}
-              aria-label="Start fullscreen showreel mode"
+              onClick={() => openLabSite(activeId)}
+              aria-label="Open the brand websites fullscreen"
             >
               <span className="showreel-play"><Play size={15} fill="currentColor" /></span>
               <span>
-                <small>DON&apos;T EXPLAIN IT</small>
-                <b>SHOWREEL MODE</b>
+                <small>FIVE BRAND SITES</small>
+                <b>SEE THE WORK LIVE</b>
               </span>
             </button>
-            <MagneticLink href="#worlds" className="round-action" aria-label="Explore the worlds">
+            <MagneticLink href="#worlds" className="round-action" aria-label="Jump to the brand websites">
               <ArrowDownRight size={22} />
             </MagneticLink>
           </div>
@@ -660,7 +480,7 @@ function App() {
       </div>
 
       <section className="manifesto section-shell" data-reveal>
-        <div className="section-label">
+        <div className="section-marker">
           <span>01 / POSITIONING</span>
           <span className="dot-line" />
         </div>
@@ -675,85 +495,64 @@ function App() {
               feels credible, distinct, effortless and worth remembering.
             </p>
             <p className="muted">
-              So every scroll, hover, transition and frame earns attention — then gets out of the
+              So every scroll, hover, transition and frame earns attention, then gets out of the
               message&apos;s way.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="worlds section-shell" id="worlds" data-reveal>
-        <div className="section-label">
-          <span>02 / LIVE DIRECTION FINDER</span>
-          <span>Pick your world ↓</span>
+      <section ref={labSectionRef} className="worlds section-shell" id="worlds" data-reveal>
+        <div className="section-marker">
+          <span>02 / BRAND WEBSITES</span>
+          <span>Five complete sites</span>
         </div>
 
-        <div className="world-layout">
-          <div className="world-tabs" aria-label="Visual worlds">
-            {worlds.map((world) => (
+        <div className="lab-intro">
+          <h2>Built like the real thing.</h2>
+          <p>
+            Five fictional brands, each with a complete multi-page website. Scroll one here, or open it
+            fullscreen and click through every page.
+          </p>
+        </div>
+
+        <div className="lab-layout">
+          <div className="lab-tabs" role="tablist" aria-label="Brand websites">
+            {labSites.map((site) => (
               <button
-                key={world.id}
+                key={site.id}
                 type="button"
-                className={"world-tab " + (activeId === world.id ? "is-active" : "")}
-                onClick={() => setActiveId(world.id)}
-                aria-pressed={activeId === world.id}
+                role="tab"
+                className={"lab-tab " + (activeId === site.id ? "is-active" : "")}
+                onClick={() => setActiveId(site.id)}
+                aria-selected={activeId === site.id}
               >
-                <span>{world.index}</span>
-                <strong>{world.label}</strong>
-                <i />
+                <strong>{site.brand}</strong>
+                <span>{site.industry}</span>
               </button>
             ))}
           </div>
 
-          <div className="world-stage-wrap">
-            <div className="world-stage" key={activeWorld.id}>
-              <WorldEffect
-                id={activeWorld.id}
-                color={activeWorld.color}
-                reducedMotion={reducedMotion || immersiveId !== null || businessOpen}
-              />
-              <div className="stage-scrim" />
-              <WorldComposition world={activeWorld} />
-              <div className="stage-ui">
-                <div className="stage-topline">
-                  <span>{activeWorld.eyebrow}</span>
-                  <span>LIVE / {activeWorld.index}</span>
-                </div>
-                <div className="stage-bottomline">
-                  <div>
-                    <small>Direction</small>
-                    <b>{activeWorld.title}</b>
-                  </div>
-                  <div className="stage-metric">
-                    <strong>{activeWorld.metric}</strong>
-                    <small>{activeWorld.metricLabel}</small>
-                  </div>
-                </div>
+          <div className="lab-stage">
+            <div className="lab-browser">
+              <div className="lab-browser-bar">
+                <span className="lab-browser-dots" aria-hidden="true"><i /><i /><i /></span>
+                <span className="lab-browser-url">{activeSite.domain}</span>
+                <button type="button" className="lab-open" onClick={() => openLabSite(activeSite.id)}>
+                  <Maximize2 size={14} /> Open full site
+                </button>
               </div>
-              <button
-                type="button"
-                className="enter-world"
-                onClick={() => launchWorld(activeWorld.id)}
-                aria-label={"Enter the " + activeWorld.label + " immersive mini-site"}
-              >
-                <Maximize2 size={16} />
-                <span>ENTER WORLD</span>
-                <i>03 SCENES</i>
-              </button>
+              <div className="lab-preview-scroll">
+                {!labOpen && <LabSite id={activeSite.id} />}
+              </div>
             </div>
-
-            <div className="world-description">
-              <p>{activeWorld.note}</p>
-              <span>
-                Click another direction. The visual system changes with it — not just the color.
-              </span>
-            </div>
+            <p className="lab-summary">{activeSite.summary}</p>
           </div>
         </div>
       </section>
 
       <section className="capabilities section-shell" data-reveal>
-        <div className="section-label">
+        <div className="section-marker">
           <span>03 / CAPABILITIES</span>
           <span>Made to be noticed</span>
         </div>
@@ -784,7 +583,7 @@ function App() {
       </section>
 
       <section className="work section-shell" id="work" data-reveal>
-        <div className="section-label">
+        <div className="section-marker">
           <span>04 / SELECTED EXPERIMENTS</span>
           <span>Concept work / live systems</span>
         </div>
@@ -792,7 +591,7 @@ function App() {
         <div className="work-heading">
           <h2>THREE WAYS<br />TO STOP A <span>SCROLL.</span></h2>
           <p>
-            Each concept starts from the feeling the client needs to own — then the technology
+            Each concept starts from the feeling the client needs to own. Then the technology
             disappears behind it.
           </p>
         </div>
@@ -822,7 +621,7 @@ function App() {
 
       <section className="proof section-shell" data-reveal>
         <div className="proof-visual" aria-hidden="true">
-          {reducedMotion || immersiveId !== null || businessOpen ? (
+          {reducedMotion || labOpen || businessOpen ? (
             <div className="proof-static" />
           ) : (
             <SceneBoundary className="proof-static">
@@ -842,7 +641,7 @@ function App() {
         </div>
 
         <div className="proof-copy">
-          <div className="section-label compact">
+          <div className="section-marker compact">
             <span>05 / THE POINT</span>
           </div>
           <h2>
@@ -861,7 +660,7 @@ function App() {
       </section>
 
       <section className="underhood section-shell" data-reveal>
-        <div className="section-label">
+        <div className="section-marker">
           <span>06 / UNDER THE HOOD</span>
           <span>For the curious</span>
         </div>
@@ -928,30 +727,14 @@ function App() {
         </Suspense>
       )}
 
-      {immersiveWorld && (
-        <Suspense
-          fallback={
+      {labOpen && (
+        <Suspense fallback={
             <div className="immersive-loading" role="status" aria-live="polite">
               <span />
-              <b>BUILDING WORLD</b>
+              <b>OPENING SITE</b>
             </div>
-          }
-        >
-          <ImmersiveExperience
-            world={immersiveWorld}
-            worlds={worlds}
-            reducedMotion={reducedMotion}
-            autoPlay={showreel}
-            onClose={() => {
-              setImmersiveId(null);
-              setShowreel(false);
-            }}
-            onWorldChange={(id) => {
-              setImmersiveId(id);
-              setActiveId(id);
-            }}
-            onInteract={bumpInteraction}
-          />
+          }>
+          <LabViewer activeId={activeId} onSelect={switchLabSite} onClose={closeLabSite} />
         </Suspense>
       )}
     </main>

@@ -1,0 +1,488 @@
+/* Veyra: tokens, base type, buttons, header, footer. See ../DESIGN.md */
+
+.site-lab-saas {
+  --vy-canvas: #0b0c0e;
+  --vy-canvas-a: rgba(11, 12, 14, 0.94);
+  --vy-surface-1: #111316;
+  --vy-surface-2: #16191d;
+  --vy-surface-3: #1c2025;
+  --vy-line: #23272d;
+  --vy-line-strong: #323841;
+  --vy-ink: #eceef1;
+  --vy-ink-2: #b4bac3;
+  --vy-ink-3: #858c96;
+  --vy-ink-4: #5d636c;
+  --vy-accent: #ff6b2c;
+  --vy-accent-hover: #ff8250;
+  --vy-accent-soft: rgba(255, 107, 44, 0.12);
+  --vy-accent-line: rgba(255, 107, 44, 0.42);
+  --vy-on-accent: #1a0d06;
+  --vy-positive: #3fb47c;
+  --vy-negative: #ef5a5a;
+  --vy-negative-soft: rgba(239, 90, 90, 0.12);
+  --vy-series: #c9ced6;
+  --vy-band: rgba(201, 206, 214, 0.07);
+
+  --vy-font-display: "Manrope", "DM Sans", system-ui, sans-serif;
+  --vy-font-ui: "Inter", system-ui, -apple-system, sans-serif;
+  --vy-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  --vy-r-sm: 6px;
+  --vy-r-md: 10px;
+  --vy-r-lg: 12px;
+
+  --vy-s-1: 4px;
+  --vy-s-2: 8px;
+  --vy-s-3: 12px;
+  --vy-s-4: 16px;
+  --vy-s-5: 24px;
+  --vy-s-6: 32px;
+  --vy-s-7: 48px;
+  --vy-s-8: 64px;
+  --vy-s-9: 96px;
+  --vy-s-10: 128px;
+
+  --vy-gutter: 32px;
+  --vy-max: 1200px;
+  --vy-section: var(--vy-s-10);
+  --vy-header-h: 64px;
+
+  --vy-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 30px 70px -30px rgba(2, 4, 9, 0.85);
+  --vy-shadow-pop: 0 12px 32px -8px rgba(2, 4, 9, 0.7);
+  --vy-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: dark;
+  background: var(--vy-canvas);
+  color: var(--vy-ink-2);
+  font-family: var(--vy-font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+  min-height: 100%;
+  position: relative;
+}
+
+.site-lab-saas ::selection {
+  background: var(--vy-accent);
+  color: var(--vy-on-accent);
+}
+
+.site-lab-saas :is(h1, h2, h3, h4) {
+  color: var(--vy-ink);
+  font-family: var(--vy-font-display);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.site-lab-saas p {
+  text-wrap: pretty;
+}
+
+.site-lab-saas a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-lab-saas button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.site-lab-saas img {
+  display: block;
+  max-width: 100%;
+}
+
+.site-lab-saas :is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--vy-accent);
+  outline-offset: 2px;
+  border-radius: var(--vy-r-sm);
+}
+
+.site-lab-saas .vy-container {
+  width: 100%;
+  max-width: calc(var(--vy-max) + var(--vy-gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--vy-gutter);
+}
+
+.site-lab-saas .vy-section {
+  padding-block: var(--vy-section);
+  scroll-margin-top: var(--vy-header-h);
+}
+
+.site-lab-saas .vy-display {
+  font-size: clamp(40px, 5.4cqi, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.site-lab-saas .vy-h2 {
+  font-size: clamp(30px, 3.5cqi, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.site-lab-saas .vy-h3 {
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.site-lab-saas .vy-lead {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--vy-ink-2);
+  max-width: 58ch;
+}
+
+.site-lab-saas .vy-eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vy-accent);
+  margin-bottom: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-section-head {
+  display: grid;
+  gap: var(--vy-s-4);
+  max-width: 720px;
+  margin-bottom: var(--vy-s-7);
+}
+
+.site-lab-saas .vy-textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--vy-ink);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.site-lab-saas .vy-textlink svg {
+  transition: transform 0.2s var(--vy-ease);
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-textlink:hover svg {
+  transform: translateX(3px);
+}
+
+/* ---------- buttons ---------- */
+
+.site-lab-saas .vy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vy-s-2);
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--vy-r-sm);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.site-lab-saas .vy-btn--sm {
+  height: 34px;
+  padding: 0 14px;
+  font-size: 13.5px;
+}
+
+.site-lab-saas .vy-btn--lg {
+  height: 46px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+.site-lab-saas .vy-btn--primary {
+  background: var(--vy-accent);
+  color: var(--vy-on-accent);
+}
+
+.site-lab-saas .vy-btn--primary:hover {
+  background: var(--vy-accent-hover);
+}
+
+.site-lab-saas .vy-btn--primary:active {
+  background: var(--vy-accent);
+  transform: translateY(1px);
+}
+
+.site-lab-saas .vy-btn--secondary {
+  background: var(--vy-surface-2);
+  border-color: var(--vy-line-strong);
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-btn--secondary:hover {
+  background: var(--vy-surface-3);
+}
+
+/* ---------- reveal ---------- */
+
+.site-lab-saas .vy-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s var(--vy-ease), transform 0.7s var(--vy-ease);
+}
+
+.site-lab-saas .vy-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-lab-saas .vy-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- header ---------- */
+
+.site-lab-saas .vy-sentinel {
+  position: absolute;
+  top: 0;
+  height: 8px;
+  width: 1px;
+}
+
+.site-lab-saas .vy-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--vy-header-h);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-lab-saas .vy-header.is-scrolled {
+  background: var(--vy-canvas-a);
+  border-bottom-color: var(--vy-line);
+}
+
+.site-lab-saas .vy-header-inner {
+  height: 100%;
+  max-width: calc(var(--vy-max) + var(--vy-gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--vy-gutter);
+  display: flex;
+  align-items: center;
+  gap: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-logo-tile {
+  fill: var(--vy-surface-3);
+  stroke: var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-logo-stroke,
+.site-lab-saas .vy-logo-accent {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.site-lab-saas .vy-logo-stroke {
+  stroke: var(--vy-ink);
+}
+
+.site-lab-saas .vy-logo-accent {
+  stroke: var(--vy-accent);
+}
+
+.site-lab-saas .vy-logo-word {
+  font-family: var(--vy-font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.site-lab-saas .vy-nav {
+  display: flex;
+  gap: var(--vy-s-1);
+}
+
+.site-lab-saas .vy-nav-link {
+  padding: 6px 12px;
+  border-radius: var(--vy-r-sm);
+  font-size: 14px;
+  color: var(--vy-ink-3);
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.site-lab-saas .vy-nav-link:hover,
+.site-lab-saas .vy-nav-link[aria-current="page"] {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-nav-link:hover {
+  background: var(--vy-surface-2);
+}
+
+.site-lab-saas .vy-header-cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--vy-r-sm);
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-mobile-nav {
+  position: absolute;
+  top: var(--vy-header-h);
+  left: 0;
+  right: 0;
+  padding: var(--vy-s-3) var(--vy-gutter) var(--vy-s-5);
+  background: var(--vy-canvas);
+  border-bottom: 1px solid var(--vy-line);
+  box-shadow: var(--vy-shadow-pop);
+  display: grid;
+}
+
+.site-lab-saas .vy-mobile-link {
+  padding: 14px 0;
+  font-size: 17px;
+  color: var(--vy-ink);
+  border-bottom: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-mobile-ctas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--vy-s-3);
+  margin-top: var(--vy-s-5);
+}
+
+/* ---------- footer ---------- */
+
+.site-lab-saas .vy-footer {
+  border-top: 1px solid var(--vy-line);
+  padding-top: var(--vy-s-8);
+  padding-bottom: var(--vy-s-6);
+  font-size: 13.5px;
+}
+
+.site-lab-saas .vy-footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-footer-brand p {
+  margin-top: var(--vy-s-4);
+  color: var(--vy-ink-3);
+  max-width: 30ch;
+}
+
+.site-lab-saas .vy-footer-brand .vy-footer-soc {
+  margin-top: var(--vy-s-2);
+  font-size: 12.5px;
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-footer h3 {
+  font-family: var(--vy-font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vy-ink);
+  margin-bottom: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-footer ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.site-lab-saas .vy-footer ul a {
+  color: var(--vy-ink-3);
+  transition: color 0.15s ease;
+}
+
+.site-lab-saas .vy-footer ul a:hover {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vy-s-2) var(--vy-s-5);
+  margin-top: var(--vy-s-8);
+  padding-top: var(--vy-s-5);
+  border-top: 1px solid var(--vy-line);
+  color: var(--vy-ink-4);
+  font-size: 12.5px;
+}
+
+.site-lab-saas .vy-footer-legal span:first-child {
+  margin-right: auto;
+}
+
+/* ---------- responsive ---------- */
+
+@container site (max-width: 980px) {
+  .site-lab-saas .vy-footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .site-lab-saas .vy-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@container site (max-width: 760px) {
+  .site-lab-saas .vy-nav,
+  .site-lab-saas .vy-nav-quiet {
+    display: none;
+  }
+  .site-lab-saas .vy-menu-btn {
+    display: inline-flex;
+  }
+  .site-lab-saas .vy-header-inner,
+  .site-lab-saas .vy-container,
+  .site-lab-saas .vy-mobile-nav {
+    padding-inline: 20px;
+  }
+  .site-lab-saas .vy-section {
+    padding-block: 72px;
+  }
+  .site-lab-saas .vy-lead {
+    font-size: 16.5px;
+  }
+  .site-lab-saas .vy-section-head {
+    margin-bottom: var(--vy-s-6);
+  }
+  .site-lab-saas .vy-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

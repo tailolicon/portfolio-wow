@@ -1,6 +1,6 @@
 # PRISM / LAB Portfolio
 
-A deliberately high-impact static portfolio/showcase for non-technical clients. The homepage itself is the portfolio piece: realtime visuals, five switchable art directions, kinetic typography, responsive interaction, 3D/perspective cards, procedural artwork, fullscreen mini-sites and an automated showreel mode.
+A deliberately high-impact static portfolio/showcase for non-technical clients. The homepage itself is the portfolio piece: realtime visuals, five switchable art directions, kinetic typography, responsive interaction, 3D/perspective cards, procedural artwork and five complete premium brand websites.
 
 ## Run locally
 
@@ -44,24 +44,22 @@ The Vite build uses relative asset URLs with `base: "./"`, so the same productio
 
 ## What the visitor can experience
 
-The **Pick your world** stage launches five fullscreen mini-sites. Each one has three internal screens, distinct art direction and a live micro-interaction:
+The **Brand websites** section shows five complete, multi-page websites for fictional premium brands. Each can be scrolled in the embedded browser frame or opened fullscreen (`?view=lab&site=<id>&page=<page>` links straight to a page):
 
-- **Luxury** — draggable material reveal / collection study
-- **Future SaaS** — reactive command console and node scanner
-- **Editorial** — draggable architectural grid
-- **Experimental** — pointer-driven signal distortion
-- **Product** — touch/mouse rotatable CSS 3D object with a finish selector
+- **Maison Orvel** (`luxury`): Paris fine jewelry house. Collections, product page, maison, private appointments.
+- **Veyra** (`saas`): AI analytics platform. Product tour with live UI components, pricing, customer stories, demo request.
+- **Oyelaran Hart** (`architecture`): London architecture practice. Project index, case pages with drawings, studio, contact.
+- **Wren & Volt** (`agency`): Brooklyn brand and motion studio. Work index, case studies, services, project brief.
+- **Kova One** (`product`): headphone launch. Story page, tech specs, model comparison, support, configurator.
 
-**Showreel Mode** turns those worlds into an automatic client-facing presentation. It can still be navigated manually with the arrow keys and closed with Escape.
-
-The desktop **DEMO HUD** is explicitly illustrative art direction. Its motion-target/status readouts are not benchmark or business-performance claims.
+Each site keeps its design tokens in `src/lab/<id>/DESIGN.md`. ThreeUI scenes load through `ThreeCanvas` (`src/lab/shared.tsx`), which mounts WebGL only near the viewport and falls back to a still image when WebGL fails or reduced motion is preferred.
 
 ## Editing the site
 
 - Homepage composition and content: `src/App.tsx`
 - Homepage visual system: `src/styles.css`
-- Fullscreen mini-sites: `src/ImmersiveExperience.tsx`
-- Fullscreen mini-site styling: `src/immersive.css`
+- Brand websites: `src/lab/<id>/`, registry in `src/LabSites.tsx`, fullscreen viewer in `src/LabViewer.tsx`, section styles in `src/lab.css`
+- Small business demos: `src/demos/<id>/`, studio in `src/BusinessStudio.tsx`
 - ThreeUI global styles + app entry: `src/main.tsx`
 - Metadata: `index.html`
 - Brand/OG assets: `public/`

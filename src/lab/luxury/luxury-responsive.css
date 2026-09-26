@@ -1,0 +1,111 @@
+/* Maison Orvel: page layouts at container breakpoints */
+@container site (max-width: 1100px) {
+  .site-lab-luxury .lx-cat-rail {
+    grid-template-columns: repeat(5, minmax(9rem, 1fr));
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-lab-luxury .lx-people {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .site-lab-luxury .lx-person:nth-child(even) {
+    margin-top: 0;
+  }
+}
+@container site (max-width: 860px) {
+  .site-lab-luxury .lx-hero {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .site-lab-luxury .lx-hero-media {
+    order: -1;
+    aspect-ratio: 4 / 3;
+  }
+  .site-lab-luxury .lx-hero-copy {
+    justify-self: start;
+    padding: var(--lx-s6) var(--lx-gutter) var(--lx-s7);
+  }
+  .site-lab-luxury .lx-signature-inner,
+  .site-lab-luxury .lx-feature,
+  .site-lab-luxury .lx-feature--flip,
+  .site-lab-luxury .lx-visit .lx-container,
+  .site-lab-luxury .lx-story,
+  .site-lab-luxury .lx-maison-hero-inner,
+  .site-lab-luxury .lx-timeline-wrap,
+  .site-lab-luxury .lx-atelier-head,
+  .site-lab-luxury .lx-sourcing,
+  .site-lab-luxury .lx-care-head,
+  .site-lab-luxury .lx-appt {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-signature-inner {
+    gap: var(--lx-s5);
+  }
+  .site-lab-luxury .lx-feature--flip .lx-feature-media {
+    order: 0;
+  }
+  .site-lab-luxury .lx-visit .lx-container {
+    gap: var(--lx-s6);
+  }
+  .site-lab-luxury .lx-facts,
+  .site-lab-luxury .lx-steps,
+  .site-lab-luxury .lx-boutiques {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-mosaic {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+  .site-lab-luxury .lx-mosaic-item.is-lead {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .site-lab-luxury .lx-mosaic-media {
+    aspect-ratio: 4 / 3;
+  }
+  .site-lab-luxury .lx-mosaic-text {
+    flex-direction: column;
+    gap: 0;
+  }
+  .site-lab-luxury .lx-mosaic-name {
+    font-size: 1.25rem;
+  }
+  .site-lab-luxury .lx-timeline-intro,
+  .site-lab-luxury .lx-appt-aside {
+    position: static;
+  }
+  .site-lab-luxury .lx-container.lx-assist {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-lab-luxury .lx-days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container site (max-width: 520px) {
+  .site-lab-luxury .lx-mode,
+  .site-lab-luxury .lx-form-row {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-figures {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-timeline li {
+    grid-template-columns: 1fr;
+    gap: var(--lx-s2);
+  }
+  .site-lab-luxury .lx-visit-list li {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-luxury .lx-visit-list h3 {
+    grid-row: auto;
+  }
+  .site-lab-luxury .lx-toolbar-end {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .site-lab-luxury .lx-people {
+    gap: var(--lx-s4);
+  }
+}

@@ -1,0 +1,389 @@
+/* Veyra product UI: window, ask box, answer card, SQL */
+
+.site-lab-saas .vy-app-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-app-seg {
+  font-size: 12px;
+  color: var(--vy-ink-3);
+  padding: 4px 8px;
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-sm);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--vy-ink-2);
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-sm);
+  background: var(--vy-surface-2);
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.site-lab-saas .vy-app-btn:hover,
+.site-lab-saas .vy-app-btn.is-on {
+  background: var(--vy-surface-3);
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-app-btn.is-primary {
+  background: var(--vy-ink);
+  border-color: var(--vy-ink);
+  color: var(--vy-canvas);
+}
+
+/* ---------- window frame (hero) ---------- */
+
+.site-lab-saas .vy-window {
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-lg);
+  background: var(--vy-surface-1);
+  box-shadow: var(--vy-shadow-panel);
+  overflow: hidden;
+}
+
+.site-lab-saas .vy-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 var(--vy-s-4);
+  border-bottom: 1px solid var(--vy-line);
+  font-size: 13px;
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-window-crumb span {
+  color: var(--vy-ink-4);
+  margin: 0 6px;
+}
+
+.site-lab-saas .vy-window-user {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--vy-ink);
+  background: var(--vy-surface-3);
+  border: 1px solid var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-window-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+}
+
+.site-lab-saas .vy-window-body > .vy-ask {
+  padding: var(--vy-s-5);
+  border-right: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-window-side {
+  padding: var(--vy-s-5);
+  display: grid;
+  align-content: start;
+  gap: var(--vy-s-3);
+  background: var(--vy-canvas);
+}
+
+/* ---------- ask ---------- */
+
+.site-lab-saas .vy-ask {
+  display: grid;
+  gap: var(--vy-s-4);
+  min-width: 0;
+}
+
+.site-lab-saas .vy-ask-box {
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-md);
+  background: var(--vy-surface-2);
+  padding: 14px 14px 10px;
+}
+
+.site-lab-saas .vy-ask-input {
+  position: relative;
+  min-height: 44px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-ask-placeholder {
+  position: absolute;
+  inset: 0 auto auto 0;
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.18em;
+  background: var(--vy-accent);
+  animation: vy-blink 1s steps(2, start) infinite;
+}
+
+@keyframes vy-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.site-lab-saas .vy-ask-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-ask-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--vy-ink-3);
+  font-family: var(--vy-font-mono);
+}
+
+.site-lab-saas .vy-ask-sep {
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-ask-send {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--vy-r-sm);
+  background: var(--vy-accent);
+  color: var(--vy-on-accent);
+  transition: opacity 0.2s ease;
+}
+
+.site-lab-saas .vy-ask-send.is-sent {
+  opacity: 0.35;
+}
+
+.site-lab-saas .vy-ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-chip {
+  padding: 6px 10px;
+  font-size: 12.5px;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--vy-ink-3);
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-sm);
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.site-lab-saas .vy-chip:hover {
+  color: var(--vy-ink);
+  border-color: var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-chip.is-on {
+  color: var(--vy-ink);
+  background: var(--vy-surface-2);
+  border-color: var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-ask-result {
+  min-height: 380px;
+}
+
+.site-lab-saas .vy-steps {
+  list-style: none;
+  padding: var(--vy-s-2) 0 0;
+  display: grid;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-steps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.site-lab-saas .vy-steps li.is-done {
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-steps li.is-active {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-step-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--vy-line-strong);
+  color: var(--vy-canvas);
+}
+
+.site-lab-saas .vy-steps li.is-done .vy-step-icon {
+  background: var(--vy-ink-2);
+  border-color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-steps li.is-active .vy-step-icon {
+  border-color: var(--vy-accent);
+  border-top-color: transparent;
+  animation: vy-spin 0.8s linear infinite;
+}
+
+@keyframes vy-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- answer ---------- */
+
+.site-lab-saas .vy-answer {
+  display: grid;
+  gap: var(--vy-s-4);
+  animation: vy-in 0.45s var(--vy-ease) both;
+}
+
+@keyframes vy-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.site-lab-saas .vy-answer-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-answer-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-answer-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--vy-s-2);
+  font-size: 11.5px;
+  color: var(--vy-ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-answer-meta code {
+  font-family: var(--vy-font-mono);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--vy-surface-2);
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-answer-text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--vy-ink);
+  max-width: 62ch;
+}
+
+.site-lab-saas .vy-answer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-sql {
+  margin: 0;
+  padding: var(--vy-s-3) 0;
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-md);
+  background: var(--vy-canvas);
+  font-family: var(--vy-font-mono);
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--vy-ink-2);
+  overflow-x: auto;
+  animation: vy-in 0.3s var(--vy-ease) both;
+}
+
+.site-lab-saas .vy-sql-line {
+  display: block;
+  padding-right: var(--vy-s-4);
+  white-space: pre;
+}
+
+.site-lab-saas .vy-sql-n {
+  display: inline-block;
+  width: 36px;
+  padding-right: 12px;
+  text-align: right;
+  color: var(--vy-ink-4);
+  user-select: none;
+}
+
+.site-lab-saas .vy-sql-kw {
+  color: var(--vy-ink);
+  font-weight: 600;
+}
+
+.site-lab-saas .vy-sql-str {
+  color: var(--vy-accent);
+}
+
+/* ---------- responsive ---------- */
+
+@container site (max-width: 980px) {
+  .site-lab-saas .vy-window-body {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-saas .vy-window-body > .vy-ask {
+    border-right: 0;
+    border-bottom: 1px solid var(--vy-line);
+  }
+}
+
+@container site (max-width: 720px) {
+  .site-lab-saas .vy-window-body > .vy-ask,
+  .site-lab-saas .vy-window-side {
+    padding: var(--vy-s-4);
+  }
+  .site-lab-saas .vy-window-side {
+    display: none;
+  }
+  .site-lab-saas .vy-ask-result {
+    min-height: 340px;
+  }
+}

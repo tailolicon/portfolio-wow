@@ -1,0 +1,494 @@
+/* Veyra product UI: charts, explain, alerts, monitors */
+
+
+/* ---------- charts ---------- */
+
+.site-lab-saas .vy-chart {
+  position: relative;
+  width: 100%;
+}
+
+.site-lab-saas .vy-chart svg {
+  display: block;
+  overflow: visible;
+}
+
+.site-lab-saas .vy-chart-grid {
+  stroke: var(--vy-line);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.site-lab-saas .vy-chart-tick {
+  fill: var(--vy-ink-4);
+  font-size: 11px;
+  font-family: var(--vy-font-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-chart-line {
+  fill: none;
+  stroke: var(--vy-series);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.site-lab-saas .vy-chart-line.is-accent {
+  stroke: var(--vy-accent);
+  stroke-width: 2;
+}
+
+.site-lab-saas .vy-chart-band {
+  fill: var(--vy-band);
+}
+
+.site-lab-saas .vy-chart-anomaly {
+  fill: var(--vy-accent-soft);
+  opacity: 0.6;
+}
+
+.site-lab-saas .vy-chart-mark {
+  fill: var(--vy-canvas);
+  stroke: var(--vy-accent);
+  stroke-width: 2;
+}
+
+.site-lab-saas .vy-chart-end {
+  fill: var(--vy-accent);
+}
+
+.site-lab-saas .vy-chart-cross {
+  stroke: var(--vy-line-strong);
+  stroke-dasharray: 3 3;
+}
+
+.site-lab-saas .vy-chart-dot {
+  fill: var(--vy-ink);
+  stroke: var(--vy-canvas);
+  stroke-width: 2;
+}
+
+.site-lab-saas .vy-chart-tip {
+  position: absolute;
+  transform: translateX(-50%);
+  display: grid;
+  gap: 1px;
+  padding: 6px 10px;
+  border-radius: var(--vy-r-sm);
+  background: var(--vy-surface-3);
+  border: 1px solid var(--vy-line-strong);
+  box-shadow: var(--vy-shadow-pop);
+  font-size: 11.5px;
+  color: var(--vy-ink-3);
+  white-space: nowrap;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-chart-tip strong {
+  color: var(--vy-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.site-lab-saas .vy-bars {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.site-lab-saas .vy-bars li {
+  display: grid;
+  grid-template-columns: 120px 1fr 52px;
+  align-items: center;
+  gap: var(--vy-s-3);
+  font-size: 13px;
+}
+
+.site-lab-saas .vy-bars-label {
+  color: var(--vy-ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-lab-saas .vy-bars-track {
+  height: 22px;
+  border-radius: 4px;
+  background: var(--vy-surface-2);
+  overflow: hidden;
+}
+
+.site-lab-saas .vy-bars-fill {
+  display: block;
+  height: 100%;
+  background: var(--vy-series);
+  opacity: 0.55;
+  border-radius: 4px;
+  transform-origin: left;
+  animation: vy-grow 0.7s var(--vy-ease) both;
+}
+
+.site-lab-saas .vy-bars-fill.is-accent {
+  background: var(--vy-accent);
+  opacity: 1;
+}
+
+@keyframes vy-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.site-lab-saas .vy-bars-value {
+  text-align: right;
+  color: var(--vy-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- explain ---------- */
+
+.site-lab-saas .vy-explain {
+  display: grid;
+  gap: var(--vy-s-5);
+  min-width: 0;
+}
+
+.site-lab-saas .vy-explain-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--vy-s-4);
+  flex-wrap: wrap;
+}
+
+.site-lab-saas .vy-explain-value {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vy-s-3);
+  margin-top: 4px;
+}
+
+.site-lab-saas .vy-explain-value strong {
+  font-family: var(--vy-font-display);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--vy-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-delta {
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-delta.is-down {
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-drivers {
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-drivers-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--vy-s-4);
+  padding: 12px 0 8px;
+  font-size: 12px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-drivers-head span:first-child {
+  color: var(--vy-ink);
+  font-weight: 600;
+}
+
+.site-lab-saas .vy-drivers ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-lab-saas .vy-drivers li {
+  border-bottom: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-drivers li button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(60px, 1fr) 76px 64px 14px;
+  align-items: center;
+  gap: var(--vy-s-3);
+  padding: 11px 0;
+  text-align: left;
+  font-size: 13px;
+}
+
+.site-lab-saas .vy-drivers li button:hover .vy-driver-name {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-driver-name {
+  color: var(--vy-ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s ease;
+}
+
+.site-lab-saas .vy-drivers li.is-open .vy-driver-name {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-impact {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--vy-surface-2);
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.site-lab-saas .vy-impact-fill {
+  display: block;
+  height: 100%;
+  background: var(--vy-accent);
+  border-radius: 3px;
+}
+
+.site-lab-saas .vy-driver-val {
+  text-align: right;
+  color: var(--vy-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-conf {
+  font-size: 11px;
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 4px;
+  border: 1px solid var(--vy-line);
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-conf--high {
+  color: var(--vy-ink);
+  border-color: var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-driver-caret {
+  color: var(--vy-ink-4);
+  transition: transform 0.2s ease;
+}
+
+.site-lab-saas .vy-drivers li.is-open .vy-driver-caret {
+  transform: rotate(180deg);
+}
+
+.site-lab-saas .vy-driver-detail {
+  padding: 0 0 12px;
+  font-size: 12.5px;
+  color: var(--vy-ink-3);
+  max-width: 60ch;
+  animation: vy-in 0.25s var(--vy-ease) both;
+}
+
+/* ---------- alert ---------- */
+
+.site-lab-saas .vy-alert {
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-md);
+  background: var(--vy-surface-2);
+  padding: var(--vy-s-4);
+  display: grid;
+  gap: var(--vy-s-4);
+  box-shadow: inset 2px 0 0 var(--vy-accent);
+  transition: box-shadow 0.2s ease;
+}
+
+.site-lab-saas .vy-alert.is-quiet {
+  box-shadow: inset 2px 0 0 var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-alert-top {
+  display: flex;
+  gap: var(--vy-s-3);
+}
+
+.site-lab-saas .vy-alert-icon {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--vy-r-sm);
+  display: grid;
+  place-items: center;
+  background: var(--vy-accent-soft);
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-alert.is-quiet .vy-alert-icon {
+  background: var(--vy-surface-3);
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-alert-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-alert-sub {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-alert-body {
+  display: grid;
+  gap: var(--vy-s-3);
+}
+
+.site-lab-saas .vy-alert-stats {
+  display: flex;
+  gap: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-alert-stats strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--vy-ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.site-lab-saas .vy-alert-stats strong.is-accent {
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-alert-why {
+  font-size: 12.5px;
+  color: var(--vy-ink-2);
+  padding-top: var(--vy-s-3);
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-alert-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vy-s-2);
+}
+
+.site-lab-saas .vy-alert-note {
+  font-size: 12.5px;
+  color: var(--vy-ink-3);
+  margin-right: auto;
+}
+
+/* ---------- monitors table ---------- */
+
+.site-lab-saas .vy-monitors {
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-md);
+  background: var(--vy-surface-1);
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.site-lab-saas .vy-monitors-head,
+.site-lab-saas .vy-monitors li {
+  display: grid;
+  grid-template-columns: 1.4fr 1.5fr 1fr 84px;
+  gap: var(--vy-s-4);
+  align-items: center;
+  padding: 11px var(--vy-s-4);
+}
+
+.site-lab-saas .vy-monitors-head {
+  font-size: 12px;
+  color: var(--vy-ink-4);
+  border-bottom: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-monitors ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-lab-saas .vy-monitors li + li {
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-mon-metric {
+  color: var(--vy-ink);
+  display: grid;
+}
+
+.site-lab-saas .vy-mon-metric small {
+  font-size: 12px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-mon-rule {
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-mon-channel {
+  color: var(--vy-ink-3);
+  font-family: var(--vy-font-mono);
+  font-size: 12px;
+}
+
+.site-lab-saas .vy-mon-state {
+  justify-self: start;
+  font-size: 12px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-mon-state.is-alert {
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-mon-state.is-ok {
+  color: var(--vy-ink-2);
+}
+
+@container site (max-width: 720px) {
+  .site-lab-saas .vy-drivers li button {
+    grid-template-columns: minmax(0, 1fr) 60px 70px 14px;
+  }
+  .site-lab-saas .vy-impact {
+    display: none;
+  }
+  .site-lab-saas .vy-drivers-head span:last-child {
+    display: none;
+  }
+  .site-lab-saas .vy-bars li {
+    grid-template-columns: 96px 1fr 44px;
+  }
+  .site-lab-saas .vy-monitors-head {
+    display: none;
+  }
+  .site-lab-saas .vy-monitors li {
+    grid-template-columns: 1fr auto;
+    gap: 4px var(--vy-s-3);
+  }
+  .site-lab-saas .vy-mon-rule {
+    grid-column: 1;
+    font-size: 12.5px;
+  }
+  .site-lab-saas .vy-mon-channel {
+    display: none;
+  }
+  .site-lab-saas .vy-mon-state {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}

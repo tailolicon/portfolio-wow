@@ -1,0 +1,373 @@
+/* Oyelaran Hart: studio and contact (imported before case.css, which holds the responsive rules) */
+/* Studio */
+.site-lab-architecture .oh-studio-image .oh-media img {
+  object-position: 50% 40%;
+}
+
+.site-lab-architecture .oh-approach {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--oh-s6) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-approach-side {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: var(--oh-s6);
+  align-content: start;
+}
+
+.site-lab-architecture .oh-topo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--oh-paper-2);
+  overflow: hidden;
+}
+
+.site-lab-architecture .oh-contours {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--oh-line-strong);
+  stroke-width: 1;
+}
+
+.site-lab-architecture .oh-principles {
+  grid-column: 6 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oh-s7) var(--oh-gap);
+  align-content: start;
+  padding-top: calc(var(--oh-t-title) * 1.15 + var(--oh-s6));
+}
+
+.site-lab-architecture .oh-principles li {
+  border-top: 1px solid var(--oh-line);
+  padding-top: var(--oh-s4);
+  display: grid;
+  gap: var(--oh-s3);
+}
+
+.site-lab-architecture .oh-principles p,
+.site-lab-architecture .oh-founder p:not(.oh-role),
+.site-lab-architecture .oh-careers-intro p {
+  color: var(--oh-body);
+  max-width: 56ch;
+}
+
+.site-lab-architecture .oh-founders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oh-gap);
+}
+
+.site-lab-architecture .oh-founder {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--oh-s5);
+  align-items: end;
+}
+
+.site-lab-architecture .oh-founder .oh-heading {
+  margin-bottom: var(--oh-s1);
+}
+
+.site-lab-architecture .oh-role {
+  color: var(--oh-mute);
+  margin-bottom: var(--oh-s3);
+}
+
+.site-lab-architecture .oh-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--oh-s7) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-team-grid li {
+  display: grid;
+  gap: var(--oh-s1);
+}
+
+.site-lab-architecture .oh-team-grid .oh-media {
+  margin-bottom: var(--oh-s2);
+}
+
+.site-lab-architecture .oh-team-name {
+  font-weight: 500;
+}
+
+.site-lab-architecture .oh-team-grid .oh-role {
+  margin: 0;
+}
+
+.site-lab-architecture .oh-recognition {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--oh-s8);
+}
+
+.site-lab-architecture .oh-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--oh-t-small);
+}
+
+.site-lab-architecture .oh-table th {
+  text-align: left;
+  font-size: var(--oh-t-data);
+  font-weight: 500;
+  color: var(--oh-mute);
+  padding: 0 var(--oh-s4) var(--oh-s2) 0;
+  border-bottom: 1px solid var(--oh-ink);
+}
+
+.site-lab-architecture .oh-table td {
+  padding: var(--oh-s3) var(--oh-s4) var(--oh-s3) 0;
+  border-bottom: 1px solid var(--oh-line);
+  vertical-align: top;
+  color: var(--oh-body);
+}
+
+.site-lab-architecture .oh-table td:nth-child(2) {
+  color: var(--oh-ink);
+}
+
+.site-lab-architecture .oh-num {
+  font-variant-numeric: tabular-nums;
+  width: 4.5rem;
+}
+
+.site-lab-architecture .oh-press {
+  border-top: 1px solid var(--oh-ink);
+}
+
+.site-lab-architecture .oh-press li {
+  display: grid;
+  gap: 2px;
+  padding: var(--oh-s3) 0;
+  border-bottom: 1px solid var(--oh-line);
+}
+
+.site-lab-architecture .oh-press-note {
+  margin-top: var(--oh-s5);
+}
+
+.site-lab-architecture .oh-careers {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--oh-s6) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-careers-intro {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: var(--oh-s4);
+  align-content: start;
+}
+
+.site-lab-architecture .oh-roles {
+  grid-column: 6 / -1;
+  border-top: 1px solid var(--oh-ink);
+}
+
+.site-lab-architecture .oh-roles li {
+  display: grid;
+  grid-template-columns: 1fr 11rem auto;
+  gap: var(--oh-gap);
+  align-items: baseline;
+  padding: var(--oh-s5) 0;
+  border-bottom: 1px solid var(--oh-line);
+}
+
+.site-lab-architecture .oh-roles .oh-small {
+  color: var(--oh-body);
+  margin-top: var(--oh-s1);
+  max-width: 52ch;
+}
+
+.site-lab-architecture .oh-roles .oh-data {
+  color: var(--oh-mute);
+}
+
+.site-lab-architecture .oh-roles .oh-inline {
+  font-size: var(--oh-t-small);
+  font-weight: 500;
+  padding-block: var(--oh-s2);
+}
+
+/* Contact */
+.site-lab-architecture .oh-offices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oh-s7) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-office {
+  display: grid;
+  gap: var(--oh-s4);
+  align-content: start;
+}
+
+.site-lab-architecture .oh-map {
+  border: 1px solid var(--oh-line);
+  margin-bottom: var(--oh-s3);
+}
+
+.site-lab-architecture .oh-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-lab-architecture .oh-map-ground { fill: var(--oh-sheet); }
+.site-lab-architecture .oh-map-block path { fill: var(--oh-paper-2); stroke: var(--oh-line); stroke-width: 1; }
+.site-lab-architecture .oh-map-park { fill: var(--oh-map-green); }
+.site-lab-architecture .oh-map-water { fill: var(--oh-map-water); }
+.site-lab-architecture .oh-map-street-name text { fill: var(--oh-mute); font-size: 11px; font-family: var(--oh-font); letter-spacing: 0.03em; }
+.site-lab-architecture .oh-map-pin { fill: var(--oh-accent); }
+
+.site-lab-architecture .oh-office-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oh-gap);
+}
+
+.site-lab-architecture .oh-office address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-lab-architecture .oh-office-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--oh-s1);
+}
+
+.site-lab-architecture .oh-direct {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--oh-gap);
+}
+
+.site-lab-architecture .oh-direct > .oh-title {
+  grid-column: 1 / span 4;
+}
+
+.site-lab-architecture .oh-direct ul {
+  grid-column: 5 / -1;
+  border-top: 1px solid var(--oh-ink);
+}
+
+.site-lab-architecture .oh-direct li {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.3fr;
+  gap: var(--oh-gap);
+  align-items: baseline;
+  padding: var(--oh-s4) 0;
+  border-bottom: 1px solid var(--oh-line);
+  color: var(--oh-body);
+}
+
+.site-lab-architecture .oh-direct .oh-heading {
+  font-size: 1.0625rem;
+  color: var(--oh-ink);
+}
+
+.site-lab-architecture .oh-enquiry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--oh-s6) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-enquiry-intro {
+  grid-column: 1 / span 4;
+  display: grid;
+  gap: var(--oh-s4);
+  align-content: start;
+}
+
+.site-lab-architecture .oh-enquiry-intro p {
+  color: var(--oh-body);
+}
+
+.site-lab-architecture .oh-form,
+.site-lab-architecture .oh-sent {
+  grid-column: 5 / -1;
+}
+
+.site-lab-architecture .oh-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--oh-s5) var(--oh-gap);
+}
+
+.site-lab-architecture .oh-field {
+  display: grid;
+  gap: var(--oh-s2);
+  align-content: start;
+}
+
+.site-lab-architecture .oh-field--wide {
+  grid-column: 1 / -1;
+}
+
+.site-lab-architecture .oh-field label {
+  font-size: var(--oh-t-small);
+  font-weight: 500;
+}
+
+.site-lab-architecture .oh-field :is(input, select, textarea) {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--oh-s3) var(--oh-s4);
+  background: var(--oh-paper-2);
+  border: 0;
+  border-bottom: 1px solid var(--oh-line-strong);
+  border-radius: var(--oh-radius);
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.site-lab-architecture .oh-field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.site-lab-architecture .oh-field :is(input, select, textarea):hover {
+  border-bottom-color: var(--oh-ink);
+}
+
+.site-lab-architecture .oh-field ::placeholder {
+  color: var(--oh-mute);
+}
+
+.site-lab-architecture .oh-field small {
+  font-size: var(--oh-t-data);
+  color: var(--oh-mute);
+}
+
+.site-lab-architecture .oh-form-foot {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--oh-s4) var(--oh-s5);
+  margin-top: var(--oh-s2);
+}
+
+.site-lab-architecture .oh-sent {
+  display: grid;
+  gap: var(--oh-s3);
+  justify-items: start;
+  padding: var(--oh-s6) 0;
+  border-top: 1px solid var(--oh-ink);
+}
+
+.site-lab-architecture .oh-sent p {
+  color: var(--oh-body);
+  margin-bottom: var(--oh-s3);
+}
+

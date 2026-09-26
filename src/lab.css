@@ -1,0 +1,386 @@
+/* Brand website showcase: embedded preview frame on the homepage + fullscreen viewer. */
+.lab-site-loading {
+  min-height: 70vh;
+  background: #0d0d10;
+}
+
+.lab-full {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #0b0b0e;
+  animation: lab-full-in .4s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes lab-full-in {
+  from { opacity: 0; }
+}
+
+.lab-full-header {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 60px;
+  padding: .55rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  background: #0b0b0e;
+  color: #f4f2ee;
+  font-size: .8rem;
+}
+
+.lab-full-back,
+.lab-full-close {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  height: 38px;
+  padding: 0 .9rem;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+.lab-full-close {
+  width: 38px;
+  justify-content: center;
+  padding: 0;
+}
+
+.lab-full-back:hover,
+.lab-full-close:hover {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .28);
+}
+
+.lab-full-title {
+  display: grid;
+  line-height: 1.25;
+}
+
+.lab-full-title strong {
+  font-size: .92rem;
+  font-weight: 600;
+}
+
+.lab-full-title span {
+  color: rgba(244, 242, 238, .55);
+  font-size: .74rem;
+}
+
+.lab-full-switch {
+  display: flex;
+  justify-content: flex-end;
+  gap: .35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lab-full-switch button {
+  flex: none;
+  height: 34px;
+  padding: 0 .85rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(244, 242, 238, .62);
+  font-size: .78rem;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.lab-full-switch button:hover {
+  color: #f4f2ee;
+  background: rgba(255, 255, 255, .06);
+}
+
+.lab-full-switch button.is-active {
+  background: #f4f2ee;
+  color: #0b0b0e;
+}
+
+.lab-full :focus-visible {
+  outline: 2px solid var(--accent, #fff);
+  outline-offset: 2px;
+}
+
+.lab-full-scroll {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+}
+
+@media (max-width: 860px) {
+  .lab-full-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: .6rem;
+  }
+
+  .lab-full-switch {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+}
+
+/* Homepage section: brand list + live browser preview */
+/* Sit above the portfolio's cursor glow (z-index 1) so the client sites are shown in their true colors. */
+.worlds.section-shell {
+  z-index: 2;
+}
+
+.lab-intro {
+  display: grid;
+  gap: 1rem;
+  max-width: 44rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.lab-intro h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5.2vw, 4.6rem);
+  font-weight: 700;
+  line-height: .98;
+  letter-spacing: -.055em;
+  text-wrap: balance;
+}
+
+.lab-intro p {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.lab-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: start;
+}
+
+.lab-tabs {
+  position: sticky;
+  top: 6.5rem;
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.lab-tab {
+  position: relative;
+  display: grid;
+  gap: .2rem;
+  padding: 1.15rem 0 1.15rem 1.1rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: rgba(247, 244, 239, .5);
+  text-align: left;
+  cursor: pointer;
+  transition: color .25s;
+}
+
+.lab-tab::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.1rem;
+  bottom: 1.1rem;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1);
+}
+
+.lab-tab strong {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+
+.lab-tab span {
+  font-size: .82rem;
+}
+
+.lab-tab:hover {
+  color: rgba(247, 244, 239, .82);
+}
+
+.lab-tab.is-active {
+  color: var(--ink);
+}
+
+.lab-tab.is-active::before {
+  transform: scaleY(1);
+}
+
+.lab-tab:focus-visible,
+.lab-open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.lab-stage {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.lab-browser {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 14px;
+  background: #121216;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .45);
+}
+
+.lab-browser-bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  height: 50px;
+  padding: 0 .6rem 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.lab-browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.lab-browser-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .16);
+}
+
+.lab-browser-url {
+  justify-self: center;
+  max-width: 100%;
+  overflow: hidden;
+  padding: .32rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .06);
+  color: rgba(247, 244, 239, .7);
+  font-size: .78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lab-open {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  height: 34px;
+  padding: 0 .95rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #0b0b0e;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.lab-open:hover {
+  background: #fff;
+}
+
+.lab-open:active {
+  transform: translateY(1px);
+}
+
+.lab-preview-scroll {
+  height: min(76vh, 820px);
+  min-height: 520px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  background: #fff;
+}
+
+.lab-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+@media (max-width: 900px) {
+  .lab-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lab-tabs {
+    position: static;
+    display: flex;
+    gap: .5rem;
+    overflow-x: auto;
+    border-top: 0;
+    scrollbar-width: none;
+  }
+
+  .lab-tab {
+    flex: none;
+    padding: .7rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  .lab-tab::before {
+    display: none;
+  }
+
+  .lab-tab.is-active {
+    border-color: var(--accent);
+  }
+
+  .lab-tab strong {
+    font-size: 1rem;
+  }
+
+  .lab-browser-dots {
+    display: none;
+  }
+
+  .lab-browser-bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .lab-browser-url {
+    justify-self: start;
+  }
+
+  .lab-preview-scroll {
+    height: 72vh;
+    min-height: 460px;
+  }
+}
+
+/* ThreeCanvas host: fills its positioned parent; ThreeUI canvases fill the host. */
+.lab-three {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.lab-three > *,
+.lab-three canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}

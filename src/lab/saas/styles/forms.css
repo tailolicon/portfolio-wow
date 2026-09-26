@@ -1,0 +1,254 @@
+/* Veyra: demo, start, forms */
+
+
+/* ---------- demo ---------- */
+
+.site-lab-saas .vy-demo {
+  padding-bottom: var(--vy-s-10);
+}
+
+.site-lab-saas .vy-page-hero .vy-demo-grid,
+.site-lab-saas .vy-page-hero .vy-start-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: var(--vy-s-8);
+  align-items: start;
+}
+
+.site-lab-saas .vy-demo-copy {
+  display: grid;
+  gap: var(--vy-s-5);
+}
+
+.site-lab-saas .vy-demo-copy .vy-page-title {
+  font-size: clamp(36px, 4cqi, 52px);
+}
+
+.site-lab-saas .vy-demo-sub {
+  font-family: var(--vy-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vy-ink);
+  margin-top: var(--vy-s-5);
+}
+
+.site-lab-saas .vy-next {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--vy-s-5);
+}
+
+.site-lab-saas .vy-next li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: var(--vy-s-4);
+  font-size: 14.5px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-next svg {
+  margin-top: 2px;
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-next strong {
+  display: block;
+  color: var(--vy-ink);
+  font-weight: 500;
+}
+
+.site-lab-saas .vy-demo-quote {
+  margin: var(--vy-s-5) 0 0;
+  padding-top: var(--vy-s-5);
+  border-top: 1px solid var(--vy-line);
+  display: grid;
+  gap: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-demo-quote blockquote {
+  margin: 0;
+  color: var(--vy-ink);
+  font-size: 15.5px;
+}
+
+.site-lab-saas .vy-demo-card,
+.site-lab-saas .vy-start-card {
+  padding: var(--vy-s-6);
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-lg);
+  background: var(--vy-surface-1);
+  box-shadow: var(--vy-shadow-panel);
+}
+
+/* ---------- forms ---------- */
+
+.site-lab-saas .vy-form {
+  display: grid;
+  gap: var(--vy-s-5);
+}
+
+.site-lab-saas .vy-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-field {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.site-lab-saas .vy-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-field :is(input, select, textarea) {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14.5px;
+  color: var(--vy-ink);
+  background: var(--vy-surface-2);
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.site-lab-saas .vy-field textarea {
+  resize: vertical;
+  min-height: 104px;
+}
+
+.site-lab-saas .vy-field :is(input, select, textarea)::placeholder {
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-field :is(input, select, textarea):hover {
+  border-color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-field :is(input, select, textarea):focus {
+  outline: none;
+  border-color: var(--vy-accent);
+  box-shadow: 0 0 0 3px var(--vy-accent-soft);
+}
+
+.site-lab-saas .vy-field.has-error :is(input, select, textarea) {
+  border-color: var(--vy-negative);
+}
+
+.site-lab-saas .vy-field-help,
+.site-lab-saas .vy-field-error {
+  font-size: 12.5px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-field-error {
+  color: var(--vy-negative);
+}
+
+.site-lab-saas .vy-form-submit {
+  width: 100%;
+}
+
+.site-lab-saas .vy-form-legal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--vy-ink-3);
+  margin-top: calc(var(--vy-s-2) * -1);
+}
+
+.site-lab-saas .vy-sent {
+  display: grid;
+  gap: var(--vy-s-4);
+  padding: var(--vy-s-5) 0;
+  animation: vy-in 0.4s var(--vy-ease) both;
+}
+
+.site-lab-saas .vy-sent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vy-s-3);
+  margin-top: var(--vy-s-3);
+}
+
+.site-lab-saas .vy-btn--ghost {
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-btn--ghost:hover {
+  color: var(--vy-ink);
+  background: var(--vy-surface-2);
+}
+
+/* ---------- start ---------- */
+
+.site-lab-saas .vy-start {
+  padding-bottom: var(--vy-s-10);
+}
+
+.site-lab-saas .vy-start-card {
+  display: grid;
+  gap: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-start-card .vy-logo {
+  margin-bottom: var(--vy-s-4);
+}
+
+.site-lab-saas .vy-start-lead,
+.site-lab-saas .vy-start-alt {
+  font-size: 14.5px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-start-alt a {
+  color: var(--vy-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--vy-line-strong);
+  text-underline-offset: 3px;
+}
+
+.site-lab-saas .vy-start-sent {
+  display: grid;
+  gap: var(--vy-s-3);
+}
+
+.site-lab-saas .vy-start-sent strong {
+  color: var(--vy-ink);
+  font-weight: 500;
+}
+
+.site-lab-saas .vy-start-aside {
+  display: grid;
+  gap: var(--vy-s-5);
+  padding-top: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-start-aside .vy-demo-sub {
+  margin-top: 0;
+}
+
+.site-lab-saas .vy-start-fine {
+  font-size: 12.5px;
+  color: var(--vy-ink-4);
+  max-width: 44ch;
+}
+
+@container site (max-width: 720px) {
+  .site-lab-saas .vy-demo-card,
+  .site-lab-saas .vy-start-card {
+    padding: var(--vy-s-5);
+  }
+  .site-lab-saas .vy-form-row {
+    grid-template-columns: 1fr;
+    gap: var(--vy-s-5);
+  }
+}

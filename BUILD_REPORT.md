@@ -17,41 +17,22 @@ The homepage is now a launcher into five complete concept worlds instead of a fl
 - perspective cards
 - scroll reveal / clip transitions
 - live visual-direction selector
-- illustrative craft/status HUD
-- fullscreen Showreel Mode
+- five premium brand websites (live preview + fullscreen viewer)
 - procedural project artwork
 - large closing CTA
 
-### Five immersive mini-sites
+### Five premium brand websites
 
-Each world has three internal scenes, its own composition language, keyboard navigation and a world-specific interaction.
+The former "worlds" (WebGL art pieces with decorative metrics) were replaced by complete multi-page sites for fictional premium brands: Maison Orvel (jewelry), Veyra (AI SaaS), Oyelaran Hart (architecture), Wren & Volt (studio) and Kova One (headphones). Each lives in `src/lab/<id>/`, is lazy-loaded per site, and uses ThreeUI only for one or two purposeful moments per page.
 
-1. **Luxury / NOIR ÉCLAT**
-   - ThreeUI Nebula background
-   - editorial serif language
-   - draggable split material reveal
+The homepage section label had been clipped because ThreeUI's global stylesheet also defines `.section-label`; the portfolio's label class is now `.section-marker`.
 
-2. **Future SaaS / ORBIT OS**
-   - ThreeUI Orbital Sphere
-   - technical grid / data language
-   - reactive command-console scanner
+### GPU budget
 
-3. **Editorial / MONOLITH 24**
-   - ThreeUI Halftone Flow
-   - architectural layout
-   - draggable grid and form composition
-
-4. **Experimental / SIGNAL VOID**
-   - ThreeUI Topology Field
-   - chromatic/glitch typography
-   - pointer-position signal distortion
-
-5. **Product / OBJECT ONE**
-   - ThreeUI Particle Network
-   - minimal product-launch language
-   - rotatable CSS 3D object and finish selector
-
-The immersive component is dynamically imported from `src/ImmersiveExperience.tsx`, so none of its UI is required for the initial homepage bundle.
+- WebGL scenes render at devicePixelRatio 1 (`src/main.tsx`).
+- No backdrop-filter or blend modes on elements layered over animating canvases; the grain overlay is plain alpha.
+- Cursor glow and scroll progress move with compositor-only transforms instead of CSS variables on `<html>`.
+- `ThreeCanvas` unmounts scenes that leave the viewport; brand sites run at most two scenes per page.
 
 ## ThreeUI integration
 

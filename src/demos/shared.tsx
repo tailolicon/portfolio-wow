@@ -9,17 +9,25 @@ export type DemoImageFolder =
   | "services"
   | "fitness"
   | "professional"
-  | "people";
+  | "people"
+  | "lab-luxury"
+  | "lab-saas"
+  | "lab-architecture"
+  | "lab-agency"
+  | "lab-product";
 
 /** Local stock photo shipped in public/demos/<folder>/<name>.webp */
 export const demoImg = (folder: DemoImageFolder, name: string) => `./demos/${folder}/${name}.webp`;
 
-const SCROLLERS = ".biz-product-scroll, .biz-full-demo-scroll";
+const SCROLLERS = ".biz-product-scroll, .biz-full-demo-scroll, .lab-preview-scroll, .lab-full-scroll";
+
+/** True when the site is open fullscreen from a shareable URL (?demo= for business, ?site= for brand sites). */
+const isFullscreenUrl = (params: URLSearchParams) => params.has("demo") || params.has("site");
 
 function readInitialPage<P extends string>(pages: readonly P[]): P {
   const params = new URLSearchParams(window.location.search);
   const requested = params.get("page");
-  if (params.has("demo") && requested && (pages as readonly string[]).includes(requested)) {
+  if (isFullscreenUrl(params) && requested && (pages as readonly string[]).includes(requested)) {
     return requested as P;
   }
   return pages[0];
@@ -37,7 +45,7 @@ export function useSitePages<P extends string>(pages: readonly P[]) {
     (next: P) => {
       setPage(next);
       const url = new URL(window.location.href);
-      if (url.searchParams.has("demo")) {
+      if (isFullscreenUrl(url.searchParams)) {
         if (next === pages[0]) url.searchParams.delete("page");
         else url.searchParams.set("page", next);
         window.history.replaceState(window.history.state, "", url);

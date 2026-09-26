@@ -1,6 +1,6 @@
 # Demo image credits
 
-Photos used by the six fictional client demo websites (`src/demos/<site>/`), stored locally as WebP in
+Photos used by the six fictional client demo websites (`src/demos/<site>/`) and the five premium brand sites (`src/lab/<site>/`, folders `lab-*`), stored locally as WebP in
 `public/demos/<folder>/<name>.webp` so deployed demos never hotlink runtime assets.
 
 Source: Unsplash (free to use under the Unsplash License). Each entry lists the Unsplash photo ID; the
@@ -167,3 +167,118 @@ None of the business names, people or reviews on the demo sites represent real c
 - woman-redhead.webp: `photo-1438761681033-6461ffad8d80`
 - man-cap.webp: `photo-1600486913747-55e5470d6f40`
 - man-restaurant.webp: `photo-1556157382-97eda2d62296`
+
+## lab-luxury
+
+- pendants-hanging.webp: `photo-1506630448388-4e683c67ddb0`
+- pearl-box.webp: `photo-1515562141207-7a88fb7ce338`
+- sapphire-earrings.webp: `photo-1535632066927-ab7c9ab60908`
+- gold-rings-stack.webp: `photo-1543294001-f7cd5d7fb516`
+- diamond-bracelet-dark.webp: `photo-1573408301185-9146fe634ad0`
+- heart-necklace.webp: `photo-1588444837495-c6cfeb53f32d`
+- silver-chain.webp: `photo-1589128777073-263566ae5e4d`
+- wrist-bracelet.webp: `photo-1596944924616-7b38e7cfac36`
+- diamond-pendant.webp: `photo-1598560917505-59a3ad559071`
+- gold-chain-warm.webp: `photo-1599643478518-a784e5dc4c8f`
+- earring-model.webp: `photo-1600721391776-b5cd0e0048f9`
+- gold-necklace-set.webp: `photo-1601121141461-9d6647bca1ed`
+- gold-link-bracelet.webp: `photo-1602173574767-37ac01994b2a`
+- gem-flower-ring.webp: `photo-1602751584552-8ba73aad10e1`
+- pink-sapphire-ring.webp: `photo-1603561591411-07134e71a2a9`
+- pear-diamond-ring.webp: `photo-1605100804567-1ffe942b5cd6`
+- halo-ring.webp: `photo-1605100804763-247f67b3557e`
+- rings-on-stone.webp: `photo-1608042314453-ae338d80c427`
+- pearl-pendant-model.webp: `photo-1611085583191-a3b181a88401`
+- rose-gold-bracelet.webp: `photo-1611591437281-460bfbe1220a`
+- necklace-model.webp: `photo-1611652022419-a9419f74343d`
+- gold-hoops.webp: `photo-1617038220319-276d3cfab638`
+- model-rings.webp: `photo-1620656798579-1984d9e87df7`
+- wedding-bands.webp: `photo-1627293509201-cd0c780043e6`
+- blue-earrings.webp: `photo-1630019852942-f89202989a59`
+- ring-tray.webp: `photo-1631982690223-8aa4be0a2497`
+- layered-necklaces.webp: `photo-1633934542430-0905ccb5f050`
+
+## lab-architecture
+
+- towers-fog.webp: `photo-1449157291145-7efd050a4d0e`
+- towers-glass.webp: `photo-1464938050520-ef2270bb8ce8`
+- city-sunset.webp: `photo-1480714378408-67cf0d13bc1b`
+- facade-terracotta.webp: `photo-1486718448742-163732cd1544`
+- museum-angular.webp: `photo-1487958449943-2429e8be8625`
+- house-dusk.webp: `photo-1494526585095-c41746248156`
+- office-glass.webp: `photo-1497366754035-f200968a6e72`
+- stair-interior.webp: `photo-1502005229762-cf1b2da7c5d6`
+- architect-drawing.webp: `photo-1503387762-592deb58ef4e`
+- towers-dark.webp: `photo-1511818966892-d7d671e672a2`
+- villa-white.webp: `photo-1512917774080-9991f1c4c750`
+- facade-curves.webp: `photo-1518005020951-eccb494ad742`
+- dining-light.webp: `photo-1519643381401-22c77e60520e`
+- house-white-cubic.webp: `photo-1523217582562-09d0def993a6`
+- office-open.webp: `photo-1531973576160-7125cd663d86`
+- apartment-facade.webp: `photo-1545324418-cc1a3fa10c00`
+- pavilion-pool.webp: `photo-1582268611958-ebfd161ef9cf`
+- house-timber.webp: `photo-1600047509807-ba8f99d2cdde`
+- living-glass.webp: `photo-1600210492493-0946911123ea`
+- bath-stone.webp: `photo-1600566752355-35792bedcfea`
+- house-garden-night.webp: `photo-1600585154340-be6161a56a0c`
+- living-garden.webp: `photo-1600607687939-ce8a6c25118c`
+- living-timber.webp: `photo-1604014237800-1c9102c219da`
+- villa-terrace.webp: `photo-1613490493576-7fde63acd811`
+- bedroom.webp: `photo-1616594039964-ae9021a400a0`
+- hallway-mirror.webp: `photo-1618219908412-a29a1bb7b86e`
+- lounge-clerestory.webp: `photo-1618221195710-dd6b41faaea6`
+
+## lab-agency
+
+- desk-flatlay.webp: `photo-1497032628192-86f99bcd76bc`
+- meeting-hands.webp: `photo-1517245386807-bb43f82c33c4`
+- team-overhead.webp: `photo-1519389950473-47ba0277781c`
+- team-laptops.webp: `photo-1522071820081-009f0129c71c`
+- wireframe-wall.webp: `photo-1531403009284-440f080d1e12`
+- desk-white.webp: `photo-1541462608143-67571c6738dd`
+- workshop-room.webp: `photo-1542744173-8e7e53415bb0`
+- retro-neon.webp: `photo-1550745165-9bc0b252726f`
+- sticky-workshop.webp: `photo-1552664730-d307ca884978`
+- bw-laptop.webp: `photo-1553877522-43269d4ea984`
+- abstract-white-waves.webp: `photo-1558591710-4b4a1ae0f04d`
+- tablet-drawing.webp: `photo-1558655146-9f40138edfeb`
+- studio-loft.webp: `photo-1559136555-9303baea8ebd`
+- color-swatches.webp: `photo-1561070791-2526d30994b5`
+- gradient-soft.webp: `photo-1579546929518-9e396f3cc809`
+- sketching.webp: `photo-1581291518857-4e27b48ff24e`
+- blueprint.webp: `photo-1600132806370-bf17e65e942f`
+- fluid-paint.webp: `photo-1604871000636-074fa5117945`
+- gradient-dark.webp: `photo-1614850523459-c2f4c699c52e`
+- gradient-waves.webp: `photo-1618005182384-a83a8bd57fbe`
+- sphere-3d.webp: `photo-1618005198919-d3d4b5a92ead`
+- gradient-purple.webp: `photo-1620641788421-7a1c342ea42e`
+- blue-lines.webp: `photo-1634017839464-5c339ebe3cb4`
+
+## lab-saas
+
+- earth-night.webp: `photo-1451187580459-43490279c0fa`
+- laptop-dashboard.webp: `photo-1460925895917-afdab827c52f`
+- laptop-code.webp: `photo-1498050108023-c5249f4df085`
+- laptop-charts.webp: `photo-1504868584819-f8e8b4b6d7e3`
+- team-smiling.webp: `photo-1522202176988-66273c2fd55f`
+- team-pairing.webp: `photo-1531482615713-2afd69097998`
+- network-cables.webp: `photo-1544197150-b99a580bb7a8`
+- analytics-screen.webp: `photo-1551288049-bebda4e38f71`
+- engineers.webp: `photo-1551434678-e076c223a692`
+- office-standup.webp: `photo-1556761175-5973dc0f32e7`
+- office-meeting.webp: `photo-1557804506-669a67965ba0`
+- datacenter.webp: `photo-1573164713988-8665fc963095`
+- hands-team.webp: `photo-1600880292089-90a7e086ee0c`
+- high-five.webp: `photo-1600880292203-757bb62b4baf`
+- network-cubes.webp: `photo-1639322537228-f710d846310a`
+
+## lab-product
+
+- onear-silver.webp: `photo-1484704849700-f032a568e944`
+- black-studio.webp: `photo-1487215078519-e21cc028cb29`
+- black-yellow.webp: `photo-1505740420928-5e560c06d30e`
+- pastel-wired.webp: `photo-1524678606370-a47ad25cb82a`
+- sand-closeup.webp: `photo-1545127398-14699f92334b`
+- black-desk.webp: `photo-1546435770-a3e426bf472b`
+- black-white-bg.webp: `photo-1583394838336-acd977736f90`
+- black-on-black.webp: `photo-1599669454699-248893623440`

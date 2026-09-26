@@ -1,0 +1,185 @@
+/* Veyra: customer wordmarks, monograms, warehouse diagram */
+
+
+.site-lab-saas .vy-cmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--vy-ink-3);
+  white-space: nowrap;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.site-lab-saas .vy-cmark--sm {
+  font-size: 14px;
+}
+
+.site-lab-saas .vy-cmark--lower {
+  font-family: var(--vy-font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.site-lab-saas .vy-cmark--caps {
+  font-family: var(--vy-font-ui);
+  font-weight: 600;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.site-lab-saas .vy-cmark--serif {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.site-lab-saas .vy-cmark--heavy {
+  font-family: "Archivo", var(--vy-font-ui);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.site-lab-saas .vy-monogram {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--vy-r-md);
+  background: var(--vy-surface-2);
+  border: 1px solid var(--vy-line);
+  color: var(--vy-ink);
+}
+
+/* diagram */
+
+.site-lab-saas .vy-dg {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 0.9fr) 48px minmax(0, 1fr);
+  align-items: stretch;
+  font-size: 13px;
+}
+
+.site-lab-saas .vy-dg-col {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.site-lab-saas .vy-dg-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-sm);
+  background: var(--vy-canvas);
+  color: var(--vy-ink);
+  min-width: 0;
+}
+
+.site-lab-saas .vy-dg-node svg {
+  color: var(--vy-ink-3);
+  flex: none;
+}
+
+.site-lab-saas .vy-dg-node span {
+  display: grid;
+  min-width: 0;
+}
+
+.site-lab-saas .vy-dg-node small {
+  font-family: var(--vy-font-mono);
+  font-size: 11px;
+  color: var(--vy-ink-4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-lab-saas .vy-dg-node--out {
+  color: var(--vy-ink-2);
+  background: transparent;
+  border-color: var(--vy-line);
+}
+
+.site-lab-saas .vy-dg-links {
+  width: 48px;
+  height: 100%;
+  overflow: visible;
+}
+
+.site-lab-saas .vy-dg-path {
+  fill: none;
+  stroke: var(--vy-line-strong);
+  stroke-width: 1;
+}
+
+.site-lab-saas .vy-dg-flow {
+  fill: none;
+  stroke: var(--vy-accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 8 120;
+  stroke-dashoffset: 128;
+  animation: vy-flow 3.2s linear infinite;
+}
+
+@keyframes vy-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-lab-saas .vy-dg-flow {
+    animation: none;
+    stroke: none;
+  }
+}
+
+.site-lab-saas .vy-dg-core {
+  align-self: center;
+  display: grid;
+  gap: var(--vy-s-3);
+  padding: var(--vy-s-4);
+  border: 1px solid var(--vy-accent-line);
+  border-radius: var(--vy-r-md);
+  background: var(--vy-surface-2);
+  box-shadow: var(--vy-shadow-panel);
+}
+
+.site-lab-saas .vy-dg-core ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-dg-core li {
+  padding-top: 6px;
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-dg-role {
+  font-size: 11.5px;
+  color: var(--vy-accent);
+  font-family: var(--vy-font-mono);
+}
+
+@container site (max-width: 720px) {
+  .site-lab-saas .vy-dg {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+  }
+  .site-lab-saas .vy-dg-links--out,
+  .site-lab-saas .vy-dg > .vy-dg-col:last-child {
+    display: none;
+  }
+  .site-lab-saas .vy-dg-links {
+    width: 28px;
+  }
+}

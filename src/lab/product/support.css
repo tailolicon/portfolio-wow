@@ -1,0 +1,282 @@
+/* Kova Audio: support page base rules (responsive overrides live in pages.css, imported after) */
+/* Support */
+.site-lab-product .kv-support-hero {
+  padding-block: var(--kv-s8) var(--kv-s7);
+  text-align: center;
+}
+.site-lab-product .kv-support-hero h1 {
+  font-size: var(--kv-t-h2);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.site-lab-product .kv-support-hero .kv-lead {
+  margin: var(--kv-s4) auto 0;
+}
+.site-lab-product .kv-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: var(--kv-s6);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-search svg {
+  position: absolute;
+  left: 20px;
+}
+.site-lab-product .kv-search input {
+  width: 100%;
+  height: 56px;
+  padding: 0 20px 0 52px;
+  border: 1px solid var(--kv-line);
+  border-radius: var(--kv-r-pill);
+  background: var(--kv-paper);
+  font: inherit;
+  color: var(--kv-ink);
+}
+.site-lab-product .kv-search input:focus {
+  outline: 2px solid var(--kv-signal);
+  outline-offset: 2px;
+}
+.site-lab-product .kv-topics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-radius: var(--kv-r-lg);
+  overflow: hidden;
+  background: var(--kv-line);
+}
+.site-lab-product .kv-topic {
+  display: grid;
+  gap: var(--kv-s1);
+  align-content: start;
+  padding: var(--kv-s6);
+  background: var(--kv-paper);
+  transition: background-color 0.2s;
+}
+.site-lab-product .kv-topic:hover {
+  background: #fafafa;
+}
+.site-lab-product .kv-topic svg {
+  color: var(--kv-signal);
+  margin-bottom: var(--kv-s3);
+}
+.site-lab-product .kv-topic span {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--kv-s7);
+}
+.site-lab-product .kv-setup .kv-lead {
+  margin-top: var(--kv-s3);
+}
+.site-lab-product .kv-steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: kv-step;
+  display: grid;
+  gap: var(--kv-s5);
+}
+.site-lab-product .kv-steps li {
+  counter-increment: kv-step;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: var(--kv-s4);
+}
+.site-lab-product .kv-steps li::before {
+  content: counter(kv-step);
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--kv-ink);
+  color: var(--kv-paper);
+  font-size: var(--kv-t-cap);
+  font-weight: 600;
+}
+.site-lab-product .kv-steps h3 {
+  font-size: 1.125rem;
+  line-height: 36px;
+}
+.site-lab-product .kv-steps p {
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-faq {
+  background: var(--kv-paper);
+}
+.site-lab-product .kv-faq-list {
+  margin-top: var(--kv-s6);
+  border-top: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-faq-item {
+  border-bottom: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--kv-s4);
+  padding-block: var(--kv-s5);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.site-lab-product .kv-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.site-lab-product .kv-faq-item summary svg {
+  flex: none;
+  margin-top: 3px;
+  transition: transform 0.25s var(--kv-ease);
+}
+.site-lab-product .kv-faq-item[open] summary svg {
+  transform: rotate(45deg);
+}
+.site-lab-product .kv-faq-item p {
+  padding-bottom: var(--kv-s5);
+  color: var(--kv-ink-2);
+  max-width: 62ch;
+}
+.site-lab-product .kv-faq-empty {
+  margin-top: var(--kv-s5);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--kv-s4);
+  align-items: start;
+}
+.site-lab-product .kv-firmware,
+.site-lab-product .kv-warranty {
+  padding: var(--kv-s7);
+  border-radius: var(--kv-r-lg);
+  background: var(--kv-paper);
+}
+.site-lab-product .kv-firmware > p,
+.site-lab-product .kv-warranty > p {
+  margin-top: var(--kv-s2);
+}
+.site-lab-product .kv-firmware ul {
+  margin: var(--kv-s5) 0 var(--kv-s6);
+  padding-left: 1.1em;
+  display: grid;
+  gap: var(--kv-s2);
+}
+.site-lab-product .kv-firmware h3,
+.site-lab-product .kv-form h3 {
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+.site-lab-product .kv-firmware dl {
+  margin-top: var(--kv-s3);
+  display: grid;
+  gap: var(--kv-s3);
+}
+.site-lab-product .kv-firmware dt {
+  font-weight: 600;
+}
+.site-lab-product .kv-firmware dt span,
+.site-lab-product .kv-firmware dd {
+  font-size: var(--kv-t-cap);
+  font-weight: 400;
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-repair-prices {
+  margin: var(--kv-s5) 0 var(--kv-s6);
+  border-top: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-repair-prices div {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--kv-s3);
+  border-bottom: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-repair-prices dd {
+  font-weight: 600;
+}
+.site-lab-product .kv-form {
+  display: grid;
+  gap: var(--kv-s4);
+  justify-items: start;
+}
+.site-lab-product .kv-field {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+}
+.site-lab-product .kv-field label {
+  font-size: var(--kv-t-cap);
+  font-weight: 500;
+}
+.site-lab-product .kv-field input,
+.site-lab-product .kv-field select {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--kv-line);
+  border-radius: var(--kv-r-md);
+  background: var(--kv-paper);
+  font: inherit;
+  color: var(--kv-ink);
+}
+.site-lab-product .kv-field input:focus,
+.site-lab-product .kv-field select:focus {
+  outline: 2px solid var(--kv-signal);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.site-lab-product .kv-field input[aria-invalid="true"] {
+  border-color: var(--kv-signal);
+}
+.site-lab-product .kv-field-help,
+.site-lab-product .kv-field-error {
+  font-size: var(--kv-t-fine);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-field-error {
+  color: var(--kv-signal);
+  font-weight: 500;
+}
+.site-lab-product .kv-form-done {
+  display: flex;
+  gap: var(--kv-s3);
+  padding: var(--kv-s5);
+  border-radius: var(--kv-r-md);
+  background: var(--kv-mist);
+}
+.site-lab-product .kv-form-done svg {
+  flex: none;
+  color: var(--kv-signal);
+}
+.site-lab-product .kv-form-done p {
+  margin: var(--kv-s1) 0 var(--kv-s3);
+  color: var(--kv-ink-2);
+}
+.site-lab-product .kv-contact {
+  padding-top: 0;
+}
+.site-lab-product .kv-contact-list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--kv-s6);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--kv-line);
+}
+.site-lab-product .kv-contact-list li {
+  display: grid;
+  gap: var(--kv-s1);
+  align-content: start;
+  padding: var(--kv-s5) var(--kv-s5) 0 0;
+}
+.site-lab-product .kv-contact-list svg {
+  margin-bottom: var(--kv-s2);
+}
+.site-lab-product .kv-contact-list span {
+  font-size: var(--kv-t-cap);
+  color: var(--kv-ink-2);
+}
+

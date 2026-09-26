@@ -1,0 +1,368 @@
+/* Veyra: pricing */
+
+
+/* ---------- pricing ---------- */
+
+.site-lab-saas .vy-billing {
+  display: inline-flex;
+  padding: 3px;
+  margin-top: var(--vy-s-3);
+  border: 1px solid var(--vy-line-strong);
+  border-radius: var(--vy-r-sm);
+  background: var(--vy-surface-1);
+}
+
+.site-lab-saas .vy-billing button {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 4px;
+  font-size: 13.5px;
+  color: var(--vy-ink-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.site-lab-saas .vy-billing button.is-on {
+  background: var(--vy-surface-3);
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-billing span {
+  font-size: 12px;
+  color: var(--vy-accent);
+}
+
+.site-lab-saas .vy-plans-sec {
+  padding-bottom: var(--vy-s-8);
+}
+
+.site-lab-saas .vy-plans {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-lg);
+  background: var(--vy-surface-1);
+  overflow: hidden;
+}
+
+.site-lab-saas .vy-plan {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: var(--vy-s-5);
+  padding: var(--vy-s-6) var(--vy-s-5);
+  border-left: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-plan:first-child {
+  border-left: 0;
+}
+
+.site-lab-saas .vy-plan.is-featured {
+  background: var(--vy-surface-2);
+  box-shadow: inset 0 2px 0 var(--vy-accent);
+}
+
+.site-lab-saas .vy-plan-top {
+  display: grid;
+  gap: 6px;
+  min-height: 84px;
+  align-content: start;
+}
+
+.site-lab-saas .vy-plan h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+}
+
+.site-lab-saas .vy-plan-tag {
+  font-family: var(--vy-font-ui);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--vy-accent);
+  letter-spacing: 0;
+}
+
+.site-lab-saas .vy-plan-top p {
+  font-size: 14px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-price {
+  display: grid;
+  gap: 4px;
+}
+
+.site-lab-saas .vy-price strong {
+  font-family: var(--vy-font-display);
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--vy-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-price span {
+  font-size: 12.5px;
+  color: var(--vy-ink-3);
+  min-height: 19px;
+}
+
+.site-lab-saas .vy-plan .vy-btn {
+  width: 100%;
+}
+
+.site-lab-saas .vy-plan-feats {
+  display: grid;
+  align-content: start;
+  gap: var(--vy-s-3);
+  padding-top: var(--vy-s-5);
+  border-top: 1px solid var(--vy-line);
+  font-size: 13.5px;
+}
+
+.site-lab-saas .vy-plan-feats > span {
+  color: var(--vy-ink-3);
+  font-size: 12.5px;
+}
+
+.site-lab-saas .vy-plan-feats ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.site-lab-saas .vy-plan-feats li {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-plan-feats svg {
+  margin-top: 4px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-plans-note {
+  margin-top: var(--vy-s-4);
+  font-size: 13px;
+  color: var(--vy-ink-3);
+  text-align: center;
+}
+
+.site-lab-saas .vy-compare-sec {
+  padding-top: var(--vy-s-8);
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-compare-title {
+  margin-bottom: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-compare-wrap {
+  overflow-x: auto;
+}
+
+.site-lab-saas .vy-compare {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.site-lab-saas .vy-compare thead th {
+  background: var(--vy-canvas);
+  padding: var(--vy-s-4) var(--vy-s-3);
+  text-align: left;
+  font-family: var(--vy-font-display);
+  font-size: 16px;
+  color: var(--vy-ink);
+  border-bottom: 1px solid var(--vy-line-strong);
+  z-index: 1;
+}
+
+.site-lab-saas .vy-compare thead small {
+  display: block;
+  font-family: var(--vy-font-ui);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-compare th[scope="row"],
+.site-lab-saas .vy-compare td {
+  padding: 12px var(--vy-s-3);
+  border-bottom: 1px solid var(--vy-line);
+  text-align: left;
+  font-weight: 400;
+}
+
+.site-lab-saas .vy-compare th[scope="row"] {
+  width: 32%;
+  color: var(--vy-ink-2);
+}
+
+.site-lab-saas .vy-compare td {
+  color: var(--vy-ink);
+  width: 17%;
+}
+
+.site-lab-saas .vy-compare-group th {
+  padding: var(--vy-s-6) var(--vy-s-3) var(--vy-s-2);
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vy-ink);
+  border-bottom: 1px solid var(--vy-line-strong);
+}
+
+.site-lab-saas .vy-cmp-yes {
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-cmp-no {
+  color: var(--vy-ink-4);
+}
+
+.site-lab-saas .vy-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* faq */
+
+.site-lab-saas .vy-faq-sec {
+  border-top: 1px solid var(--vy-line);
+  scroll-margin-top: var(--vy-header-h);
+}
+
+.site-lab-saas .vy-faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--vy-s-8);
+  align-items: start;
+}
+
+.site-lab-saas .vy-faq-aside {
+  margin-top: var(--vy-s-4);
+  font-size: 14px;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-faq-aside a {
+  color: var(--vy-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--vy-line-strong);
+  text-underline-offset: 3px;
+}
+
+.site-lab-saas .vy-faq {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-faq li {
+  border-bottom: 1px solid var(--vy-line);
+}
+
+.site-lab-saas .vy-faq button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--vy-s-4);
+  padding: 20px 0;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--vy-ink);
+}
+
+.site-lab-saas .vy-faq button svg {
+  flex: none;
+  color: var(--vy-ink-3);
+}
+
+.site-lab-saas .vy-faq-a p {
+  padding-bottom: 20px;
+  font-size: 14.5px;
+  color: var(--vy-ink-2);
+  max-width: 62ch;
+}
+
+.site-lab-saas .vy-ent {
+  padding-block: 0 var(--vy-s-10);
+}
+
+.site-lab-saas .vy-ent-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vy-s-6);
+}
+
+.site-lab-saas .vy-ent-inner > div {
+  flex: 1;
+}
+
+.site-lab-saas .vy-ent-box {
+  padding: var(--vy-s-6);
+  border: 1px solid var(--vy-line);
+  border-radius: var(--vy-r-lg);
+  background: var(--vy-surface-1);
+}
+
+.site-lab-saas .vy-ent-inner p {
+  margin-top: 6px;
+  color: var(--vy-ink-3);
+  font-size: 14.5px;
+}
+
+@container site (max-width: 980px) {
+  .site-lab-saas .vy-split,
+  .site-lab-saas .vy-split--rev,
+  .site-lab-saas .vy-gov,
+  .site-lab-saas .vy-faq-grid {
+    grid-template-columns: 1fr;
+    gap: var(--vy-s-6);
+  }
+}
+
+@container site (max-width: 720px) {
+  .site-lab-saas .vy-plans {
+    grid-template-columns: 1fr;
+  }
+  .site-lab-saas .vy-plan {
+    border-left: 0;
+    border-top: 1px solid var(--vy-line);
+  }
+  .site-lab-saas .vy-plan:first-child {
+    border-top: 0;
+  }
+  .site-lab-saas .vy-plan-top {
+    min-height: 0;
+  }
+  .site-lab-saas .vy-ent-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .site-lab-saas .vy-ent {
+    padding-bottom: var(--vy-s-8);
+  }
+}

@@ -1,0 +1,395 @@
+/* Maison Orvel: maison and appointments */
+
+/* Maison */
+.site-lab-luxury .lx-maison-hero {
+  padding-top: var(--lx-s8);
+}
+.site-lab-luxury .lx-maison-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6cqi, 6rem);
+  align-items: end;
+}
+.site-lab-luxury .lx-maison-hero-copy {
+  display: grid;
+  gap: var(--lx-s5);
+  padding-bottom: var(--lx-s6);
+}
+.site-lab-luxury .lx-maison-hero-media {
+  margin: 0;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+}
+.site-lab-luxury .lx-maison-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+.site-lab-luxury .lx-timeline-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6cqi, 6rem);
+  align-items: start;
+}
+.site-lab-luxury .lx-timeline-intro {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  gap: var(--lx-s4);
+}
+.site-lab-luxury .lx-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-lab-luxury .lx-timeline li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: var(--lx-s5);
+  padding-block: var(--lx-s5);
+  border-top: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-timeline-year {
+  font-family: var(--lx-serif);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--lx-accent);
+  font-variant-numeric: lining-nums;
+}
+.site-lab-luxury .lx-timeline h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: var(--lx-s1);
+}
+.site-lab-luxury .lx-timeline p {
+  max-width: 56ch;
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-atelier-head {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--lx-s6);
+  align-items: end;
+  margin-bottom: var(--lx-s7);
+}
+.site-lab-luxury .lx-atelier-head p {
+  max-width: 50ch;
+}
+.site-lab-luxury .lx-people {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--lx-s5);
+}
+.site-lab-luxury .lx-person {
+  margin: 0;
+  display: grid;
+  gap: var(--lx-s4);
+  align-content: start;
+}
+.site-lab-luxury .lx-person:nth-child(even) {
+  margin-top: var(--lx-s7);
+}
+.site-lab-luxury .lx-person img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.02);
+  transition: filter var(--lx-slow) var(--lx-ease);
+}
+.site-lab-luxury .lx-person:hover img {
+  filter: grayscale(0);
+}
+.site-lab-luxury .lx-person figcaption {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.875rem;
+}
+.site-lab-luxury .lx-person-name {
+  font-family: var(--lx-serif);
+  font-size: 1.375rem;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-person q {
+  margin-top: var(--lx-s2);
+  color: var(--lx-ink-2);
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-sourcing {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2rem, 6cqi, 6rem);
+  align-items: center;
+}
+.site-lab-luxury .lx-sourcing-media {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.site-lab-luxury .lx-sourcing-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-lab-luxury .lx-sourcing-copy {
+  display: grid;
+  gap: var(--lx-s4);
+}
+.site-lab-luxury .lx-sourcing-copy > p {
+  max-width: 52ch;
+}
+.site-lab-luxury .lx-figures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--lx-s5) var(--lx-s6);
+  margin-top: var(--lx-s5);
+}
+.site-lab-luxury .lx-figures div {
+  border-top: 1px solid var(--lx-line);
+  padding-top: var(--lx-s4);
+}
+.site-lab-luxury .lx-figures dt {
+  font-family: var(--lx-serif);
+  font-size: 2.25rem;
+  line-height: 1.1;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-figures dd {
+  margin: var(--lx-s1) 0 0;
+  font-size: 0.875rem;
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-care {
+  background: var(--lx-accent-deep);
+  color: rgba(241, 241, 238, 0.78);
+}
+.site-lab-luxury .lx-care h2,
+.site-lab-luxury .lx-care h3 {
+  color: var(--lx-on-dark);
+}
+.site-lab-luxury .lx-care-head {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--lx-s6);
+  align-items: end;
+  margin-bottom: var(--lx-s7);
+}
+.site-lab-luxury .lx-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--lx-s6);
+}
+.site-lab-luxury .lx-steps li {
+  border-top: 1px solid rgba(241, 241, 238, 0.24);
+  padding-top: var(--lx-s5);
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-steps h3 {
+  font-family: var(--lx-serif);
+  font-size: 1.5rem;
+  margin-bottom: var(--lx-s2);
+}
+.site-lab-luxury .lx-care-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--lx-s6);
+  margin-top: var(--lx-s7);
+  flex-wrap: wrap;
+}
+
+/* Appointments */
+.site-lab-luxury .lx-appt-head {
+  position: relative;
+  background: var(--lx-night);
+  overflow: hidden;
+}
+.site-lab-luxury .lx-appt-head-inner {
+  position: relative;
+  display: grid;
+  gap: var(--lx-s4);
+  padding-block: var(--lx-s9) var(--lx-s8);
+}
+.site-lab-luxury .lx-appt-head h1 {
+  color: var(--lx-on-dark);
+}
+.site-lab-luxury .lx-appt-head .lx-lead {
+  color: var(--lx-on-dark-muted);
+  max-width: 46ch;
+}
+.site-lab-luxury .lx-appt {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(2rem, 7cqi, 7rem);
+  align-items: start;
+}
+.site-lab-luxury .lx-form {
+  display: grid;
+  gap: var(--lx-s6);
+}
+.site-lab-luxury .lx-form > .lx-btn {
+  justify-self: start;
+}
+.site-lab-luxury .lx-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lx-s5);
+  align-items: start;
+}
+.site-lab-luxury .lx-mode {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lx-s3);
+}
+.site-lab-luxury .lx-mode-btn {
+  display: flex;
+  gap: var(--lx-s4);
+  align-items: flex-start;
+  padding: var(--lx-s5);
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-radius);
+  background: var(--lx-paper);
+  text-align: left;
+  cursor: pointer;
+  color: var(--lx-ink);
+  transition: border-color 300ms var(--lx-ease), background 300ms var(--lx-ease);
+}
+.site-lab-luxury .lx-mode-btn > span {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.875rem;
+}
+.site-lab-luxury .lx-mode-btn strong {
+  font-weight: 500;
+  font-size: 1rem;
+}
+.site-lab-luxury .lx-mode-btn:hover {
+  border-color: var(--lx-ink-2);
+}
+.site-lab-luxury .lx-mode-btn[aria-pressed="true"] {
+  border-color: var(--lx-ink);
+  box-shadow: inset 0 0 0 1px var(--lx-ink);
+  background: var(--lx-stone);
+}
+.site-lab-luxury .lx-days {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--lx-s2);
+}
+.site-lab-luxury .lx-day {
+  display: grid;
+  gap: 0.1rem;
+  justify-items: center;
+  padding: 0.7rem 0.25rem;
+  border: 1px solid var(--lx-line);
+  border-radius: var(--lx-radius);
+  background: var(--lx-paper);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: var(--lx-muted);
+  transition: border-color 300ms var(--lx-ease), background 300ms var(--lx-ease);
+}
+.site-lab-luxury .lx-day strong {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--lx-ink);
+  white-space: nowrap;
+}
+.site-lab-luxury .lx-day:hover {
+  border-color: var(--lx-ink-2);
+}
+.site-lab-luxury .lx-day[aria-pressed="true"] {
+  border-color: var(--lx-ink);
+  box-shadow: inset 0 0 0 1px var(--lx-ink);
+  background: var(--lx-mist);
+}
+.site-lab-luxury .lx-interest {
+  display: flex;
+  gap: var(--lx-s4);
+  align-items: center;
+  padding: var(--lx-s3);
+  background: var(--lx-stone);
+  margin-bottom: var(--lx-s3);
+}
+.site-lab-luxury .lx-interest img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+.site-lab-luxury .lx-interest > span {
+  display: grid;
+  font-size: 0.875rem;
+}
+.site-lab-luxury .lx-interest strong {
+  font-weight: 500;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-appt-aside {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  gap: var(--lx-s4);
+  padding-top: var(--lx-s5);
+  border-top: 1px solid var(--lx-ink);
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-appt-aside ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: var(--lx-s3);
+}
+.site-lab-luxury .lx-appt-aside li::marker {
+  color: var(--lx-accent);
+}
+.site-lab-luxury .lx-confirm {
+  display: grid;
+  gap: var(--lx-s5);
+  justify-items: start;
+  padding: var(--lx-s7);
+  background: var(--lx-stone);
+  border-top: 2px solid var(--lx-accent);
+}
+.site-lab-luxury .lx-confirm p {
+  max-width: 52ch;
+}
+.site-lab-luxury .lx-boutiques-title {
+  margin-bottom: var(--lx-s7);
+}
+.site-lab-luxury .lx-boutiques {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--lx-s6);
+}
+.site-lab-luxury .lx-boutique {
+  display: grid;
+  align-content: start;
+  gap: var(--lx-s2);
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-boutique-media {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: var(--lx-s4);
+}
+.site-lab-luxury .lx-boutique-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.site-lab-luxury .lx-boutique h3 {
+  font-family: var(--lx-serif);
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+.site-lab-luxury .lx-boutique-name {
+  color: var(--lx-accent);
+  font-size: 0.875rem;
+  margin-bottom: var(--lx-s2);
+}
+.site-lab-luxury .lx-boutique address {
+  font-style: normal;
+  display: grid;
+}
