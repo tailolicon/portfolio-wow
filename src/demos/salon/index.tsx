@@ -2,6 +2,8 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import { IconContext, List, X, Phone, MapPin, Clock, InstagramLogo, FacebookLogo, EnvelopeSimple } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink, useLegalDialog } from "../links";
+import type { LegalKind } from "../links";
 import { PAGES, BIZ, HOURS } from "./data";
 import type { Page } from "./data";
 import type { BookPrefill, PageProps } from "./types";
@@ -45,6 +47,16 @@ export default function Site() {
     nav("book");
   };
   const props: PageProps = { go: nav, link: navLink, book };
+  const legal = useLegalDialog(BIZ.full, BIZ.email);
+  /** Footer shortcuts: open a page, then bring one of its sections into view. */
+  const toSection = (p: Page, id: string) => ({
+    href: `#${id}`,
+    onClick: (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      nav(p);
+      window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    },
+  });
 
   return (
     <IconContext.Provider value={{ weight: "light" }}>
@@ -110,13 +122,20 @@ export default function Site() {
         {page === "book" && <BookPage {...props} prefill={prefill} key={JSON.stringify(prefill)} />}
       </main>
 
-      <Footer link={navLink} />
+      <Footer link={navLink} toSection={toSection} legalLink={legal.link} />
+      {legal.dialog}
     </div>
     </IconContext.Provider>
   );
 }
 
-function Footer({ link }: { link: PageProps["link"] }) {
+type SectionLink = { href: string; onClick: (e: MouseEvent<HTMLElement>) => void };
+
+function Footer({ link, toSection, legalLink }: {
+  link: PageProps["link"];
+  toSection: (p: Page, id: string) => SectionLink;
+  legalLink: (kind: LegalKind) => SectionLink;
+}) {
   return (
     <footer className="sl-footer">
       <div className="sl-wrap sl-footer-grid">
@@ -127,10 +146,10 @@ function Footer({ link }: { link: PageProps["link"] }) {
             extensions and bridal styling. Open since 2016.
           </p>
           <div className="sl-social">
-            <a href="#instagram" aria-label="Instagram" onClick={(e) => e.preventDefault()}>
+            <a {...socialLink("instagram")} aria-label="Instagram">
               <InstagramLogo size={18} />
             </a>
-            <a href="#facebook" aria-label="Facebook" onClick={(e) => e.preventDefault()}>
+            <a {...socialLink("facebook")} aria-label="Facebook">
               <FacebookLogo size={18} />
             </a>
             <a href={`mailto:${BIZ.email}`} aria-label="Email">
@@ -177,14 +196,14 @@ function Footer({ link }: { link: PageProps["link"] }) {
             <li><a {...link("stylists")}>Our team</a></li>
             <li><a {...link("gallery")}>Gallery</a></li>
             <li><a {...link("book")}>Book online</a></li>
-            <li><a {...link("home")}>Gift cards</a></li>
-            <li><a {...link("stylists")}>Careers</a></li>
+            <li><a {...toSection("home", "sl-gift-cards")}>Gift cards</a></li>
+            <li><a {...toSection("stylists", "sl-careers")}>Careers</a></li>
           </ul>
         </div>
       </div>
       <div className="sl-wrap sl-footer-base">
         <span>© 2026 Ivy &amp; Oak Hair Studio LLC. All rights reserved.</span>
-        <span className="sl-footer-legal"><a {...link("book")}>Booking policies</a><a href="#privacy" onClick={(e) => e.preventDefault()}>Privacy</a><a href="#accessibility" onClick={(e) => e.preventDefault()}>Accessibility</a></span>
+        <span className="sl-footer-legal"><a {...link("book")}>Booking policies</a><a {...legalLink("privacy")}>Privacy</a><a {...legalLink("accessibility")}>Accessibility</a></span>
       </div>
     </footer>
   );

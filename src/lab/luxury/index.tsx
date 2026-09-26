@@ -1,6 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Handbag, List, MagnifyingGlass, User, X } from "@phosphor-icons/react";
 import { useDemoForm, useSitePages } from "../../demos/shared";
+import { useLegalDialog } from "../../demos/links";
+import { HeaderPanel } from "./panels";
+import type { BagItem, PanelId } from "./panels";
 import { CATEGORIES, PRODUCTS } from "./data";
 import { PAGES } from "./ui";
 import type { Filter, Page, SiteApi } from "./ui";
@@ -14,6 +17,7 @@ import "./luxury.css";
 import "./luxury-pages.css";
 import "./luxury-maison.css";
 import "./luxury-product.css";
+import "./luxury-panels.css";
 import "./luxury-responsive.css";
 
 const NAV: { label: string; page: Page; filter?: Partial<Filter> }[] = [
@@ -23,22 +27,74 @@ const NAV: { label: string; page: Page; filter?: Partial<Filter> }[] = [
   { label: "Appointments", page: "appointments" },
 ];
 
+/** Smooth-scroll to a section; if the smooth scroll gets dropped while the new page settles, jump there. */
+function scrollToSection(el: Element | null | undefined) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    const top = el.getBoundingClientRect().top;
+    if (top > window.innerHeight * 0.4 || top < -40) el.scrollIntoView({ block: "start" });
+  }, 900);
+}
+
 export default function Site() {
   const { page, go, link, rootRef } = useSitePages(PAGES);
   const [slug, setSlug] = useState(PRODUCTS[0].slug);
   const [filter, setFilter] = useState<Filter>({ category: "All", collection: "all" });
   const [interest, setInterest] = useState<string | undefined>(undefined);
-  const [bag, setBag] = useState<string[]>([]);
+  const [bag, setBag] = useState<BagItem[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [panel, setPanel] = useState<PanelId | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const newsletter = useDemoForm();
+  const legal = useLegalDialog("Maison Orvel", "care@maisonorvel.com");
 
   const navigate = useCallback(
     (next: Page) => {
       setMenuOpen(false);
+      setPanel(null);
       go(next);
     },
     [go],
   );
+
+  const togglePanel = (next: PanelId) => {
+    setMenuOpen(false);
+    setPanel((open) => (open === next ? null : next));
+  };
+
+  // Header panels close on Escape and on any click outside the header.
+  useEffect(() => {
+    if (!panel) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      // Stop here so the portfolio viewer (listening on window) stays open.
+      event.stopPropagation();
+      setPanel(null);
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) setPanel(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
+  }, [panel]);
+
+  const goToSection = (target: Page, id: string) => {
+    navigate(target);
+    window.setTimeout(() => scrollToSection(rootRef.current?.querySelector("#" + id)), 60);
+  };
+  const openCare = () => goToSection("maison", "lx-care-title");
+  const sectionLink = (target: Page, id: string) => ({
+    href: "#" + target,
+    onClick: (event: { preventDefault: () => void }) => {
+      event.preventDefault();
+      goToSection(target, id);
+    },
+  });
 
   const site: SiteApi = useMemo(
     () => ({
@@ -49,6 +105,7 @@ export default function Site() {
           ...base,
           onClick: (event) => {
             setMenuOpen(false);
+            setPanel(null);
             base.onClick(event);
           },
         };
@@ -65,7 +122,11 @@ export default function Site() {
         setInterest(next);
         navigate("appointments");
       },
-      addToBag: (label) => setBag((items) => [...items, label]),
+      addToBag: (slug, detail) =>
+        setBag((items) => [
+          ...items,
+          { id: Date.now() + items.length, slug, price: detail?.price ?? PRODUCTS.find((p) => p.slug === slug)?.price ?? 0, note: detail?.note ?? "" },
+        ]),
     }),
     [link, navigate],
   );
@@ -110,14 +171,17 @@ export default function Site() {
   return (
     <div ref={rootRef} className="demo-site site-lab-luxury">
       <p className="lx-announce">Complimentary delivery, returns and engraving</p>
-      <header className="lx-header">
+      <header className="lx-header" ref={headerRef}>
         <div className="lx-header-inner">
           <button
             type="button"
             className="lx-icon-btn lx-menu-btn"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
+            onClick={() => {
+              setPanel(null);
+              setMenuOpen((open) => !open);
+            }}
           >
             {menuOpen ? <X size={22} weight="light" /> : <List size={22} weight="light" />}
           </button>
@@ -132,13 +196,31 @@ export default function Site() {
             Maison Orvel
           </a>
           <div className="lx-tools">
-            <button type="button" className="lx-icon-btn lx-hide-sm" aria-label="Search">
+            <button
+              type="button"
+              className="lx-icon-btn lx-hide-sm"
+              aria-label="Search"
+              aria-expanded={panel === "search"}
+              onClick={() => togglePanel("search")}
+            >
               <MagnifyingGlass size={20} weight="light" />
             </button>
-            <button type="button" className="lx-icon-btn lx-hide-sm" aria-label="Account">
+            <button
+              type="button"
+              className="lx-icon-btn lx-hide-sm"
+              aria-label="Account"
+              aria-expanded={panel === "account"}
+              onClick={() => togglePanel("account")}
+            >
               <User size={20} weight="light" />
             </button>
-            <button type="button" className="lx-icon-btn lx-bag" aria-label={`Bag, ${bag.length} items`}>
+            <button
+              type="button"
+              className="lx-icon-btn lx-bag"
+              aria-label={`Bag, ${bag.length} items`}
+              aria-expanded={panel === "bag"}
+              onClick={() => togglePanel("bag")}
+            >
               <Handbag size={20} weight="light" />
               {bag.length > 0 ? <span className="lx-bag-count">{bag.length}</span> : null}
             </button>
@@ -156,6 +238,16 @@ export default function Site() {
             </nav>
             <p className="lx-menu-foot">Client services +1 (212) 555-0147</p>
           </div>
+        ) : null}
+        {panel ? (
+          <HeaderPanel
+            panel={panel}
+            site={site}
+            bag={bag}
+            onCare={openCare}
+            onRemove={(id) => setBag((items) => items.filter((item) => item.id !== id))}
+            onCheckout={() => setBag([])}
+          />
         ) : null}
       </header>
 
@@ -208,10 +300,10 @@ export default function Site() {
             </div>
             <div>
               <h3>The maison</h3>
-              <a {...site.link("maison")}>Our history</a>
-              <a {...site.link("maison")}>The atelier</a>
-              <a {...site.link("maison")}>Sourcing</a>
-              <a {...site.link("maison")}>Lifetime care</a>
+              <a {...sectionLink("maison", "lx-history")}>Our history</a>
+              <a {...sectionLink("maison", "lx-atelier")}>The atelier</a>
+              <a {...sectionLink("maison", "lx-sourcing")}>Sourcing</a>
+              <a {...sectionLink("maison", "lx-care-title")}>Lifetime care</a>
             </div>
             <div>
               <h3>Client services</h3>
@@ -232,14 +324,15 @@ export default function Site() {
             <span className="lx-footer-mark">Maison Orvel</span>
             <span>© 2026 Maison Orvel SAS, Paris. All prices in USD, including duties.</span>
             <span className="lx-footer-links">
-              <a href="#terms" onClick={(e) => e.preventDefault()}>Terms of sale</a>
-              <a href="#privacy" onClick={(e) => e.preventDefault()}>Privacy</a>
-              <a href="#access" onClick={(e) => e.preventDefault()}>Accessibility</a>
+              <a {...legal.link("terms")}>Terms of sale</a>
+              <a {...legal.link("privacy")}>Privacy</a>
+              <a {...legal.link("accessibility")}>Accessibility</a>
               <span>United States (USD)</span>
             </span>
           </div>
         </div>
       </footer>
+      {legal.dialog}
     </div>
   );
 }

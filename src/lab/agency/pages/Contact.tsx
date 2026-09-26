@@ -130,7 +130,7 @@ export default function Contact() {
               <p>Ten minutes from the York St F train. Visitors welcome by appointment.</p>
             </div>
 
-            <div className="wv-contact-block">
+            <div className="wv-contact-block" id="wv-careers">
               <h2 className="wv-h3">Careers</h2>
               <ul className="wv-roles">
                 {ROLES.map((r) => (

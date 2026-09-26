@@ -155,7 +155,7 @@ export default function Contact({ go }: PageProps) {
         </div>
       </section>
 
-      <section className="rs-section rs-section-alt">
+      <section className="rs-section rs-section-alt" id="rs-contact-form">
         <div className="rs-wrap rs-contact-form-wrap">
           <div>
             <h2>Send us a note</h2>

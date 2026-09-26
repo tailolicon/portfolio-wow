@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Clock, Envelope, FacebookLogo, InstagramLogo, List, MapPin, Phone, X, YoutubeLogo } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink, useLegalDialog } from "../links";
 import { BIZ, HOURS, PAGES } from "./data";
 import type { Page } from "./data";
 import { LogoMark, W } from "./components";
@@ -34,6 +35,7 @@ export default function Site() {
   };
 
   const props = { go, link };
+  const legal = useLegalDialog(BIZ.name, BIZ.email);
 
   return (
     <div ref={rootRef} className="demo-site site-fitness">
@@ -70,7 +72,7 @@ export default function Site() {
             ))}
           </nav>
           <div className="fx-header-actions">
-            <a className="fx-header-login" href="#member-login" onClick={(e) => e.preventDefault()}>
+            <a className="fx-header-login" {...navLink("membership")} aria-current={undefined}>
               Member login
             </a>
             <a className="fx-btn fx-btn--primary fx-btn--sm fx-header-cta" {...navLink("trial")}>
@@ -129,13 +131,13 @@ export default function Site() {
               coaches who know your name.
             </p>
             <div className="fx-social">
-              <a href="#instagram" aria-label="Instagram" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("instagram")} aria-label="Instagram">
                 <InstagramLogo size={20} weight={W} />
               </a>
-              <a href="#facebook" aria-label="Facebook" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("facebook")} aria-label="Facebook">
                 <FacebookLogo size={20} weight={W} />
               </a>
-              <a href="#youtube" aria-label="YouTube" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("youtube")} aria-label="YouTube">
                 <YoutubeLogo size={20} weight={W} />
               </a>
             </div>
@@ -185,18 +187,19 @@ export default function Site() {
         <div className="fx-wrap fx-footer-bottom">
           <p>© 2026 Forge Strength Club LLC. All rights reserved.</p>
           <p>
-            <a href="#privacy" onClick={(e) => e.preventDefault()}>
+            <a {...legal.link("privacy")}>
               Privacy
             </a>
-            <a href="#terms" onClick={(e) => e.preventDefault()}>
+            <a {...legal.link("terms")}>
               Membership terms
             </a>
-            <a href="#careers" onClick={(e) => e.preventDefault()}>
+            <a href={`mailto:${BIZ.email}?subject=Coaching%20and%20front%20desk%20jobs`}>
               Careers
             </a>
           </p>
         </div>
       </footer>
+      {legal.dialog}
     </div>
   );
 }

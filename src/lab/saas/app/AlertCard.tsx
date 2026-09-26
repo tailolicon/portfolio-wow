@@ -2,8 +2,11 @@ import { useState } from "react";
 import { BellRinging, BellSlash, CheckCircle, MagnifyingGlass } from "@phosphor-icons/react";
 import { monitors, trialConversion, trialExpected } from "../data";
 import { LineChart } from "./Charts";
+import { useNav } from "../ui";
 
-export function AlertCard() {
+/** onExplain overrides the default action (jump to the Explain section of the product page). */
+export function AlertCard({ onExplain }: { onExplain?: () => void } = {}) {
+  const { goSection } = useNav();
   const [state, setState] = useState<"open" | "muted" | "ack">("open");
   const latest = trialConversion[trialConversion.length - 1].value;
   return (
@@ -47,7 +50,7 @@ export function AlertCard() {
       <div className="vy-alert-actions">
         {state === "open" ? (
           <>
-            <button type="button" className="vy-app-btn is-primary">
+            <button type="button" className="vy-app-btn is-primary" onClick={onExplain ?? (() => goSection("product", "explain"))}>
               <MagnifyingGlass size={14} /> Explain
             </button>
             <button type="button" className="vy-app-btn" onClick={() => setState("ack")}>

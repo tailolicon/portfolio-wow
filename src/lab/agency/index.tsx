@@ -1,6 +1,9 @@
 import { useState } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { useSitePages } from "../../demos/shared";
+import { socialLink, useLegalDialog } from "../../demos/links";
+import type { LegalKind } from "../../demos/links";
 import { ICON_WEIGHT, useReveal } from "./components";
 import { PROJECTS } from "./projects";
 import { STUDIO } from "./content";
@@ -36,10 +39,21 @@ const MENU: { page: Page; label: string }[] = [
   { page: "contact", label: "Contact" },
 ];
 
+/** Smooth-scroll to a section; if the smooth scroll gets dropped while the new page settles, jump there. */
+function scrollToSection(el: Element | null | undefined) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    const top = el.getBoundingClientRect().top;
+    if (top > window.innerHeight * 0.4 || top < -40) el.scrollIntoView({ block: "start" });
+  }, 900);
+}
+
 export default function Site() {
   const { page, go, link, rootRef } = useSitePages(PAGES);
   const [slug, setSlug] = useState(PROJECTS[0].slug);
   const [menuOpen, setMenuOpen] = useState(false);
+  const legal = useLegalDialog("Wren & Volt", STUDIO.newBusiness);
 
   useReveal(rootRef, page + slug);
 
@@ -114,12 +128,61 @@ export default function Site() {
         {page === "contact" && <Contact />}
       </main>
 
-      <Footer nav={nav} />
+      <Footer
+        nav={nav}
+        legalLink={legal.link}
+        openRoles={() => {
+          navigate("contact");
+          window.setTimeout(() => scrollToSection(rootRef.current?.querySelector("#wv-careers")), 60);
+        }}
+      />
+      {legal.dialog}
     </div>
   );
 }
 
-function Footer({ nav }: { nav: Nav }) {
+type LegalLink = (kind: LegalKind) => { href: string; onClick: (event: MouseEvent<HTMLElement>) => void };
+
+/** No newsletter page exists, so the footer link opens a one-field sign-up in place. */
+function FooterNewsletter() {
+  const [open, setOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    setSent(true);
+  };
+  return (
+    <li>
+      <a
+        href="#newsletter"
+        aria-expanded={open}
+        onClick={(event) => {
+          event.preventDefault();
+          setOpen((v) => !v);
+        }}
+      >
+        Newsletter
+      </a>
+      {open ? (
+        sent ? (
+          <p className="wv-footer-news-done" role="status">
+            You are on the list. One email a month, new work only.
+          </p>
+        ) : (
+          <form className="wv-footer-news" onSubmit={submit}>
+            <label htmlFor="wv-news-email" className="wv-sr">
+              Email address
+            </label>
+            <input id="wv-news-email" type="email" required placeholder="you@company.com" autoComplete="email" autoFocus />
+            <button type="submit">Join</button>
+          </form>
+        )
+      ) : null}
+    </li>
+  );
+}
+
+function Footer({ nav, legalLink, openRoles }: { nav: Nav; legalLink: LegalLink; openRoles: () => void }) {
   return (
     <footer className="wv-footer">
       <div className="wv-wrap">
@@ -147,7 +210,13 @@ function Footer({ nav }: { nav: Nav }) {
             <h2 className="wv-footer-h">Careers</h2>
             <a href={`mailto:${STUDIO.careers}`}>{STUDIO.careers}</a>
             <p>
-              <a {...nav.link("contact")} aria-current={undefined}>
+              <a
+                href="#contact"
+                onClick={(event) => {
+                  event.preventDefault();
+                  openRoles();
+                }}
+              >
                 3 open roles
               </a>
             </p>
@@ -155,10 +224,10 @@ function Footer({ nav }: { nav: Nav }) {
           <div>
             <h2 className="wv-footer-h">Elsewhere</h2>
             <ul className="wv-footer-list">
-              <li><a href="#instagram">Instagram</a></li>
-              <li><a href="#vimeo">Vimeo</a></li>
-              <li><a href="#linkedin">LinkedIn</a></li>
-              <li><a href="#newsletter">Newsletter</a></li>
+              <li><a {...socialLink("instagram")} aria-label="Instagram">Instagram</a></li>
+              <li><a {...socialLink("vimeo")} aria-label="Vimeo">Vimeo</a></li>
+              <li><a {...socialLink("linkedin")} aria-label="LinkedIn">LinkedIn</a></li>
+              <FooterNewsletter />
             </ul>
           </div>
           <nav className="wv-footer-nav" aria-label="Footer">
@@ -173,8 +242,8 @@ function Footer({ nav }: { nav: Nav }) {
         <div className="wv-footer-legal">
           <span>© 2026 Wren &amp; Volt LLC. All client work shown with permission.</span>
           <span>
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
+            <a {...legalLink("privacy")}>Privacy</a>
+            <a {...legalLink("terms")}>Terms</a>
           </span>
         </div>
       </div>

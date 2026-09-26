@@ -141,7 +141,7 @@ export default function Support() {
         aria-label="Firmware, warranty and repair"
       >
         <div className="kv-container kv-service-grid">
-          <article className="kv-firmware">
+          <article className="kv-firmware" id="kv-firmware">
             <h2 className="kv-h3">Firmware {FIRMWARE.version}</h2>
             <p className="kv-muted">
               Released {FIRMWARE.date}. Installs automatically through the Kova
@@ -164,7 +164,7 @@ export default function Support() {
               ))}
             </dl>
           </article>
-          <article className="kv-warranty">
+          <article className="kv-warranty" id="kv-warranty">
             <h2 className="kv-h3">Warranty and repair</h2>
             <p>
               Every Kova One is covered for 2 years against defects in materials

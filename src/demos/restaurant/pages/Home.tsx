@@ -7,6 +7,11 @@ export default function Home({ go, link }: PageProps) {
   const scrollToOrder = () => {
     document.getElementById("rs-order")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  const buyGiftCard = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    go("contact");
+    window.setTimeout(() => document.getElementById("rs-contact-form")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+  };
   const [lead, ...rest] = SIGNATURES;
 
   return (
@@ -162,12 +167,12 @@ export default function Home({ go, link }: PageProps) {
             </div>
           </article>
 
-          <article className="rs-tile rs-tile-plain rs-tile-wide">
+          <article className="rs-tile rs-tile-plain rs-tile-wide" id="rs-gift-cards">
             <img src={img("fine-table")} alt="A table set for dinner" loading="lazy" />
             <div className="rs-tile-text">
               <h3>Gift cards</h3>
               <p>Sent by email in a few minutes, or pick one up at the host stand. Buy $100, get a $20 bonus card.</p>
-              <a className="rs-textlink" href="#gift-cards" onClick={(e) => e.preventDefault()}>Buy a gift card <ArrowRight size={14} aria-hidden /></a>
+              <a className="rs-textlink" href="#rs-contact-form" onClick={buyGiftCard}>Buy a gift card <ArrowRight size={14} aria-hidden /></a>
             </div>
           </article>
         </div>

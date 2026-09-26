@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Clock, EnvelopeSimple, FacebookLogo, IconContext, InstagramLogo, List, MapPin, Phone, SealCheck, Siren, Star, X, YoutubeLogo } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink, useLegalDialog } from "../links";
 import { BIZ, HOURS, PAGES } from "./data";
 import type { Page } from "./data";
 import Home from "./pages/Home";
@@ -38,6 +39,7 @@ function Logo() {
 
 export default function Site() {
   const { page, go, link, rootRef } = useSitePages(PAGES);
+  const legal = useLegalDialog(BIZ.name, BIZ.email);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLink = (id: Page) => {
@@ -68,7 +70,7 @@ export default function Site() {
             <a href={BIZ.tel} className="sv-util-phone">
               <Phone size={14} aria-hidden="true" /> {BIZ.phone}
             </a>
-            <a {...link("quote")} className="sv-util-hiring">
+            <a href="mailto:careers@summitplumbingair.com?subject=Service%20technician%20application" className="sv-util-hiring">
               Now hiring techs
             </a>
           </div>
@@ -163,13 +165,13 @@ export default function Site() {
               <SealCheck size={16} aria-hidden="true" /> <span>Licensed, bonded &amp; insured<br />Arizona {BIZ.roc}</span>
             </p>
             <div className="sv-social">
-              <a href="#facebook" aria-label="Facebook" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("facebook")} aria-label="Facebook">
                 <FacebookLogo size={18} />
               </a>
-              <a href="#instagram" aria-label="Instagram" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("instagram")} aria-label="Instagram">
                 <InstagramLogo size={18} />
               </a>
-              <a href="#youtube" aria-label="YouTube" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("youtube")} aria-label="YouTube">
                 <YoutubeLogo size={18} />
               </a>
             </div>
@@ -192,7 +194,7 @@ export default function Site() {
               <li><a {...link("reviews")}>Reviews</a></li>
               <li><a {...link("services")}>Specials &amp; coupons</a></li>
               <li><a {...link("quote")}>Financing</a></li>
-              <li><a {...link("quote")}>Careers</a></li>
+              <li><a href="mailto:careers@summitplumbingair.com?subject=Careers">Careers</a></li>
             </ul>
           </div>
           <div>
@@ -217,13 +219,14 @@ export default function Site() {
           <div className="sv-wrap sv-foot-bottom-inner">
             <p>© 2026 Summit Plumbing &amp; Air LLC. All rights reserved. AZ {BIZ.roc}</p>
             <p className="sv-foot-legal">
-              <a href="#privacy" onClick={(e) => e.preventDefault()}>Privacy policy</a>
-              <a href="#terms" onClick={(e) => e.preventDefault()}>Terms of service</a>
-              <a href="#access" onClick={(e) => e.preventDefault()}>Accessibility</a>
+              <a {...legal.link("privacy")}>Privacy policy</a>
+              <a {...legal.link("terms")}>Terms of service</a>
+              <a {...legal.link("accessibility")}>Accessibility</a>
             </p>
           </div>
         </div>
       </footer>
+      {legal.dialog}
     </div>
     </IconContext.Provider>
   );

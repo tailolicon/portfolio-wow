@@ -49,7 +49,14 @@ export default function Site() {
       if (next !== page) go(next);
       window.setTimeout(
         () => {
-          rootRef.current?.querySelector(`#vy-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          const el = rootRef.current?.querySelector(`#vy-${id}`);
+          if (!el) return;
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          // If the smooth scroll is dropped while a new page settles, jump there instead.
+          window.setTimeout(() => {
+            const top = el.getBoundingClientRect().top;
+            if (top > window.innerHeight * 0.4 || top < -40) el.scrollIntoView({ block: "start" });
+          }, 900);
         },
         next !== page ? 60 : 0,
       );

@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
-import type { MouseEvent } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { useSitePages } from "../../demos/shared";
+import { socialLink, useLegalDialog } from "../../demos/links";
 import { PROJECTS, projectBySlug } from "./data";
 import type { Sector } from "./data";
 import { OFFICES } from "./content";
@@ -19,17 +20,67 @@ import "./case.css";
 
 const PAGES = ["home", "projects", "project", "studio", "contact"] as const;
 
+/** The studio has no newsletter page, so the footer link opens a one-field sign-up in place. */
+function FooterNewsletter() {
+  const [open, setOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+  const submit = (event: FormEvent) => {
+    event.preventDefault();
+    setSent(true);
+  };
+  return (
+    <>
+      <a
+        href="#newsletter"
+        aria-expanded={open}
+        onClick={(event) => {
+          event.preventDefault();
+          setOpen((v) => !v);
+        }}
+      >
+        Newsletter
+      </a>
+      {open ? (
+        sent ? (
+          <p className="oh-footer-news-done" role="status">
+            Subscribed. The studio letter goes out twice a year.
+          </p>
+        ) : (
+          <form className="oh-footer-news" onSubmit={submit}>
+            <label htmlFor="oh-news-email" className="oh-sr">
+              Email address
+            </label>
+            <input id="oh-news-email" type="email" required placeholder="Email address" autoComplete="email" autoFocus />
+            <button type="submit">Subscribe</button>
+          </form>
+        )
+      ) : null}
+    </>
+  );
+}
+
 const MENU: { id: PageId; label: string }[] = [
   { id: "projects", label: "Projects" },
   { id: "studio", label: "Studio" },
   { id: "contact", label: "Contact" },
 ];
 
+/** Smooth-scroll to a section; if the smooth scroll gets dropped while the new page settles, jump there. */
+function scrollToSection(el: Element | null | undefined) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    const top = el.getBoundingClientRect().top;
+    if (top > window.innerHeight * 0.4 || top < -40) el.scrollIntoView({ block: "start" });
+  }, 900);
+}
+
 export default function Site() {
   const { page, go, link, rootRef } = useSitePages(PAGES);
   const [slug, setSlug] = useState(PROJECTS[0].slug);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sector, setSector] = useState<Sector | "All">("All");
+  const legal = useLegalDialog("Oyelaran Hart Architects", "london@oyelaranhart.com");
 
   const navigate = useCallback(
     (next: PageId) => {
@@ -140,27 +191,39 @@ export default function Site() {
             <a {...link("projects")}>Projects</a>
             <a {...link("studio")}>Studio</a>
             <a {...link("contact")}>Contact</a>
-            <a href="#careers" onClick={(event) => { event.preventDefault(); navigate("studio"); }}>
+            <a
+              href="#careers"
+              onClick={(event) => {
+                event.preventDefault();
+                navigate("studio");
+                window.setTimeout(() => scrollToSection(rootRef.current?.querySelector("#careers")), 60);
+              }}
+            >
               Careers
             </a>
           </div>
           <div className="oh-footer-col">
             <p className="oh-footer-head">Follow</p>
-            <a href="#instagram">Instagram</a>
-            <a href="#linkedin">LinkedIn</a>
-            <a href="#newsletter">Newsletter</a>
+            <a {...socialLink("instagram")} aria-label="Instagram">
+              Instagram
+            </a>
+            <a {...socialLink("linkedin")} aria-label="LinkedIn">
+              LinkedIn
+            </a>
+            <FooterNewsletter />
           </div>
         </div>
         <div className="oh-footer-legal">
           <span>© 2026 Oyelaran Hart Architects Ltd. Registered in England and Wales, no. 06531874.</span>
           <span>VAT GB 948 2210 17</span>
           <span className="oh-footer-links">
-            <a href="#privacy">Privacy</a>
-            <a href="#cookies">Cookies</a>
-            <a href="#modern-slavery">Modern slavery statement</a>
+            <a {...legal.link("privacy")}>Privacy</a>
+            <a {...legal.link("cookies")}>Cookies</a>
+            <a {...legal.link("modern-slavery")}>Modern slavery statement</a>
           </span>
         </div>
       </footer>
+      {legal.dialog}
     </div>
   );
 }

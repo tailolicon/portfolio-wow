@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { PencilSimpleLine } from "@phosphor-icons/react";
+import { PencilSimpleLine, SealCheck } from "@phosphor-icons/react";
+import { useDemoForm } from "../../shared";
 import { BIZ, RATING_BARS, REVIEWS } from "../data";
 import type { ServiceGroup } from "../data";
 import { PageHero, Stars } from "../components";
@@ -18,6 +19,8 @@ const TOTAL = RATING_BARS.reduce((sum, b) => sum + b.count, 0);
 export default function Reviews({ link }: NavProps) {
   const [filter, setFilter] = useState<Filter>("all");
   const shown = filter === "all" ? REVIEWS : REVIEWS.filter((r) => r.group === filter);
+  const [writing, setWriting] = useState(false);
+  const review = useDemoForm();
 
   return (
     <>
@@ -52,13 +55,47 @@ export default function Reviews({ link }: NavProps) {
               <p><strong>4.8</strong> Yelp · 410 reviews</p>
               <p><strong>4.9</strong> Facebook · 285 reviews</p>
             </div>
-            <a
-              href="#write-review"
-              onClick={(e) => e.preventDefault()}
-              className="sv-btn sv-btn-navy sv-btn-block"
-            >
-              <PencilSimpleLine size={18} /> Write a review
-            </a>
+            {review.sent ? (
+              <div className="sv-sent sv-review-form" role="status">
+                <SealCheck size={32} aria-hidden="true" />
+                <p><strong>Thank you for the review.</strong> Maria reads every one and it will appear here once approved.</p>
+              </div>
+            ) : writing ? (
+              <form className="sv-review-form" onSubmit={review.onSubmit}>
+                <label className="sv-field">
+                  <span>Your rating</span>
+                  <select required defaultValue="5">
+                    <option value="5">5 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="2">2 stars</option>
+                    <option value="1">1 star</option>
+                  </select>
+                </label>
+                <label className="sv-field">
+                  <span>First name and city</span>
+                  <input required autoComplete="given-name" />
+                </label>
+                <label className="sv-field">
+                  <span>Your review</span>
+                  <textarea required rows={4} autoFocus />
+                </label>
+                <button type="submit" className="sv-btn sv-btn-navy sv-btn-block">
+                  Post review
+                </button>
+              </form>
+            ) : (
+              <a
+                href="#write-review"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setWriting(true);
+                }}
+                className="sv-btn sv-btn-navy sv-btn-block"
+              >
+                <PencilSimpleLine size={18} /> Write a review
+              </a>
+            )}
           </aside>
 
           <div>

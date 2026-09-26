@@ -558,3 +558,7 @@
 @media (prefers-reduced-motion: reduce) {
   .site-restaurant * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Order choice note */
+.site-restaurant .rs-order-note { margin-top: var(--space-3); font-size: var(--text-sm); line-height: var(--leading-snug); }
+.site-restaurant .rs-order-note a { font-weight: var(--weight-bold); text-decoration: underline; }

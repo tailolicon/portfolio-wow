@@ -702,8 +702,8 @@ function App() {
           <span className="contact-kicker">Have something worth making unforgettable?</span>
           <h2>MAKE<br /><em>NOISE.</em></h2>
           <p>One sharp idea. One beautiful system. Zero boring screens.</p>
-          <MagneticLink href="mailto:hello@example.com" className="contact-button">
-            hello@example.com
+          <MagneticLink href="mailto:tafi.contactforwork@gmail.com?subject=Website%20project" className="contact-button">
+            tafi.contactforwork@gmail.com
             <ArrowUpRight size={24} />
           </MagneticLink>
         </div>

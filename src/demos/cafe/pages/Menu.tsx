@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShoppingBagIcon, RepeatIcon, TruckIcon, GiftIcon, LeafIcon } from "@phosphor-icons/react";
-import { MENU, MILKS, SYRUPS, BEANS, TAG_LABEL, LOCATIONS } from "../data";
+import { MENU, MILKS, SYRUPS, BEANS, TAG_LABEL, LOCATIONS, BRAND } from "../data";
 import type { MenuItem, MenuSection, Tag } from "../data";
 import { img, todayHours } from "../parts";
 import type { PageProps } from "../parts";
@@ -64,8 +64,16 @@ function Section({ section }: { section: MenuSection }) {
   );
 }
 
-export default function Menu({ link }: PageProps) {
+export default function Menu({ go, link }: PageProps) {
   const [active, setActive] = useState(MENU[0].id);
+  const [subscribing, setSubscribing] = useState(false);
+
+  /** Order ahead: open that shop on the Visit page (phone, hours, directions). */
+  const toLocation = (id: string) => (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    go("visit");
+    window.setTimeout(() => document.getElementById(`cf-loc-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+  };
 
   const jump = (id: string) => {
     setActive(id);
@@ -90,7 +98,7 @@ export default function Menu({ link }: PageProps) {
             <p>Pick a shop and your order will be ready in about 10 minutes.</p>
             <div className="cf-order-locs">
               {LOCATIONS.map((l, i) => (
-                <a key={l.id} href={`#order-${l.id}`} onClick={(e) => e.preventDefault()} className="cf-order-loc">
+                <a key={l.id} href={`#cf-loc-${l.id}`} onClick={toLocation(l.id)} className="cf-order-loc">
                   <strong>{l.name}</strong>
                   <small>
                     {l.street}, open today {todayHours(i)}
@@ -211,9 +219,25 @@ export default function Menu({ link }: PageProps) {
                 <strong>Free local delivery</strong> in Asheville; $6 flat-rate shipping everywhere else.
               </p>
             </div>
-            <a className="cf-btn cf-btn--primary" href="#subscribe" onClick={(e) => e.preventDefault()}>
-              Start a subscription
-            </a>
+            {subscribing ? (
+              <div role="status">
+                <p>
+                  <strong>Almost there.</strong> Email <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a> with your roast and
+                  schedule, or sign up at either counter.
+                </p>
+              </div>
+            ) : (
+              <a
+                className="cf-btn cf-btn--primary"
+                href="#subscribe"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSubscribing(true);
+                }}
+              >
+                Start a subscription
+              </a>
+            )}
           </div>
           <p className="cf-small cf-center">
             Need coffee for a crowd? See our <a {...link("catering")}>catering coffee boxes</a>.

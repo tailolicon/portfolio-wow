@@ -19,7 +19,7 @@ export type SiteApi = {
   openProduct: (slug: string) => void;
   openCollections: (filter?: Partial<Filter>) => void;
   bookViewing: (slug?: string) => void;
-  addToBag: (label: string) => void;
+  addToBag: (slug: string, detail?: { price: number; note: string }) => void;
 };
 
 export function ProductCard({

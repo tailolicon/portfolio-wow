@@ -1,7 +1,8 @@
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { Moped, ShoppingBag, Star } from "@phosphor-icons/react";
 import { useDemoForm } from "../shared";
-import { ORDER_LINKS, TAG_LABEL } from "./data";
+import { BIZ, ORDER_LINKS, TAG_LABEL } from "./data";
 import type { Tag } from "./data";
 
 export function Logo() {
@@ -40,23 +41,40 @@ export function Tags({ tags }: { tags?: Tag[] }) {
 }
 
 export function OrderButtons({ compact = false }: { compact?: boolean }) {
+  const [picked, setPicked] = useState<string | null>(null);
+  const choice = ORDER_LINKS.find((o) => o.label === picked);
   return (
-    <div className={`rs-order ${compact ? "rs-order-compact" : ""}`}>
-      {ORDER_LINKS.map((o) => (
-        <a
-          key={o.label}
-          href="#order"
-          onClick={(e) => e.preventDefault()}
-          className={`rs-order-btn ${o.primary ? "rs-order-primary" : ""}`}
-        >
-          {o.primary ? <ShoppingBag size={20} aria-hidden /> : <Moped size={20} aria-hidden />}
-          <span>
-            <strong>{o.label}</strong>
-            {!compact && <small>{o.sub}</small>}
-          </span>
-        </a>
-      ))}
-    </div>
+    <>
+      <div className={`rs-order ${compact ? "rs-order-compact" : ""}`}>
+        {ORDER_LINKS.map((o) => (
+          <a
+            key={o.label}
+            href="#order"
+            aria-pressed={picked === o.label}
+            onClick={(e) => {
+              e.preventDefault();
+              setPicked(o.label);
+            }}
+            className={`rs-order-btn ${o.primary ? "rs-order-primary" : ""}`}
+          >
+            {o.primary ? <ShoppingBag size={20} aria-hidden /> : <Moped size={20} aria-hidden />}
+            <span>
+              <strong>{o.label}</strong>
+              {!compact && <small>{o.sub}</small>}
+            </span>
+          </a>
+        ))}
+      </div>
+      {choice && (
+        <p className="rs-order-note" role="status">
+          {choice.primary ? (
+            <>Call <a href={`tel:${BIZ.tel}`}>{BIZ.phone}</a> with your order and it will be ready in about 25 minutes. Pay at the host stand.</>
+          ) : (
+            <>Search for {BIZ.full} in the {choice.label} app. We deliver within 5 miles of South Lamar, Tuesday to Sunday.</>
+          )}
+        </p>
+      )}
+    </>
   );
 }
 

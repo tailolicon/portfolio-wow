@@ -93,7 +93,7 @@ export default function ProductPage({ site, slug }: { site: SiteApi; slug: strin
       setSizeError(true);
       return;
     }
-    site.addToBag(product.slug);
+    site.addToBag(product.slug, { price, note: [metal, size ? `size ${size}` : "", engrave && engraving ? `engraved "${engraving}"` : ""].filter(Boolean).join(", ") });
     setAdded(true);
   };
 

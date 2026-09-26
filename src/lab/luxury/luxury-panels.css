@@ -1,0 +1,232 @@
+/* Maison Orvel: header panels (search, account, mini bag). Anchored under the sticky header. */
+.site-lab-luxury .lx-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--lx-paper);
+  border-bottom: 1px solid var(--lx-line);
+  box-shadow: var(--lx-shadow);
+  animation: lx-panel-in 420ms var(--lx-ease);
+}
+@keyframes lx-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.site-lab-luxury .lx-panel-inner {
+  max-width: calc(1320px + 2 * var(--lx-gutter));
+  margin: 0 auto;
+  padding: var(--lx-s6) var(--lx-gutter) var(--lx-s7);
+}
+.site-lab-luxury .lx-panel--account,
+.site-lab-luxury .lx-panel--bag {
+  left: auto;
+  right: var(--lx-gutter);
+  width: min(400px, calc(100% - 2 * var(--lx-gutter)));
+  border: 1px solid var(--lx-line);
+  border-top: 0;
+}
+.site-lab-luxury .lx-panel-narrow {
+  padding: var(--lx-s5) var(--lx-s5) var(--lx-s6);
+  display: grid;
+  gap: var(--lx-s4);
+}
+.site-lab-luxury .lx-panel-title {
+  font-family: var(--lx-serif);
+  font-size: 1.625rem;
+  line-height: 1.2;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-panel-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lx-muted);
+  margin-bottom: var(--lx-s3);
+}
+.site-lab-luxury .lx-panel-empty,
+.site-lab-luxury .lx-panel-note {
+  color: var(--lx-ink-2);
+  font-size: 0.9375rem;
+}
+.site-lab-luxury .lx-panel-note svg {
+  display: inline;
+  vertical-align: -2px;
+  color: var(--lx-accent);
+}
+.site-lab-luxury .lx-panel-links {
+  display: grid;
+  border-top: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-panel-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--lx-s3);
+  padding-block: 0.8rem;
+  border-bottom: 1px solid var(--lx-line);
+  color: var(--lx-ink);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 400ms var(--lx-ease);
+}
+.site-lab-luxury .lx-panel-links a:hover {
+  color: var(--lx-accent);
+}
+.site-lab-luxury .lx-account-form {
+  display: grid;
+  gap: var(--lx-s4);
+}
+
+/* Search */
+.site-lab-luxury .lx-search-input {
+  width: 100%;
+  padding: 0.4rem 0 0.8rem;
+  border: 0;
+  border-bottom: 1px solid var(--lx-ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--lx-ink);
+  font-family: var(--lx-serif);
+  font-size: clamp(1.5rem, 3cqi, 2.25rem);
+  outline: none;
+}
+.site-lab-luxury .lx-search-input::placeholder {
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-search-suggest,
+.site-lab-luxury .lx-search .lx-panel-empty {
+  margin-top: var(--lx-s5);
+}
+.site-lab-luxury .lx-search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lx-s2);
+}
+.site-lab-luxury .lx-search-chip {
+  min-height: 40px;
+  padding: 0 1.1rem;
+  border: 1px solid var(--lx-line);
+  background: transparent;
+  color: var(--lx-ink);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  transition: border-color 300ms var(--lx-ease), color 300ms var(--lx-ease);
+}
+.site-lab-luxury .lx-search-chip:hover {
+  border-color: var(--lx-ink);
+  color: var(--lx-accent);
+}
+.site-lab-luxury .lx-search-results {
+  list-style: none;
+  margin: var(--lx-s4) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  column-gap: var(--lx-s6);
+}
+.site-lab-luxury .lx-search-hit {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: var(--lx-s4);
+  width: 100%;
+  padding: var(--lx-s3) 0;
+  border: 0;
+  border-bottom: 1px solid var(--lx-line);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+.site-lab-luxury .lx-search-hit img,
+.site-lab-luxury .lx-bag-thumb img {
+  width: 56px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--lx-stone);
+}
+.site-lab-luxury .lx-search-hit:hover .lx-search-name {
+  color: var(--lx-accent);
+}
+.site-lab-luxury .lx-search-name {
+  display: block;
+  font-family: var(--lx-serif);
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: var(--lx-ink);
+  transition: color 300ms var(--lx-ease);
+}
+.site-lab-luxury .lx-search-meta {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-search-price {
+  font-size: 0.875rem;
+  color: var(--lx-ink);
+  white-space: nowrap;
+}
+
+/* Mini bag */
+.site-lab-luxury .lx-bag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  border-top: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-bag-list li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto;
+  align-items: center;
+  gap: var(--lx-s3);
+  padding-block: var(--lx-s3);
+  border-bottom: 1px solid var(--lx-line);
+}
+.site-lab-luxury .lx-bag-thumb {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.site-lab-luxury .lx-bag-info {
+  min-width: 0;
+}
+.site-lab-luxury .lx-bag-remove {
+  width: 32px;
+  height: 32px;
+  color: var(--lx-muted);
+}
+.site-lab-luxury .lx-bag-subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lx-ink);
+}
+.site-lab-luxury .lx-bag-subtotal strong {
+  font-family: var(--lx-serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-lab-luxury .lx-panel {
+    animation: none;
+  }
+}
+.site-lab-luxury .lx-search-input::-webkit-search-cancel-button {
+  appearance: none;
+}

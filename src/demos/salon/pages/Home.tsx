@@ -204,7 +204,7 @@ export function HomePage({ link, book }: PageProps) {
 
       <section className="sl-section sl-section--flush">
         <div className="sl-wrap sl-extras">
-          <article className="sl-giftcard">
+          <article className="sl-giftcard" id="sl-gift-cards">
             <div className="sl-giftcard-copy">
               <h2 className="sl-h2 sl-h2--sm">Gift cards</h2>
               <p>

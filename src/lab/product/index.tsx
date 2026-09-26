@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HandbagSimple, List, X } from "@phosphor-icons/react";
 import { useSitePages } from "../../demos/shared";
+import { useLegalDialog } from "../../demos/links";
 import { NAV, PAGES, SITE_FOOTER } from "./data";
 import type { ColorId, Page } from "./data";
 import Home from "./pages/Home";
@@ -15,22 +16,41 @@ import "./support.css";
 import "./pages.css";
 import "./buy.css";
 
-const FOOTER_TARGET: Record<string, Page> = {
-  "Kova One": "home",
-  "Kova Air": "compare",
-  "Kova Buds": "compare",
-  "Setup guides": "support",
-  Firmware: "support",
-  Warranty: "support",
-  Repair: "support",
-  "Contact us": "support",
+/** Where each footer label goes: a page, and optionally a section id on that page to scroll to. */
+const FOOTER_TARGET: Record<string, { page: Page; section?: string }> = {
+  "Kova One": { page: "home" },
+  "Kova Air": { page: "compare" },
+  "Kova Buds": { page: "compare" },
+  "Cushions and parts": { page: "home", section: "kv-materials-title" },
+  "Gift cards": { page: "support", section: "kv-contact-title" },
+  "Setup guides": { page: "support", section: "kv-setup-title" },
+  Firmware: { page: "support", section: "kv-firmware" },
+  Warranty: { page: "support", section: "kv-warranty" },
+  Repair: { page: "support", section: "kv-warranty" },
+  "Contact us": { page: "support", section: "kv-contact-title" },
+  "About us": { page: "home" },
+  Journal: { page: "home", section: "kv-sound-title" },
+  Careers: { page: "support", section: "kv-contact-title" },
+  Press: { page: "support", section: "kv-contact-title" },
+  Environment: { page: "home", section: "kv-materials-title" },
 };
+
+/** Smooth-scroll to a section; if the smooth scroll gets dropped while the new page settles, jump there. */
+function scrollToSection(el: Element | null | undefined) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    const top = el.getBoundingClientRect().top;
+    if (top > window.innerHeight * 0.4 || top < -40) el.scrollIntoView({ block: "start" });
+  }, 900);
+}
 
 export default function Site() {
   const { page, go, link, rootRef } = useSitePages(PAGES);
   const [menuOpen, setMenuOpen] = useState(false);
   const [color, setColor] = useState<ColorId>("graphite");
   const [bagCount, setBagCount] = useState(0);
+  const legal = useLegalDialog("Kova Audio", "support@kova.audio");
 
   const navigate = (next: Page) => {
     setMenuOpen(false);
@@ -43,6 +63,22 @@ export default function Site() {
       navigate(target);
     },
   });
+  const footerLink = (label: string) => {
+    const target = FOOTER_TARGET[label] ?? { page: "support", section: "kv-contact-title" };
+    return {
+      href: `#${target.page}`,
+      onClick: (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+        navigate(target.page);
+        if (!target.section) return;
+        const id = target.section;
+        window.setTimeout(() => {
+          const el = rootRef.current?.querySelector(`#${id}`);
+          scrollToSection(el?.closest("section, article") ?? el);
+        }, 60);
+      },
+    };
+  };
   const buyIn = (next: ColorId) => {
     setColor(next);
     navigate("buy");
@@ -122,14 +158,11 @@ export default function Site() {
               <div key={col.title} className="kv-footer-col">
                 <h2>{col.title}</h2>
                 <ul>
-                  {col.links.map((label) => {
-                    const target = FOOTER_TARGET[label];
-                    return (
-                      <li key={label}>
-                        {target ? <a {...navLink(target)}>{label}</a> : <a href="#home" onClick={(e) => e.preventDefault()}>{label}</a>}
-                      </li>
-                    );
-                  })}
+                  {col.links.map((label) => (
+                    <li key={label}>
+                      <a {...footerLink(label)}>{label}</a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             ))}
@@ -137,14 +170,15 @@ export default function Site() {
           <div className="kv-footer-legal">
             <p>Copyright 2026 Kova Audio ApS. Refshalevej 163A, 1432 Copenhagen K, Denmark. CVR 38417290.</p>
             <ul>
-              <li><a href="#home" onClick={(e) => e.preventDefault()}>Privacy</a></li>
-              <li><a href="#home" onClick={(e) => e.preventDefault()}>Terms of sale</a></li>
-              <li><a href="#home" onClick={(e) => e.preventDefault()}>Cookies</a></li>
+              <li><a {...legal.link("privacy")}>Privacy</a></li>
+              <li><a {...legal.link("terms")}>Terms of sale</a></li>
+              <li><a {...legal.link("cookies")}>Cookies</a></li>
               <li>United States, USD</li>
             </ul>
           </div>
         </div>
       </footer>
+      {legal.dialog}
     </div>
   );
 }

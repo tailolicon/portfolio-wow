@@ -49,6 +49,17 @@ function SqlBlock({ sql }: { sql: string }) {
 
 export function AnswerCard({ example, showSqlDefault = false }: { example: AskExample; showSqlDefault?: boolean }) {
   const [showSql, setShowSql] = useState(showSqlDefault);
+  const [saved, setSaved] = useState(false);
+  const [shared, setShared] = useState(false);
+  const share = () => {
+    try {
+      void navigator.clipboard?.writeText(window.location.href).catch(() => undefined);
+    } catch {
+      /* clipboard unavailable: the confirmation still shows */
+    }
+    setShared(true);
+    window.setTimeout(() => setShared(false), 2200);
+  };
   const peak = example.id === "teams" ? 5 : undefined;
   return (
     <div className="vy-answer">
@@ -79,11 +90,11 @@ export function AnswerCard({ example, showSqlDefault = false }: { example: AskEx
         <button type="button" className={"vy-app-btn" + (showSql ? " is-on" : "")} onClick={() => setShowSql((v) => !v)} aria-pressed={showSql}>
           <Code size={14} /> {showSql ? "Hide SQL" : "View SQL"}
         </button>
-        <button type="button" className="vy-app-btn">
-          <BookmarkSimple size={14} /> Save to board
+        <button type="button" className={"vy-app-btn" + (saved ? " is-on" : "")} onClick={() => setSaved((v) => !v)} aria-pressed={saved}>
+          <BookmarkSimple size={14} weight={saved ? "fill" : "regular"} /> {saved ? "Saved to Growth board" : "Save to board"}
         </button>
-        <button type="button" className="vy-app-btn">
-          <ShareNetwork size={14} /> Share
+        <button type="button" className="vy-app-btn" onClick={share}>
+          <ShareNetwork size={14} /> {shared ? "Link copied" : "Share"}
         </button>
       </div>
     </div>

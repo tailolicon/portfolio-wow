@@ -32,7 +32,7 @@ function FieldFallback() {
   );
 }
 
-function Hero() {
+function Hero({ onExplain }: { onExplain: () => void }) {
   const { link } = useNav();
   return (
     <section className="vy-hero">
@@ -72,7 +72,7 @@ function Hero() {
               <AskPanel examples={askExamples} />
               <div className="vy-window-side">
                 <span className="vy-app-label">Alerts</span>
-                <AlertCard />
+                <AlertCard onExplain={onExplain} />
               </div>
             </div>
           </div>
@@ -117,11 +117,10 @@ const TABS = [
   },
 ];
 
-function Capabilities() {
-  const [tab, setTab] = useState("explain");
+function Capabilities({ tab, setTab }: { tab: string; setTab: (tab: string) => void }) {
   const { goSection } = useNav();
   return (
-    <section className="vy-section vy-caps">
+    <section id="vy-capabilities" className="vy-section vy-caps">
       <div className="vy-container">
         <div className="vy-section-head">
           <h2 className="vy-h2">From a question to its cause, before the meeting starts.</h2>
@@ -162,7 +161,7 @@ function Capabilities() {
             {tab === "explain" && <ExplainPanel />}
             {tab === "monitor" && (
               <div className="vy-caps-monitor">
-                <AlertCard />
+                <AlertCard onExplain={() => setTab("explain")} />
               </div>
             )}
           </div>
@@ -337,11 +336,17 @@ export function ClosingCta({ title, body }: { title: string; body: string }) {
 }
 
 export default function Home() {
+  const [tab, setTab] = useState("explain");
+  const { goSection } = useNav();
+  const explain = () => {
+    setTab("explain");
+    goSection("home", "capabilities");
+  };
   return (
     <>
-      <Hero />
+      <Hero onExplain={explain} />
       <Logos />
-      <Capabilities />
+      <Capabilities tab={tab} setTab={setTab} />
       <Warehouse />
       <Featured />
       <Trust />

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Info } from "@phosphor-icons/react";
+import { Check, Info } from "@phosphor-icons/react";
+import { useDemoForm } from "../../shared";
 import { AREAS, RATING_BARS, RESULTS, REVIEWS, type AreaId } from "../data-practice";
 import { CtaBand, PageHero, Stars, type Go } from "../components";
 
@@ -9,6 +10,61 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: "all", label: "All results" },
   ...AREAS.map((a) => ({ id: a.id as Filter, label: a.title })),
 ];
+
+/** "Leave a review": opens a short inline form in the sidebar, then thanks the client. */
+function ReviewBox() {
+  const [open, setOpen] = useState(false);
+  const { sent, onSubmit } = useDemoForm();
+  if (sent) {
+    return (
+      <div className="lw-form-sent" role="status">
+        <span className="lw-sent-icon" aria-hidden="true">
+          <Check size={26} />
+        </span>
+        <p>Thank you. Your review goes to our client care team and appears here once approved.</p>
+      </div>
+    );
+  }
+  if (!open) {
+    return (
+      <a
+        className="lw-btn lw-btn-outline lw-btn-block"
+        href="#review"
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen(true);
+        }}
+      >
+        Leave a review
+      </a>
+    );
+  }
+  return (
+    <form className="lw-form" onSubmit={onSubmit}>
+      <div className="lw-field">
+        <label htmlFor="lw-review-stars">Your rating</label>
+        <select id="lw-review-stars" required defaultValue="5">
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+      </div>
+      <div className="lw-field">
+        <label htmlFor="lw-review-name">Name and city</label>
+        <input id="lw-review-name" required autoComplete="name" />
+      </div>
+      <div className="lw-field">
+        <label htmlFor="lw-review-text">Your review</label>
+        <textarea id="lw-review-text" required rows={4} autoFocus />
+      </div>
+      <button type="submit" className="lw-btn lw-btn-accent lw-btn-block">
+        Submit review
+      </button>
+    </form>
+  );
+}
 
 export default function Results({ go }: { go: Go }) {
   const [filter, setFilter] = useState<Filter>("all");
@@ -77,9 +133,7 @@ export default function Results({ go }: { go: Go }) {
                 </li>
               ))}
             </ul>
-            <a className="lw-btn lw-btn-outline lw-btn-block" href="#review" onClick={(e) => e.preventDefault()}>
-              Leave a review on Google
-            </a>
+            <ReviewBox />
           </aside>
           <div className="lw-review-wall">
             {REVIEWS.map((r) => (

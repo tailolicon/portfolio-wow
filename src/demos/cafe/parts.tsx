@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { StarIcon, InstagramLogoIcon } from "@phosphor-icons/react";
 import { demoImg, useDemoForm, useSitePages } from "../shared";
+import { socialLink } from "../links";
 import { INSTAGRAM, REVIEWS, RATING, LOCATIONS } from "./data";
 import type { Page } from "./data";
 
@@ -122,7 +123,7 @@ export function InstaGrid() {
           title="Follow along on Instagram"
           lead="New bakes, roast days, and the occasional patio dog."
           action={
-            <a className="cf-btn cf-btn--ghost" href="#instagram" onClick={(e) => e.preventDefault()}>
+            <a className="cf-btn cf-btn--ghost" {...socialLink("instagram")}>
               <InstagramLogoIcon size={18} aria-hidden="true" /> Follow us
             </a>
           }

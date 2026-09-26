@@ -1,5 +1,6 @@
 import { InstagramLogo, CalendarBlank, Check } from "@phosphor-icons/react";
 import { demoImg } from "../../shared";
+import { socialLink } from "../../links";
 import { BIZ, STYLISTS } from "../data";
 import type { PageProps } from "../types";
 import { PageHero } from "./Services";
@@ -37,7 +38,7 @@ export function StylistsPage({ book }: PageProps) {
                 </ul>
                 <p className="sl-stylist-bio">{s.bio}</p>
                 <div className="sl-stylist-meta">
-                  <a href="#instagram" onClick={(e) => e.preventDefault()}>
+                  <a {...socialLink("instagram")} aria-label={`${s.first} on Instagram, ${s.ig}`}>
                     <InstagramLogo size={16} aria-hidden="true" /> {s.ig}
                   </a>
                   <span>
@@ -72,7 +73,7 @@ export function StylistsPage({ book }: PageProps) {
         </div>
       </section>
 
-      <section className="sl-section">
+      <section className="sl-section" id="sl-careers">
         <div className="sl-wrap sl-careers">
           <img src={demoImg("salon", "interior-bw")} alt="The Ivy & Oak styling floor" loading="lazy" />
           <div className="sl-careers-copy">

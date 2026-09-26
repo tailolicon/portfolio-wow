@@ -346,7 +346,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
                 <ul>
                   {plan.items.map((item) => <li key={item}><Check size={14} /> {item}</li>)}
                 </ul>
-                <a href="mailto:hello@example.com?subject=Website%20project">
+                <a href={"mailto:tafi.contactforwork@gmail.com?subject=" + encodeURIComponent(plan.name + " website plan")}>
                   Ask about {plan.name} <ArrowRight size={15} />
                 </a>
               </article>
@@ -381,7 +381,7 @@ export default function BusinessStudio({ onClose }: { onClose: () => void }) {
             <button type="button" onClick={openFullDemo}>
               Open {active.label} demo <ArrowRight size={18} />
             </button>
-            <a href="mailto:hello@example.com?subject=Small%20business%20website">
+            <a href="mailto:tafi.contactforwork@gmail.com?subject=Small%20business%20website">
               Tell me about your business <ArrowRight size={18} />
             </a>
           </div>

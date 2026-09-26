@@ -38,6 +38,7 @@ export default function Buy({ initialColor, go, onAdd }: Props) {
   const [qty, setQty] = useState(1);
   const [pay, setPay] = useState<"full" | "split">("full");
   const [added, setAdded] = useState(false);
+  const [ordered, setOrdered] = useState(false);
 
   const finish = COLORS.find((c) => c.id === color) ?? COLORS[0];
   const plan = CARE_PLANS.find((p) => p.id === care) ?? CARE_PLANS[0];
@@ -267,7 +268,25 @@ export default function Buy({ initialColor, go, onAdd }: Props) {
             </span>
           </p>
 
-          {added ? (
+          {ordered ? (
+            <div className="kv-added" role="status">
+              <CheckCircle size={22} weight="fill" aria-hidden="true" />
+              <div>
+                <strong>Order confirmed.</strong>
+                <p>
+                  {qty} x Kova One in {finish.name}, {money(total)}. Arriving {delivery}. A receipt is on its way to your inbox.
+                </p>
+                <div className="kv-added-actions">
+                  <button type="button" className="kv-link" onClick={() => go("support")}>
+                    Setup and support
+                  </button>
+                  <button type="button" className="kv-link" onClick={() => go("home")}>
+                    Keep browsing
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : added ? (
             <div className="kv-added" role="status">
               <CheckCircle size={22} weight="fill" aria-hidden="true" />
               <div>
@@ -277,7 +296,7 @@ export default function Buy({ initialColor, go, onAdd }: Props) {
                   {plan.price > 0 ? ` with ${plan.name}` : ""}.
                 </p>
                 <div className="kv-added-actions">
-                  <button type="button" className="kv-btn kv-btn-small">
+                  <button type="button" className="kv-btn kv-btn-small" onClick={() => setOrdered(true)}>
                     Check out
                   </button>
                   <button type="button" className="kv-link" onClick={() => go("home")}>

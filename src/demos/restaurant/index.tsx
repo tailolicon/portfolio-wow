@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import { Clock, FacebookLogo, InstagramLogo, List, MapPin, Phone, X } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink } from "../links";
 import { BIZ, HOURS_SHORT, NAV, PAGES } from "./data";
 import type { RsPage } from "./data";
 import { Logo, Newsletter } from "./parts";
@@ -28,6 +29,16 @@ export default function Site() {
     };
   };
   const props = { go, link: navTo };
+
+  /** Footer shortcuts: open a page, then bring one of its sections into view. */
+  const toSection = (target: RsPage, id: string) => ({
+    href: `#${id}`,
+    onClick: (event: MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      go(target);
+      window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    },
+  });
 
   return (
     <div ref={rootRef} className="demo-site site-restaurant">
@@ -101,8 +112,8 @@ export default function Site() {
             </div>
             <p>Handmade pasta, wood-fired pizza and a glass of something good. A Bellini family kitchen on South Lamar since 1998.</p>
             <div className="rs-social">
-              <a href="#instagram" aria-label="Instagram" onClick={(e) => e.preventDefault()}><InstagramLogo size={20} /></a>
-              <a href="#facebook" aria-label="Facebook" onClick={(e) => e.preventDefault()}><FacebookLogo size={20} /></a>
+              <a {...socialLink("instagram")} aria-label="Instagram"><InstagramLogo size={20} /></a>
+              <a {...socialLink("facebook")} aria-label="Facebook"><FacebookLogo size={20} /></a>
             </div>
           </div>
           <div>
@@ -126,8 +137,8 @@ export default function Site() {
                 <li key={item.id}><a {...navTo(item.id)}>{item.label}</a></li>
               ))}
               <li><a {...navTo("contact")} aria-current={undefined}>Private dining</a></li>
-              <li><a href="#gift-cards" onClick={(e) => e.preventDefault()}>Gift cards</a></li>
-              <li><a href="#careers" onClick={(e) => e.preventDefault()}>Careers</a></li>
+              <li><a {...toSection("home", "rs-gift-cards")}>Gift cards</a></li>
+              <li><a {...toSection("contact", "rs-contact-form")}>Careers</a></li>
             </ul>
           </div>
         </div>

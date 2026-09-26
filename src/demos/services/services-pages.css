@@ -1577,3 +1577,10 @@
     font-size: var(--text-4xl);
   }
 }
+
+/* Write a review (Reviews page sidebar) */
+.site-services .sv-review-form {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}

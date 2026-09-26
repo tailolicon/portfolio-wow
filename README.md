@@ -65,8 +65,6 @@ Each site keeps its design tokens in `src/lab/<id>/DESIGN.md`. ThreeUI scenes lo
 - Brand/OG assets: `public/`
 - GitHub Pages deployment: `.github/workflows/pages.yml`
 
-The email address in the final CTA is intentionally a placeholder: replace `hello@example.com` before publishing.
-
 ## ThreeUI / performance strategy
 
 This is a real `@designcodeio/threeui` integration.
@@ -89,7 +87,6 @@ This is a real `@designcodeio/threeui` integration.
 - Focus-visible states are provided.
 - Drag interactions work with pointer/touch input.
 - Reduced-motion visitors get the same information and art direction without continuous motion.
-
 
 ## Small Business Studio
 

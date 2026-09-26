@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import { ListIcon, XIcon, InstagramLogoIcon, FacebookLogoIcon, EnvelopeSimpleIcon, PhoneIcon, MapPinIcon } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink, useLegalDialog } from "../links";
 import { PAGES, NAV, LOCATIONS, BRAND } from "./data";
 import { Logo, Newsletter } from "./parts";
 import Home from "./pages/Home";
@@ -31,6 +32,15 @@ export default function Site() {
   };
 
   const pageProps = { go, link };
+  const legal = useLegalDialog(BRAND.full, BRAND.email);
+  const jobsLink = {
+    href: "#jobs",
+    onClick: (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      go("visit");
+      window.setTimeout(() => document.getElementById("jobs")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
+    },
+  };
 
   return (
     <div ref={rootRef} className="demo-site site-cafe">
@@ -118,10 +128,10 @@ export default function Site() {
               Small-batch coffee roasters and from-scratch bakers in Asheville, North Carolina, since {BRAND.since}.
             </p>
             <div className="cf-social">
-              <a href="#instagram" onClick={(e) => e.preventDefault()} aria-label="Instagram">
+              <a {...socialLink("instagram")} aria-label="Instagram">
                 <InstagramLogoIcon size={20} />
               </a>
-              <a href="#facebook" onClick={(e) => e.preventDefault()} aria-label="Facebook">
+              <a {...socialLink("facebook")} aria-label="Facebook">
                 <FacebookLogoIcon size={20} />
               </a>
               <a href={`mailto:${BRAND.email}`} aria-label="Email us">
@@ -168,7 +178,7 @@ export default function Site() {
                 <a {...link("visit")}>Locations &amp; hours</a>
               </li>
               <li>
-                <a {...link("visit")}>Jobs</a>
+                <a {...jobsLink}>Jobs</a>
               </li>
               <li>
                 <a href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
@@ -179,16 +189,17 @@ export default function Site() {
         <div className="cf-wrap cf-footer-bottom">
           <p>© 2026 Hearth &amp; Honey Coffee Co. LLC. All rights reserved.</p>
           <p className="cf-footer-legal">
-            <a href="#privacy" onClick={(e) => e.preventDefault()}>
+            <a {...legal.link("privacy")}>
               Privacy
             </a>
-            <a href="#accessibility" onClick={(e) => e.preventDefault()}>
+            <a {...legal.link("accessibility")}>
               Accessibility
             </a>
             <span>Gift cards sold at both shops</span>
           </p>
         </div>
       </footer>
+      {legal.dialog}
     </div>
   );
 }

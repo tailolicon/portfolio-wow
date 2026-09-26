@@ -344,3 +344,43 @@
     gap: var(--oh-s2);
   }
 }
+
+.site-lab-architecture .oh-footer-news {
+  display: flex;
+  margin-top: var(--oh-s2);
+  border-bottom: 1px solid var(--oh-on-ink-mute);
+}
+
+.site-lab-architecture .oh-footer-news input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--oh-s2) 0;
+  border: 0;
+  background: transparent;
+  color: var(--oh-on-ink);
+  font: inherit;
+  outline: none;
+}
+
+.site-lab-architecture .oh-footer-news input::placeholder {
+  color: var(--oh-on-ink-mute);
+}
+
+.site-lab-architecture .oh-footer-news button {
+  border: 0;
+  background: none;
+  color: var(--oh-on-ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding-left: var(--oh-s3);
+}
+
+.site-lab-architecture .oh-footer-news button:hover {
+  color: var(--oh-accent);
+}
+
+.site-lab-architecture .oh-footer-news-done {
+  margin-top: var(--oh-s2);
+  color: var(--oh-on-ink);
+}

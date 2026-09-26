@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Clock, EnvelopeSimple, FacebookLogo, LinkedinLogo, List, MapPin, Phone, Translate, X } from "@phosphor-icons/react";
 import { useSitePages } from "../shared";
+import { socialLink } from "../links";
 import { FIRM, NAV, PAGES, type Page } from "./data";
 import { AREAS, type AreaId } from "./data-practice";
 import Home from "./pages/Home";
@@ -146,10 +147,10 @@ export default function Site() {
               counties since {FIRM.founded}. Hablamos español.
             </p>
             <div className="lw-social">
-              <a href="#facebook" aria-label="Harper & Reyes Law on Facebook" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("facebook")} aria-label="Harper & Reyes Law on Facebook">
                 <FacebookLogo size={20} />
               </a>
-              <a href="#linkedin" aria-label="Harper & Reyes Law on LinkedIn" onClick={(e) => e.preventDefault()}>
+              <a {...socialLink("linkedin")} aria-label="Harper & Reyes Law on LinkedIn">
                 <LinkedinLogo size={20} />
               </a>
             </div>
